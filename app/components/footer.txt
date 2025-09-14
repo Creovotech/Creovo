@@ -1,0 +1,2 @@
+https://ui.aceternity.com/components/background-beams-with-collision
+https://ui.aceternity.com/components/text-hover-effect
