@@ -1,11 +1,11 @@
-'use client'
+import { AmbientColor } from '@/components/decorations/ambient-color';
+import { Hero } from '@/sections/hero';
 
-const HomePage = () => {
+export default function LandingPage() {
   return (
-    <div>
-      <p>home page</p>
+    <div className="relative overflow-hidden w-full">
+      <AmbientColor />
+      <Hero/>
     </div>
   );
-};
-
-export default HomePage;
+}

@@ -19,3 +19,8 @@ export const RIGHT_NAVBAR_ITEMS = [
     name: "Sign Up",
   },
 ];
+
+export const HERO_ITEMS = {
+    heading: 'Creato',
+    sub_heading: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.',
+}
