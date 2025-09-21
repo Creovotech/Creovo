@@ -28,7 +28,7 @@ export const MileStones = () => {
     target: ref,
     offset: ['start end', 'end start'],
   });
-  const backgrounds = ['var(--charcoal)', 'var(--zinc-900)', 'var(--charcoal)'];
+  const backgrounds = ['var(--charcoal)', 'var(--zinc-900)'];
 
   const [gradient, setGradient] = useState(backgrounds[0]);
 

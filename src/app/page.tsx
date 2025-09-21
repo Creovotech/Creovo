@@ -5,6 +5,7 @@ import { Hero } from '@/sections/hero';
 import { MileStones } from '@/sections/milestones';
 import { Pricing } from '@/sections/pricing';
 import { TechStacks } from '@/sections/tech-stack';
+import { Testimonials } from '@/sections/testimonials';
 import { Timeline } from '@/sections/timeline';
 import { pricingData } from '@/constants/pricingdata';
 
@@ -18,6 +19,7 @@ export default function LandingPage() {
       <Timeline />
       <MileStones />
       <Pricing {...pricingData}/>
+      <Testimonials />
       <CTA />
     </div>
   );
