@@ -1,6 +1,7 @@
 import { AmbientColor } from '@/components/decorations/ambient-color';
 import { Features } from '@/sections/features';
 import { Hero } from '@/sections/hero';
+import { TechStacks } from '@/sections/tech-stack';
 import { Timeline } from '@/sections/timeline';
 
 export default function LandingPage() {
@@ -9,6 +10,7 @@ export default function LandingPage() {
       <AmbientColor />
       <Hero/>
       <Features heading={''} sub_heading={''} globe_card={undefined} ray_card={undefined} graph_card={undefined} social_media_card={undefined} />
+      <TechStacks logos={[]} />
       <Timeline />
     </div>
   );

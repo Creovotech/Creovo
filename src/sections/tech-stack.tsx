@@ -5,14 +5,11 @@ import { useEffect, useState } from 'react';
 
 import { Heading } from '@/components/elements/heading';
 import { Subheading } from '@/components/elements/subheading';
+import { TECHSTACK_ITEMS } from '@/constants/items';
 
-export const Brands = ({
-  heading,
-  sub_heading,
+export const TechStacks = ({
   logos,
 }: {
-  heading: string;
-  sub_heading: string;
   logos: any[];
 }) => {
   const middleIndex = Math.floor(logos.length / 2);
@@ -44,8 +41,8 @@ export const Brands = ({
 
   return (
     <div className="relative z-20 py-10 md:py-40">
-      <Heading className="pt-4">{heading}</Heading>
-      <Subheading className="max-w-3xl mx-auto">{sub_heading}</Subheading>
+      <Heading className="pt-4">{TECHSTACK_ITEMS.heading}</Heading>
+      <Subheading className="max-w-3xl mx-auto">{TECHSTACK_ITEMS.sub_heading}</Subheading>
 
       <div className="flex gap-10 flex-wrap justify-center md:gap-40 relative h-full w-full mt-20">
         <AnimatePresence mode="popLayout">

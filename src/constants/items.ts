@@ -29,3 +29,8 @@ export const TIMELINE_ITEMS = {
   heading: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.',
   sub_heading: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.',
 }
+
+export const TECHSTACK_ITEMS = {
+  heading: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.',
+  sub_heading: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.',
+}
