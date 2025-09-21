@@ -3,8 +3,10 @@ import { CTA } from '@/sections/cta';
 import { Features } from '@/sections/features';
 import { Hero } from '@/sections/hero';
 import { MileStones } from '@/sections/milestones';
+import { Pricing } from '@/sections/pricing';
 import { TechStacks } from '@/sections/tech-stack';
 import { Timeline } from '@/sections/timeline';
+import { pricingData } from '@/constants/pricingdata';
 
 export default function LandingPage() {
   return (
@@ -15,6 +17,7 @@ export default function LandingPage() {
       <TechStacks logos={[]} />
       <Timeline />
       <MileStones />
+      <Pricing {...pricingData}/>
       <CTA />
     </div>
   );

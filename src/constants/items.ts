@@ -28,9 +28,9 @@ export const HERO_ITEMS = {
 
 export const TIMELINE_ITEMS = {
   heading:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    "Our working timeline",
   sub_heading:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    "We&apos;ve been working on Website development field for the past 4 years. Here&apos;sa timeline of our workflow.",
 };
 
 export const TECHSTACK_ITEMS = {

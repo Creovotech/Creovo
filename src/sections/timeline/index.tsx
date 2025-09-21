@@ -8,6 +8,8 @@ import { Container } from '@/components/container';
 import { Subheading } from '@/components/elements/subheading';
 import { Heading } from '@/components/elements/heading';
 import { TIMELINE_ITEMS } from '@/constants/items';
+import { TimelineData, data } from '@/constants/timelinedata';
+import { Timelinebody } from '@/components/ui/timeline';
 
 export const Timeline = () => {
   return (
@@ -18,6 +20,7 @@ export const Timeline = () => {
         </FeatureIconContainer>
         <Heading className="pt-4">{TIMELINE_ITEMS.heading}</Heading>
         <Subheading className="max-w-3xl mx-auto">{TIMELINE_ITEMS.sub_heading}</Subheading>
+        <Timelinebody data={data as TimelineData[]} />
       </Container>
     </div>
   );
