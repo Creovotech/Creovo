@@ -4,21 +4,13 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import React from 'react';
 
-import { Container } from '../container';
-import { AmbientColor } from '../decorations/ambient-color';
-import { Button } from '../elements/button';
+import { CTA_DATA } from '@/constants/items';
+import { AmbientColor } from '@/components/decorations/ambient-color';
+import { Container } from '@/components/container';
+import { Button } from '@/components/elements/button';
 
-export const CTA = ({
-  heading,
-  sub_heading,
-  CTAs,
-  locale,
-}: {
-  heading: string;
-  sub_heading: string;
-  CTAs: any[];
-  locale: string;
-}) => {
+export const CTA = () => {
+  const { heading, sub_heading, CTAs } = CTA_DATA;
   return (
     <div className="relative py-40">
       <AmbientColor />
@@ -37,7 +29,7 @@ export const CTA = ({
               <Button
                 as={Link}
                 key={index}
-                href={`/${locale}${cta.URL}`}
+                href={`/`}
                 variant={cta.variant}
                 className="py-3"
               >

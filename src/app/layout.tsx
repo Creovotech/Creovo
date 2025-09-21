@@ -4,9 +4,9 @@ import "./globals.css";
 import { ViewTransitions } from "next-view-transitions";
 import { AppNavbar } from "@/components/layout/navbar";
 import { cn } from "@/lib/utils";
-import { Footer } from "@/components/dynamic-zone/footer";
 import { Timeline } from "@/components/ui/timeline";
 import { data, TimelineData } from "@/constants/timelinedata";
+import { Footer } from "@/components/layout/footer";
 
 const inter = Inter({
   subsets: ['latin'],

@@ -5,20 +5,14 @@ import { motion, useMotionValueEvent } from 'framer-motion';
 import { useScroll } from 'framer-motion';
 import React, { useRef, useState } from 'react';
 
-import { Heading } from '../elements/heading';
-import { Subheading } from '../elements/subheading';
-import { FeatureIconContainer } from './features/feature-icon-container';
 import { StickyScroll } from '@/components/ui/sticky-scroll';
+import { Heading } from '@/components/elements/heading';
+import { Subheading } from '@/components/elements/subheading';
+import { MILESTONES_DATA } from '@/constants/items';
+import { FeatureIconContainer } from './features/feature-icon-container';
 
-export const Launches = ({
-  heading,
-  sub_heading,
-  launches,
-}: {
-  heading: string;
-  sub_heading: string;
-  launches: any[];
-}) => {
+export const MileStones = () => {
+  const { heading, sub_heading, launches } = MILESTONES_DATA;
   const launchesWithDecoration = launches.map((entry) => ({
     ...entry,
     icon: <IconRocket className="h-8 w-8 text-secondary" />,
