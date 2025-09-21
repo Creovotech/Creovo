@@ -4,6 +4,7 @@ import "./globals.css";
 import { ViewTransitions } from "next-view-transitions";
 import { AppNavbar } from "@/components/layout/navbar";
 import { cn } from "@/lib/utils";
+import { Footer } from "@/components/dynamic-zone/footer";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -33,7 +34,7 @@ export default function RootLayout({
           <ViewTransitions >
             <AppNavbar />
             {children}
-            {/* <Footer /> */}
+            <Footer />
           </ViewTransitions>
         </div>
       </body>
