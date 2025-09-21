@@ -4,6 +4,8 @@ import "./globals.css";
 import { ViewTransitions } from "next-view-transitions";
 import { AppNavbar } from "@/components/layout/navbar";
 import { cn } from "@/lib/utils";
+import { Timeline } from "@/components/ui/timeline";
+import { data, TimelineData } from "@/constants/timelinedata";
 import { Footer } from "@/components/layout/footer";
 
 const inter = Inter({
@@ -22,6 +24,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const timelinedata: TimelineData[] = data;
   return (
     <html lang="en">
       <body suppressHydrationWarning>
@@ -34,6 +37,7 @@ export default function RootLayout({
           <ViewTransitions >
             <AppNavbar />
             {children}
+            <Timeline data={timelinedata} />
             <Footer />
           </ViewTransitions>
         </div>
