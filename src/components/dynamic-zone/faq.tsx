@@ -1,6 +1,6 @@
 import { IconHelpHexagonFilled } from '@tabler/icons-react';
 
-import { FeatureIconContainer } from './features/feature-icon-container';
+import { FeatureIconContainer } from '../../sections/features/feature-icon-container';
 import { Container } from '@/components/container';
 import { Heading } from '@/components/elements/heading';
 

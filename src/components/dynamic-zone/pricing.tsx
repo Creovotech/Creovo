@@ -7,7 +7,7 @@ import { Container } from '../container';
 import { Button } from '../elements/button';
 import { Heading } from '../elements/heading';
 import { Subheading } from '../elements/subheading';
-import { FeatureIconContainer } from './features/feature-icon-container';
+import { FeatureIconContainer } from '../../sections/features/feature-icon-container';
 import { cn } from '@/lib/utils';
 
 type Perks = {
@@ -120,7 +120,7 @@ const Card = ({ plan, onClick }: { plan: Plan; onClick: () => void }) => {
           className={cn(
             'w-full mt-10 mb-4',
             plan.featured &&
-              'bg-black text-white hover:bg-black/80 hover:text-white'
+            'bg-black text-white hover:bg-black/80 hover:text-white'
           )}
           onClick={onClick}
         >

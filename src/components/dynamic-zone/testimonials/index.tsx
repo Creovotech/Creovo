@@ -6,7 +6,7 @@ import { TbLocationBolt } from 'react-icons/tb';
 import { AmbientColor } from '../../decorations/ambient-color';
 import { Heading } from '../../elements/heading';
 import { Subheading } from '../../elements/subheading';
-import { FeatureIconContainer } from '../features/feature-icon-container';
+import { FeatureIconContainer } from '../../../sections/features/feature-icon-container';
 import { TestimonialsSlider } from './slider';
 import { TestimonialsMarquee } from './testimonials-marquee';
 

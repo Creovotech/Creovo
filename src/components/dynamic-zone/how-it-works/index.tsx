@@ -6,7 +6,7 @@ import React from 'react';
 import { Container } from '../../container';
 import { Heading } from '../../elements/heading';
 import { Subheading } from '../../elements/subheading';
-import { FeatureIconContainer } from '../features/feature-icon-container';
+import { FeatureIconContainer } from '../../../sections/features/feature-icon-container';
 import { Card } from './card';
 
 export const HowItWorks = ({

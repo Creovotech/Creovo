@@ -1,10 +1,10 @@
 import { IconRocket } from '@tabler/icons-react';
 import React from 'react';
 
-import { Container } from '../../container';
-import { Heading } from '../../elements/heading';
-import { Subheading } from '../../elements/subheading';
-import { GradientContainer } from '../../gradient-container';
+import { Container } from '@/components/container';
+import { Heading } from '../../components/elements/heading';
+import { Subheading } from '../../components/elements/subheading';
+import { GradientContainer } from '@/components/gradient-container';
 import {
   Card,
   CardDescription,

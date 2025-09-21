@@ -7,7 +7,7 @@ import React, { useRef, useState } from 'react';
 
 import { Heading } from '../elements/heading';
 import { Subheading } from '../elements/subheading';
-import { FeatureIconContainer } from './features/feature-icon-container';
+import { FeatureIconContainer } from '../../sections/features/feature-icon-container';
 import { StickyScroll } from '@/components/ui/sticky-scroll';
 
 export const Launches = ({
