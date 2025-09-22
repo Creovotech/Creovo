@@ -1,7 +1,6 @@
 'use client';
 
 import React, {
-  RefObject,
   useCallback,
   useEffect,
   useRef,

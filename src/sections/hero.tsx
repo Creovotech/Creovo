@@ -3,12 +3,10 @@
 import { Cover } from '@/components/decorations/cover';
 import ShootingStars from '@/components/decorations/shooting-star';
 import StarBackground from '@/components/decorations/star-background';
-import { Button } from '@/components/elements/button';
 import { Heading } from '@/components/elements/heading';
 import { Subheading } from '@/components/elements/subheading';
 import { HERO_ITEMS } from '@/constants/items';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import React from 'react';
 
 export const Hero = () => {
