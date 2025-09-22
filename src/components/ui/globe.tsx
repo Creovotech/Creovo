@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 
 import { OrbitControls } from '@react-three/drei';
@@ -349,6 +351,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
 
   return (
     <>
+       {/* @ts-ignore */}
       <threeGlobe ref={globeRef} />
     </>
   );

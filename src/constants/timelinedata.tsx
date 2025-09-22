@@ -11,7 +11,7 @@ export const data: TimelineData[] = [
     content: (
       <div>
         <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-          Every successful project is built on a rock-solid foundation. In this initial phase, we collaborate closely with you to understand your vision, business goals, and target audience. We map out a strategic roadmap to ensure we're not just building a product, but a solution that delivers tangible results.
+          Every successful project is built on a rock-solid foundation. In this initial phase, we collaborate closely with you to understand your vision, business goals, and target audience. We map out a strategic roadmap to ensure we&apos;re not just building a product, but a solution that delivers tangible results.
         </p>
         <div className="grid grid-cols-2 gap-4">
           <img
@@ -51,7 +51,7 @@ export const data: TimelineData[] = [
     content: (
       <div>
         <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-          This is where ideas take shape. Our team of UI/UX designers and engineers work in tandem to create a pixel-perfect, intuitive, and highly functional digital experience. We follow agile methodologies to ensure you're involved at every step, allowing for feedback and iteration as we build.
+          This is where ideas take shape. Our team of UI/UX designers and engineers work in tandem to create a pixel-perfect, intuitive, and highly functional digital experience. We follow agile methodologies to ensure you&apos;re involved at every step, allowing for feedback and iteration as we build.
         </p>
         <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
           From wireframes to robust back-end architecture, we craft every component with precision and scalability in mind.

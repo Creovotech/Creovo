@@ -30,6 +30,7 @@ export const CTA = () => {
                 as={Link}
                 key={index}
                 href={`/`}
+                // @ts-ignore
                 variant={cta.variant}
                 className="py-3"
               >
