@@ -17,20 +17,6 @@ import { SkeletonFour } from './skeletons/fourth';
 import { SkeletonTwo } from './skeletons/second';
 import { SkeletonThree } from './skeletons/third';
 
-const wordToNumber: { [key: string]: number } = {
-  one: 1,
-  two: 2,
-  three: 3,
-};
-
-function convertWordToNumber(word: string) {
-  // If word is null, undefined, or an empty string, return null immediately.
-  if (!word) {
-    return null;
-  }
-  return wordToNumber[word.toLowerCase()] || null;
-}
-
 export const Features = ({
   heading,
   sub_heading,
@@ -55,11 +41,11 @@ export const Features = ({
         <Heading className="pt-4">{heading}</Heading>
         <Subheading className="max-w-3xl mx-auto">{sub_heading}</Subheading>
 
+        {/* The parent grid container uses 3 columns on large screens */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 py-10">
+          {/* Globe card spans 2 columns */}
           {globe_card && (
-            <Card
-              className={`md:col-span-${convertWordToNumber(globe_card?.span) || '2'}`}
-            >
+            <Card className="lg:col-span-2">
               <CardTitle>{globe_card.title}</CardTitle>
               <CardDescription>{globe_card.description}</CardDescription>
               <CardSkeletonContainer>
@@ -68,10 +54,9 @@ export const Features = ({
             </Card>
           )}
 
+          {/* Ray card spans 1 column */}
           {ray_card && (
-            <Card
-              className={`md:col-span-${convertWordToNumber(ray_card?.span) || '1'}`}
-            >
+            <Card> {/* col-span-1 is the default */}
               <CardSkeletonContainer className="max-w-[16rem] mx-auto">
                 <SkeletonTwo />
               </CardSkeletonContainer>
@@ -80,10 +65,9 @@ export const Features = ({
             </Card>
           )}
 
+          {/* Graph card spans 1 column */}
           {graph_card && (
-            <Card
-              className={`md:col-span-${convertWordToNumber(graph_card?.span) || '2'}`}
-            >
+            <Card> {/* col-span-1 is the default */}
               <CardSkeletonContainer
                 showGradient={false}
                 className="max-w-[16rem] mx-auto"
@@ -95,15 +79,16 @@ export const Features = ({
             </Card>
           )}
 
+          {/* Social media card spans 2 columns */}
           {social_media_card && (
-            <Card
-              className={`md:col-span-${convertWordToNumber(social_media_card?.span) || '1'}`}
-            >
+            <Card className="lg:col-span-2">
               <CardSkeletonContainer showGradient={false}>
                 <SkeletonFour />
               </CardSkeletonContainer>
               <CardTitle>{social_media_card.title}</CardTitle>
-              <CardDescription>{social_media_card.description}</CardDescription>
+              <CardDescription>
+                {social_media_card.description}
+              </CardDescription>
             </Card>
           )}
         </div>
