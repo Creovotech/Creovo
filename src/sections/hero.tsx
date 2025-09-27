@@ -7,9 +7,14 @@ import { Heading } from '@/components/elements/heading';
 import { Subheading } from '@/components/elements/subheading';
 import { HERO_ITEMS } from '@/constants/items';
 import { motion } from 'framer-motion';
-import React from 'react';
+import { useEffect } from 'react';
+import { renderCanvas } from '@/components/decorations/render-canvas';
 
 export const Hero = () => {
+  useEffect(() => {
+    renderCanvas();
+  }, []);
+
   return (
     <div className="h-screen overflow-hidden relative flex flex-col items-center justify-center">
       <motion.div
@@ -44,6 +49,10 @@ export const Hero = () => {
           ))} */}
       </div>
       <div className="absolute inset-x-0 bottom-0 h-80 w-full bg-linear-to-t from-charcoal to-transparent" />
+      <canvas
+        className="bg-skin-base pointer-events-none absolute inset-0"
+        id="canvas"
+      ></canvas>
     </div>
   );
 };

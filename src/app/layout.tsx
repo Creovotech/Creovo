@@ -5,6 +5,7 @@ import { ViewTransitions } from "next-view-transitions";
 import { AppNavbar } from "@/components/layout/navbar";
 import { cn } from "@/lib/utils";
 import { data, TimelineData } from "@/constants/timelinedata";
+import { LenisProvider } from "@/providers/lenis-provider";
 import { Footer } from "@/components/layout/footer";
 
 const inter = Inter({
@@ -27,6 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning>
+        <LenisProvider>
         <div
           className={cn(
             inter.className,
@@ -39,6 +41,7 @@ export default function RootLayout({
             <Footer />
           </ViewTransitions>
         </div>
+        </LenisProvider>
       </body>
     </html>
   );
