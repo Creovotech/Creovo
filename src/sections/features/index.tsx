@@ -24,6 +24,10 @@ const wordToNumber: { [key: string]: number } = {
 };
 
 function convertWordToNumber(word: string) {
+  // If word is null, undefined, or an empty string, return null immediately.
+  if (!word) {
+    return null;
+  }
   return wordToNumber[word.toLowerCase()] || null;
 }
 

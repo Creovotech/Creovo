@@ -21,7 +21,7 @@ export const RIGHT_NAVBAR_ITEMS = [
 ];
 
 export const HERO_ITEMS = {
-  heading: "Creato",
+  heading: "Creovo",
   sub_heading:
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
 };

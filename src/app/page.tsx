@@ -8,13 +8,17 @@ import { TechStacks } from '@/sections/tech-stack';
 import { Testimonials } from '@/sections/testimonials';
 import { Timeline } from '@/sections/timeline';
 import { pricingData } from '@/constants/pricingdata';
+import globe_card from '@/components/cards/globe_card.json';
+import ray_card from '@/components/cards/ray_card.json';
+import graph_card from '@/components/cards/graph_card.json';
+import social_media_card from '@/components/cards/social_media_card.json';
 
 export default function LandingPage() {
   return (
     <div className="relative overflow-hidden w-full">
       <AmbientColor />
       <Hero/>
-      <Features heading={''} sub_heading={''} globe_card={undefined} ray_card={undefined} graph_card={undefined} social_media_card={undefined} />
+      <Features heading={'Features to get your website running within minutes'} sub_heading={'Indians not allowed'} globe_card={globe_card} ray_card={ray_card} graph_card={graph_card} social_media_card={social_media_card} />
       <TechStacks logos={[]} />
       <Timeline />
       <MileStones />
