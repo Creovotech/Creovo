@@ -7,9 +7,8 @@ import { Container } from '@/components/container';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/elements/button';
 import { Subheading } from '@/components/elements/subheading';
-import { Heading } from '@/components/elements/heading'; // Assuming this is the correct import
+import { Heading } from '@/components/elements/heading';
 
-// --- TYPE DEFINITIONS (Unchanged) ---
 type Perks = {
   [key: string]: string;
 };

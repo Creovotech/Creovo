@@ -16,22 +16,22 @@ export const TestimonialsMarquee = ({
   return (
     <div className="max-w-7xl mx-auto">
       <div className="flex h-full relative">
-        <div className="h-full absolute w-20 left-0 inset-y-0 z-30 bg-linear-to-r from-charcoal to-transparent" />
-        <div className="h-full absolute w-20 right-0 inset-y-0 z-30 bg-linear-to-l from-charcoal to-transparent" />
+        <div className="h-full absolute w-20 left-0 inset-y-0 z-30 bg-gradient-to-r from-charcoal to-transparent" />
+        <div className="h-full absolute w-20 right-0 inset-y-0 z-30 bg-gradient-to-l from-charcoal to-transparent" />
         <Marquee>
           {levelOne.map((testimonial: any, index: any) => (
             <Card
               key={`testimonial-${testimonial.id}-${index}`}
               className="max-w-xl h-60 mx-4"
             >
-              <Quote>{testimonial?.text}</Quote>
+              <Quote>{testimonial?.description}</Quote>
               <div className="flex gap-2 items-center mt-8">
                 <Image
                   src={testimonial?.user?.image?.url}
                   alt={`${testimonial.user.firstname} ${testimonial.user.lastname}`}
                   width={40}
                   height={40}
-                  className="rounded-full"
+                  className="h-12 w-12 rounded-full"
                 />
                 <div className="flex flex-col">
                   <QuoteDescription className="text-neutral-300">
@@ -47,8 +47,8 @@ export const TestimonialsMarquee = ({
         </Marquee>
       </div>
       <div className="flex h-full relative mt-8">
-        <div className="h-full absolute w-20 left-0 inset-y-0 z-30 bg-linear-to-r from-charcoal to-transparent" />
-        <div className="h-full absolute w-20 right-0 inset-y-0 z-30 bg-linear-to-l from-charcoal to-transparent" />
+        <div className="h-full absolute w-20 left-0 inset-y-0 z-30 bg-gradient-to-r from-charcoal to-transparent" />
+        <div className="h-full absolute w-20 right-0 inset-y-0 z-30 bg-gradient-to-l from-charcoal to-transparent" />
         <Marquee direction="right" speed={20}>
           {levelTwo.map((testimonial: any, index: any) => (
             <Card
@@ -60,9 +60,9 @@ export const TestimonialsMarquee = ({
                 <Image
                   src={testimonial?.user?.image?.url}
                   alt={`${testimonial.user.firstname} ${testimonial.user.lastname}`}
-                  width={40}
-                  height={40}
-                  className="rounded-full"
+                  width={20}
+                  height={20}
+                  className="h-18 w-18 rounded-full"
                 />
                 <div className="flex flex-col">
                   <QuoteDescription className="text-neutral-300">
