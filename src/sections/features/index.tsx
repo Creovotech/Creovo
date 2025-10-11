@@ -34,16 +34,14 @@ export const Features = ({
 }) => {
   return (
     <GradientContainer className="md:my-20">
-      <Container className="py-20 max-w-7xl mx-auto  relative z-40">
+      <Container className="max-w-7xl mx-auto  relative z-40">
         <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
           <IconRocket className="h-6 w-6 text-white" />
         </FeatureIconContainer>
         <Heading className="pt-4">{heading}</Heading>
         <Subheading className="max-w-3xl mx-auto">{sub_heading}</Subheading>
 
-        {/* The parent grid container uses 3 columns on large screens */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 py-10">
-          {/* Globe card spans 2 columns */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {globe_card && (
             <Card className="lg:col-span-2">
               <CardTitle>{globe_card.title}</CardTitle>
@@ -54,10 +52,9 @@ export const Features = ({
             </Card>
           )}
 
-          {/* Ray card spans 1 column */}
           {ray_card && (
             <Card> {/* col-span-1 is the default */}
-              <CardSkeletonContainer className="max-w-[16rem] mx-auto">
+              <CardSkeletonContainer showGradient={false} className="max-w-[16rem] mx-auto">
                 <SkeletonTwo />
               </CardSkeletonContainer>
               <CardTitle>{ray_card.title}</CardTitle>
@@ -65,9 +62,8 @@ export const Features = ({
             </Card>
           )}
 
-          {/* Graph card spans 1 column */}
           {graph_card && (
-            <Card> {/* col-span-1 is the default */}
+            <Card> 
               <CardSkeletonContainer
                 showGradient={false}
                 className="max-w-[16rem] mx-auto"
