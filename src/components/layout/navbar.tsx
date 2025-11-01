@@ -11,6 +11,7 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
+
 import { useState } from "react";
 
 export function AppNavbar() {
@@ -18,6 +19,14 @@ export function AppNavbar() {
     {
       name: "Features",
       link: "#features",
+    },
+    {
+      name: "Milestones",
+      link: "#milestones",
+    },
+    {
+      name: "Timeline",
+      link: "#timeline",
     },
     {
       name: "Pricing",
@@ -31,15 +40,47 @@ export function AppNavbar() {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const handleDesktopScroll = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    link: string
+  ) => {
+    e.preventDefault();
+    
+    const targetElement = document.querySelector(link);
+    
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  };
+
+  // for mobile
+  const handleScroll = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    targetId: string
+  ) => {
+    e.preventDefault();
+    const targetElement = document.querySelector(targetId);
+    
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+    
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <div className="relative w-full">
       <Navbar>
         {/* Desktop Navigation */}
         <NavBody>
           <NavbarLogo />
-          <NavItems items={navItems} />
+          <NavItems items={navItems} onItemClick={handleDesktopScroll} />
           <div className="flex items-center gap-4">
-            <NavbarButton variant="secondary">Login</NavbarButton>
+
             <NavbarButton variant="primary">Book a call</NavbarButton>
           </div>
         </NavBody>
@@ -58,11 +99,12 @@ export function AppNavbar() {
             isOpen={isMobileMenuOpen}
             onClose={() => setIsMobileMenuOpen(false)}
           >
+            {/* Updated mobile links to use handleScroll */}
             {navItems.map((item, idx) => (
               <a
                 key={`mobile-link-${idx}`}
                 href={item.link}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => handleScroll(e, item.link)}
                 className="relative text-neutral-600 dark:text-neutral-300"
               >
                 <span className="block">{item.name}</span>
@@ -87,7 +129,6 @@ export function AppNavbar() {
           </MobileNavMenu>
         </MobileNav>
       </Navbar>
-      {/* Navbar */}
     </div>
   );
 }

@@ -13,7 +13,7 @@ import { Timelinebody } from '@/components/ui/timeline';
 
 export const Timeline = () => {
   return (
-    <div>
+    <div id='timeline'>
       <Container className="py-20 max-w-7xl mx-auto  relative z-40">
         <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
           <IconSettings className="h-6 w-6 text-white" />

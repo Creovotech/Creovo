@@ -36,16 +36,18 @@ export const Footer = () => {
           </div>
         </div>
 
-        {/* ## Bottom Bar: Copyright and Credits ## */}
+        
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 text-sm text-neutral-500">
           <p>{data.copyright}</p>
           <div className="text-center sm:text-right">
-            <p>
+            <div>
               Designed by{' '}
-              <a href="https://aceternity.com" className="hover:text-white underline transition-colors">Aceternity</a>
-              {' & '}
-              <a href="https://strapi.io" className="hover:text-white underline transition-colors">Strapi</a>
-            </p>
+              <div className='flex justify-end'>
+                <a href="https://aceternity.com" className="hover:text-white underline transition-colors">Aceternity</a>
+                {' & '}
+                <div className="hover:text-white underline transition-colors">Creovo Team</div>
+              </div>
+            </div>
             <p className="text-xs mt-1">
               Built with Next.js, Tailwind CSS, and more.
             </p>

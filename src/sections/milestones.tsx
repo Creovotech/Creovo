@@ -57,6 +57,7 @@ export const MileStones = () => {
         duration: 0.5,
       }}
       ref={ref}
+      id='milestones'
       className="w-full relative h-full pt-20 md:pt-40"
     >
       <div className="px-6">

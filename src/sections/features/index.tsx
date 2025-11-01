@@ -33,6 +33,7 @@ export const Features = ({
   social_media_card: any;
 }) => {
   return (
+    <div id='features'>
     <GradientContainer className="md:my-20">
       <Container className="max-w-7xl mx-auto  relative z-40">
         <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
@@ -90,5 +91,6 @@ export const Features = ({
         </div>
       </Container>
     </GradientContainer>
+    </div>
   );
 };

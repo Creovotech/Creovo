@@ -7,10 +7,21 @@ import { Heading } from '@/components/elements/heading';
 import { Subheading } from '@/components/elements/subheading';
 import { HERO_ITEMS } from '@/constants/items';
 import { motion } from 'framer-motion';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { renderCanvas } from '@/components/decorations/render-canvas';
 
+// shadcn/ui
+import { Button } from '@/components/ui/button';
+
+// new modals
+import { BookCallModal } from '@/components/modals/BookCallModal';
+import { CostEstimatorModal } from '@/components/modals/CostEstimatorModal';
+import { TypingSubheading } from '@/components/elements/TypingSubheading';
+
 export const Hero = () => {
+  const [bookCallOpen, setBookCallOpen] = useState(false);
+  const [costModalOpen, setCostModalOpen] = useState(false);
+
   useEffect(() => {
     renderCanvas();
   }, []);
@@ -25,34 +36,35 @@ export const Hero = () => {
         <StarBackground />
         <ShootingStars />
       </motion.div>
+
       <Heading
         as="h1"
-        className="text-4xl md:text-4xl lg:text-8xl font-semibold max-w-7xl mx-auto text-center mt-6 relative z-10  py-6"
+        className="text-4xl md:text-4xl lg:text-8xl font-semibold max-w-7xl mx-auto text-center mt-6 relative z-10 py-6"
       >
         {HERO_ITEMS.heading.substring(0, HERO_ITEMS.heading.lastIndexOf(' '))}{' '}
         <Cover>{HERO_ITEMS.heading.split(' ').pop()}</Cover>
       </Heading>
-      <Subheading className="text-center mt-2 md:mt-6 text-base md:text-xl text-muted  max-w-3xl mx-auto relative z-10">
-        {HERO_ITEMS.sub_heading}
-      </Subheading>
-      <div className="flex space-x-2 items-center mt-8">
-        {/* {CTAs &&
-          CTAs.map((cta) => (
-            <Button
-              key={cta?.id}
-              as={Link}
-              href={`/${locale}${cta.URL}`}
-              {...(cta.variant && { variant: cta.variant })}
-            >
-              {cta.text}
-            </Button>
-          ))} */}
+
+      <TypingSubheading text={HERO_ITEMS.sub_heading} />
+
+      <div className="flex gap-3 items-center mt-8 relative z-10">
+        <Button size="lg" onClick={() => setBookCallOpen(true)}>
+          Book a call
+        </Button>
+        <Button style={{"color":"black"}} size="lg" variant="secondary" onClick={() => setCostModalOpen(true)}>
+          Estimate cost
+        </Button>
       </div>
+
       <div className="absolute inset-x-0 bottom-0 h-80 w-full bg-linear-to-t from-charcoal to-transparent" />
       <canvas
         className="bg-skin-base pointer-events-none absolute inset-0"
         id="canvas"
       ></canvas>
+
+      {/* Modals */}
+      <BookCallModal open={bookCallOpen} onOpenChange={setBookCallOpen} />
+      <CostEstimatorModal open={costModalOpen} onOpenChange={setCostModalOpen} />
     </div>
   );
 };

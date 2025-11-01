@@ -42,7 +42,7 @@ export const Pricing = ({
     console.log('click', plan);
   };
   return (
-    <div className="py-20 md:py-40">
+    <div id='pricing' className="py-20 md:py-40">
       <Container>
         <div className="flex justify-center items-center">
           <div className="p-2 bg-neutral-900 rounded-full border border-neutral-800">

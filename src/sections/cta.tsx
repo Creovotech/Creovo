@@ -12,7 +12,7 @@ import { Button } from '@/components/elements/button';
 export const CTA = () => {
   const { heading, sub_heading, CTAs } = CTA_DATA;
   return (
-    <div className="relative py-40">
+    <div id='contact' className="relative py-40">
       <AmbientColor />
       <Container className="flex flex-col md:flex-row justify-between items-center w-full px-8">
         <div className="flex flex-col">
