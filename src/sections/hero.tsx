@@ -39,10 +39,17 @@ export const Hero = () => {
 
       <Heading
         as="h1"
-        className="text-4xl md:text-4xl lg:text-8xl font-semibold max-w-7xl mx-auto text-center mt-6 relative z-10 py-6"
+        className="text-4xl md:text-4xl lg:text-8xl font-semibold max-w-7xl mx-auto text-center mt-6 relative z-10 py-6
+                  /* --- Add these classes --- */
+                  bg-gradient-to-r from-purple-500 via-pink-500 to-red-500
+                  bg-[size:200%_auto]
+                  bg-clip-text
+                  text-transparent
+                  animate-gradient
+                  /* ------------------------- */
+                  "
       >
-        {HERO_ITEMS.heading.substring(0, HERO_ITEMS.heading.lastIndexOf(' '))}{' '}
-        <Cover>{HERO_ITEMS.heading.split(' ').pop()}</Cover>
+        {HERO_ITEMS.heading}
       </Heading>
 
       <TypingSubheading text={HERO_ITEMS.sub_heading} />
