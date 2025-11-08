@@ -12,6 +12,7 @@ import globe_card from '@/components/cards/globe_card.json';
 import ray_card from '@/components/cards/ray_card.json';
 import graph_card from '@/components/cards/graph_card.json';
 import social_media_card from '@/components/cards/social_media_card.json';
+import ScrollToTop from '@/components/scroll-to-top';
 
 export default function LandingPage() {
   return (
@@ -25,6 +26,7 @@ export default function LandingPage() {
       <Pricing {...pricingData}/>
       <Testimonials />
       <CTA />
+      <ScrollToTop />
     </div>
   );
 }
