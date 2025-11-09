@@ -1,14 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { knowledgeContent } from '../../knowledge';
-
+import { knowledgeContent } from '@/utils/knowledge';
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || 'AIzaSyCAT9LRkDMZm_9ceb23Y5YYaqlUebTp89E');
 const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 console.log(process.env.GEMINI_API_KEY);
 
 const AGENCY_KB = knowledgeContent;
-
 
 const SYSTEM_INSTRUCTION = `
 You are a friendly, human-like cost estimation assistant for a software/AI agency.
@@ -27,9 +25,8 @@ Goals:
   - All starting prices already include a 35% early-bird discount.
 `;
 
-
 function buildChatHistory(messages: { role: 'user' | 'assistant'; content: string }[]) {
-  const last = messages.slice(-6);
+  const last = messages.slice(-8);
 
   return last.map((m) => ({
     role: m.role === 'user' ? 'user' : 'model',

@@ -12,7 +12,8 @@ import {
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ScrollContext } from "@/providers/lenis-provider";
 
 export function AppNavbar() {
   const navItems = [
@@ -39,36 +40,26 @@ export function AppNavbar() {
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { lenis } = useContext(ScrollContext);
 
   const handleDesktopScroll = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
     link: string
   ) => {
     e.preventDefault();
-    
-    const targetElement = document.querySelector(link);
-    
-    if (targetElement) {
-      targetElement.scrollIntoView({
-        behavior: "smooth",
-      });
+    if (lenis) {
+      lenis.scrollTo(link);
     }
   };
 
-  // for mobile
   const handleScroll = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
     targetId: string
   ) => {
     e.preventDefault();
-    const targetElement = document.querySelector(targetId);
-    
-    if (targetElement) {
-      targetElement.scrollIntoView({
-        behavior: "smooth",
-      });
+    if (lenis) {
+      lenis.scrollTo(targetId);
     }
-    
     setIsMobileMenuOpen(false);
   };
 
