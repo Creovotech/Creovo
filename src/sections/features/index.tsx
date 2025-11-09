@@ -47,7 +47,7 @@ export const Features = ({
             <Card className="lg:col-span-2">
               <CardTitle>{globe_card.title}</CardTitle>
               <CardDescription>{globe_card.description}</CardDescription>
-              <CardSkeletonContainer>
+              <CardSkeletonContainer showGradient={false} className="!backdrop-blur-none">
                 <SkeletonOne />
               </CardSkeletonContainer>
             </Card>
