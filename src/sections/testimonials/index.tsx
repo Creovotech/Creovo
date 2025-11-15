@@ -2,6 +2,8 @@
 
 import React from 'react';
 import { TbLocationBolt } from 'react-icons/tb';
+import { motion } from 'framer-motion'; // NEW: Import motion
+import { MessageSquareQuote } from 'lucide-react';
 
 import { FeatureIconContainer } from '@/sections/features/feature-icon-container';
 import { TestimonialsSlider } from './slider';
@@ -18,7 +20,21 @@ export const Testimonials = () => {
       <AmbientColor />
       <div className="pb-20">
         <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
-          <TbLocationBolt className="h-6 w-6 text-white" />
+          <motion.div
+            animate={{
+              y: [0, -5, 0],
+            }}
+            transition={{
+              duration: 2.5,
+              ease: 'easeInOut',
+              repeat: Infinity,
+              repeatType: 'reverse',
+            }}
+            // Hover effect
+            whileHover={{ scale: 1.2, rotate: 10 }}
+          >
+            <MessageSquareQuote className="h-6 w-6 text-white" />
+          </motion.div>
         </FeatureIconContainer>
         <Heading className="pt-4">{heading}</Heading>
         <Subheading>{sub_heading}</Subheading>

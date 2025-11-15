@@ -4,6 +4,8 @@ import { IconSettings } from '@tabler/icons-react';
 import React from 'react';
 
 import { FeatureIconContainer } from '../features/feature-icon-container';
+import { motion } from 'framer-motion';
+import { GanttChart } from 'lucide-react';
 import { Container } from '@/components/container';
 import { Subheading } from '@/components/elements/subheading';
 import { Heading } from '@/components/elements/heading';
@@ -16,7 +18,19 @@ export const Timeline = () => {
     <div id='timeline'>
       <Container className="py-20 max-w-7xl mx-auto  relative z-40">
         <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
-          <IconSettings className="h-6 w-6 text-white" />
+          <motion.div
+            animate={{
+              scale: [1, 1.1, 1],
+            }}
+            whileHover={{ scale: 1.2, y: -5 }}
+            transition={{
+              duration: 2,
+              ease: 'easeInOut',
+              repeat: Infinity,
+            }}
+          >
+            <GanttChart className="h-6 w-6 text-white" />
+          </motion.div>
         </FeatureIconContainer>
         <Heading className="pt-4">{TIMELINE_ITEMS.heading}</Heading>
         <Subheading className="max-w-3xl mx-auto">{TIMELINE_ITEMS.sub_heading}</Subheading>

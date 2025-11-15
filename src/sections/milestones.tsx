@@ -1,6 +1,7 @@
 'use client';
 
 import { IconRocket } from '@tabler/icons-react';
+import { Milestone } from 'lucide-react';
 import { motion, useMotionValueEvent } from 'framer-motion';
 import { useScroll } from 'framer-motion';
 import React, { useRef, useState } from 'react';
@@ -62,7 +63,13 @@ export const MileStones = () => {
     >
       <div className="px-6">
         <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
-          <IconRocket className="h-6 w-6 text-white" />
+          {/* We wrap the container in motion.div to apply the hover effect */}
+          <motion.div
+            whileHover={{ scale: 1.2, y: -5 }} // Lifts up and scales on hover
+            transition={{ type: 'spring', stiffness: 300, damping: 10 }} // A nice springy effect
+          >
+            <Milestone className="h-6 w-6 text-white" />
+          </motion.div>
         </FeatureIconContainer>
         <Heading className="mt-4">{heading}</Heading>
         <Subheading>{sub_heading}</Subheading>
