@@ -56,28 +56,19 @@ function ArchitectureNode({ data, selected }: any) {
 const nodeTypes = { architecture: ArchitectureNode };
 
 const initialNodes = [
-  { id: 'user-io', type: 'architecture', position: { x: 0, y: 250 }, data: { label: 'User IO', icon: '👤' } },
-  { id: 'sdks', type: 'architecture', position: { x: 280, y: 250 }, data: { label: 'SDKs', tag: 'CLIENT', icon: '⚛️' } },
-  { id: 'webrtc', type: 'architecture', position: { x: 560, y: 250 }, data: { label: 'WebRTC', icon: '📡' } },
-  { id: 'media', type: 'architecture', position: { x: 880, y: 150 }, data: { label: 'Media server', icon: '🎛️' } },
-  { id: 'agent', type: 'architecture', position: { x: 880, y: 360 }, data: { label: 'Agent server', icon: '🤖' } },
-  { id: 'noise', type: 'architecture', position: { x: 1200, y: 100 }, data: { label: 'Noise cancellation', icon: '🔊' } },
-  { id: 'turn', type: 'architecture', position: { x: 1200, y: 300 }, data: { label: 'Semantic turn detection', tag: 'STT', icon: '🧠' } },
-  { id: 'llm', type: 'architecture', position: { x: 1200, y: 500 }, data: { label: 'LLM', tag: 'LLM', icon: '📚' } },
-  { id: 'tts', type: 'architecture', position: { x: 1520, y: 220 }, data: { label: 'TTS', tag: 'TTS', icon: '🎙️' } },
-  { id: 'logic', type: 'architecture', position: { x: 1520, y: 420 }, data: { label: 'Custom business logic', icon: '🧩' } },
+  { id: 'frontend', type: 'architecture', position: { x: 280, y: 250 }, data: { label: 'Frontend Dev', tag: 'WEB', icon: '💻' } },
+  { id: 'backend', type: 'architecture', position: { x: 560, y: 250 }, data: { label: 'Backend & API', icon: '⚙️' } },
+  { id: 'ai', type: 'architecture', position: { x: 880, y: 150 }, data: { label: 'AI Integration', tag: 'AI', icon: '🤖' } },
+  { id: 'database', type: 'architecture', position: { x: 880, y: 360 }, data: { label: 'Database', icon: '🗄️' } },
+  { id: 'deployment', type: 'architecture', position: { x: 1200, y: 250 }, data: { label: 'Deployment', icon: '☁️' } },
 ];
 
 const initialEdges = [
-  { id: 'e1', source: 'user-io', target: 'sdks', animated: true },
-  { id: 'e2', source: 'sdks', target: 'webrtc', animated: true },
-  { id: 'e3', source: 'webrtc', target: 'media', animated: true },
-  { id: 'e4', source: 'webrtc', target: 'agent', animated: true },
-  { id: 'e5', source: 'media', target: 'noise', animated: true },
-  { id: 'e6', source: 'agent', target: 'turn', animated: true },
-  { id: 'e7', source: 'agent', target: 'llm', animated: true },
-  { id: 'e8', source: 'llm', target: 'tts', animated: true },
-  { id: 'e9', source: 'tts', target: 'logic', animated: true },
+  { id: 'e2', source: 'frontend', target: 'backend', animated: true },
+  { id: 'e3', source: 'backend', target: 'ai', animated: true },
+  { id: 'e4', source: 'backend', target: 'database', animated: true },
+  { id: 'e5', source: 'ai', target: 'deployment', animated: true },
+  { id: 'e6', source: 'database', target: 'deployment', animated: true },
 ];
 
 export function ArchitectureFlowCanvas() {
@@ -101,17 +92,17 @@ export function ArchitectureFlowCanvas() {
   );
 
   return (
-    <div className="relative w-full h-[600px] md:h-[700px]">
-      <div className="absolute inset-0">
+    <div className="relative w-full h-[600px] md:h-[700px] flex items-center justify-center">
+      <div className="w-full h-full">
         <div
           className="relative h-full w-full"
           style={{
-            transform: 'rotateX(62deg) rotateZ(-35deg)',
+            transform: 'rotateX(50deg) rotateZ(-25deg)', // Reduced slant
             transformOrigin: '50% 50%',
           }}
         >
-          {/* the isometric "board" - now fully transparent */}
-          <div className="pointer-events-none absolute inset-[6%] bg-transparent" />
+          {/* the isometric "board" with a fading gradient */}
+          <div className="pointer-events-none absolute inset-[6%] rounded-2xl bg-[radial-gradient(ellipse_at_center,rgba(39,39,42,0.5)_0%,rgba(39,39,42,0)_70%)]" />
 
           <ReactFlow
             nodes={nodes}
@@ -123,17 +114,22 @@ export function ArchitectureFlowCanvas() {
             fitView
             fitViewOptions={{ padding: 0.3 }}
             panOnScroll={false}
-            panOnDrag={false}
+            panOnDrag={true} // Allow panning
             zoomOnScroll={false}
             zoomOnPinch={false}
             zoomOnDoubleClick={false}
-            nodesDraggable={false}
+            nodesDraggable={true} // Allow dragging nodes
             nodesConnectable={false}
             elementsSelectable={false}
-            proOptions={{hideAttribution : true}}
+            proOptions={{ hideAttribution: true }}
             className="h-full w-full bg-transparent"
           >
-            {/* Removed Background component to eliminate grid lines */}
+            <Background
+              variant={BackgroundVariant.Dots}
+              gap={24}
+              size={1}
+              color="#555"
+            />
           </ReactFlow>
         </div>
       </div>
