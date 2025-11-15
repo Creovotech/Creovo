@@ -17,28 +17,28 @@ function ArchitectureNode({ data, selected }: any) {
   return (
     <div
       className={
-        'group relative min-w-[120px] text-[11px] text-zinc-100 transition-transform duration-150 ' +
+        'group relative min-w-[180px] text-lg text-zinc-100 transition-transform duration-150 ' +
         (selected ? 'scale-[1.04] drop-shadow-[0_0_30px_rgba(56,189,248,0.7)]' : '')
       }
     >
       {/* squarish stacked layers */}
-      <div className="pointer-events-none absolute inset-0 translate-x-[6px] translate-y-[6px] rounded-xl border border-white/5 bg-zinc-950/70" />
-      <div className="pointer-events-none absolute inset-0 translate-x-[12px] translate-y-[12px] rounded-xl border border-white/10 bg-zinc-900/60" />
+      <div className="pointer-events-none absolute inset-0 translate-x-[8px] translate-y-[8px] rounded-xl border border-white/5 bg-zinc-950/70" />
+      <div className="pointer-events-none absolute inset-0 translate-x-[16px] translate-y-[16px] rounded-xl border border-white/10 bg-zinc-900/60" />
 
-      <div className="relative rounded-xl border border-white/20 bg-zinc-900/95 px-4 py-3 shadow-[0_18px_40px_rgba(0,0,0,0.7)]">
+      <div className="relative rounded-xl border border-white/20 bg-zinc-900/95 px-6 py-4 shadow-[0_18px_40px_rgba(0,0,0,0.7)]">
         {data?.tag && (
-          <span className="absolute -top-3 left-3 rounded-full border border-white/20 bg-black/80 px-2 py-[2px] text-[9px] uppercase tracking-[0.18em] text-zinc-400">
+          <span className="absolute -top-3 left-4 rounded-full border border-white/20 bg-black/80 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-zinc-400">
             {data.tag}
           </span>
         )}
-        <div className="flex items-center gap-1.5 text-xs font-medium">
-          {data?.icon && <span className="text-[13px]">{data.icon}</span>}
-          <span>{data?.label}</span>
+        <div className="flex items-center gap-2 text-lg font-medium">
+          {data?.icon && <span className="text-lg">{data.icon}</span>}
+          <span className="whitespace-nowrap">{data?.label}</span>
         </div>
-        <div className="mt-1 h-[2px] w-10 rounded-full bg-gradient-to-r from-sky-500 to-indigo-400" />
+        <div className="mt-2 h-[2px] w-12 rounded-full bg-gradient-to-r from-sky-500 to-indigo-400" />
       </div>
 
-      {/* invisible handles so edges still attach, but no interaction */}
+      {/* invisible handles */}
       <Handle
         type="target"
         position={Position.Left}
@@ -56,16 +56,16 @@ function ArchitectureNode({ data, selected }: any) {
 const nodeTypes = { architecture: ArchitectureNode };
 
 const initialNodes = [
-  { id: 'user-io', type: 'architecture', position: { x: 0, y: 150 }, data: { label: 'User IO', icon: '👤' } },
-  { id: 'sdks', type: 'architecture', position: { x: 200, y: 150 }, data: { label: 'SDKs', tag: 'CLIENT', icon: '⚛️' } },
-  { id: 'webrtc', type: 'architecture', position: { x: 400, y: 150 }, data: { label: 'WebRTC', icon: '📡' } },
-  { id: 'media', type: 'architecture', position: { x: 620, y: 90 }, data: { label: 'Media server', icon: '🎛️' } },
-  { id: 'agent', type: 'architecture', position: { x: 620, y: 220 }, data: { label: 'Agent server', icon: '🤖' } },
-  { id: 'noise', type: 'architecture', position: { x: 840, y: 60 }, data: { label: 'Noise cancellation', icon: '🔊' } },
-  { id: 'turn', type: 'architecture', position: { x: 840, y: 180 }, data: { label: 'Semantic turn detection', tag: 'STT', icon: '🧠' } },
-  { id: 'llm', type: 'architecture', position: { x: 840, y: 300 }, data: { label: 'LLM', tag: 'LLM', icon: '📚' } },
-  { id: 'tts', type: 'architecture', position: { x: 1060, y: 140 }, data: { label: 'TTS', tag: 'TTS', icon: '🎙️' } },
-  { id: 'logic', type: 'architecture', position: { x: 1060, y: 260 }, data: { label: 'Custom business logic', icon: '🧩' } },
+  { id: 'user-io', type: 'architecture', position: { x: 0, y: 250 }, data: { label: 'User IO', icon: '👤' } },
+  { id: 'sdks', type: 'architecture', position: { x: 280, y: 250 }, data: { label: 'SDKs', tag: 'CLIENT', icon: '⚛️' } },
+  { id: 'webrtc', type: 'architecture', position: { x: 560, y: 250 }, data: { label: 'WebRTC', icon: '📡' } },
+  { id: 'media', type: 'architecture', position: { x: 880, y: 150 }, data: { label: 'Media server', icon: '🎛️' } },
+  { id: 'agent', type: 'architecture', position: { x: 880, y: 360 }, data: { label: 'Agent server', icon: '🤖' } },
+  { id: 'noise', type: 'architecture', position: { x: 1200, y: 100 }, data: { label: 'Noise cancellation', icon: '🔊' } },
+  { id: 'turn', type: 'architecture', position: { x: 1200, y: 300 }, data: { label: 'Semantic turn detection', tag: 'STT', icon: '🧠' } },
+  { id: 'llm', type: 'architecture', position: { x: 1200, y: 500 }, data: { label: 'LLM', tag: 'LLM', icon: '📚' } },
+  { id: 'tts', type: 'architecture', position: { x: 1520, y: 220 }, data: { label: 'TTS', tag: 'TTS', icon: '🎙️' } },
+  { id: 'logic', type: 'architecture', position: { x: 1520, y: 420 }, data: { label: 'Custom business logic', icon: '🧩' } },
 ];
 
 const initialEdges = [
@@ -101,8 +101,7 @@ export function ArchitectureFlowCanvas() {
   );
 
   return (
-    // bigger and transparent wrapper; background comes from hero
-    <div className="relative w-full h-[460px] md:h-[520px]">
+    <div className="relative w-full h-[600px] md:h-[700px]">
       <div className="absolute inset-0">
         <div
           className="relative h-full w-full"
@@ -111,8 +110,8 @@ export function ArchitectureFlowCanvas() {
             transformOrigin: '50% 50%',
           }}
         >
-          {/* the isometric “board” */}
-          <div className="pointer-events-none absolute inset-[6%] rounded-[32px] border border-white/15 bg-black/40" />
+          {/* the isometric "board" - now fully transparent */}
+          <div className="pointer-events-none absolute inset-[6%] bg-transparent" />
 
           <ReactFlow
             nodes={nodes}
@@ -122,7 +121,7 @@ export function ArchitectureFlowCanvas() {
             onConnect={onConnect}
             nodeTypes={nodeTypes}
             fitView
-            fitViewOptions={{ padding: 0.25 }}
+            fitViewOptions={{ padding: 0.3 }}
             panOnScroll={false}
             panOnDrag={false}
             zoomOnScroll={false}
@@ -131,15 +130,10 @@ export function ArchitectureFlowCanvas() {
             nodesDraggable={false}
             nodesConnectable={false}
             elementsSelectable={false}
+            proOptions={{hideAttribution : true}}
             className="h-full w-full bg-transparent"
           >
-            <Background
-              variant={BackgroundVariant.Lines}
-              gap={32}
-              size={1}
-              color="#27272a"
-            />
-            {/* no Controls => no +/- icons */}
+            {/* Removed Background component to eliminate grid lines */}
           </ReactFlow>
         </div>
       </div>

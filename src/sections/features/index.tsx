@@ -1,5 +1,4 @@
-"use client";
-import { IconSparkles } from '@tabler/icons-react';
+import { IconRocket } from '@tabler/icons-react';
 import React from 'react';
 
 import { Container } from '@/components/container';
@@ -17,7 +16,6 @@ import { SkeletonOne } from './skeletons/first';
 import { SkeletonFour } from './skeletons/fourth';
 import { SkeletonTwo } from './skeletons/second';
 import { SkeletonThree } from './skeletons/third';
-import { motion } from 'motion/react';
 
 export const Features = ({
   heading,
@@ -39,23 +37,7 @@ export const Features = ({
     <GradientContainer className="md:my-20">
       <Container className="max-w-7xl mx-auto  relative z-40">
         <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
-          <motion.div
-            // Animate properties
-            animate={{
-              scale: [1, 1.3, 1, 1.3, 1],
-              opacity: [1, 0.7, 1, 0.7, 1],
-              rotate: [0, 10, -10, 0],
-            }}
-            // Configure the transition
-            transition={{
-              duration: 2.5,
-              ease: 'easeInOut',
-              repeat: Infinity,
-              repeatDelay: 0.5,
-            }}
-          >
-            <IconSparkles className="h-6 w-6 text-white" />
-          </motion.div>
+          <IconRocket className="h-6 w-6 text-white" />
         </FeatureIconContainer>
         <Heading className="pt-4">{heading}</Heading>
         <Subheading className="max-w-3xl mx-auto">{sub_heading}</Subheading>
@@ -65,7 +47,7 @@ export const Features = ({
             <Card className="lg:col-span-2">
               <CardTitle>{globe_card.title}</CardTitle>
               <CardDescription>{globe_card.description}</CardDescription>
-              <CardSkeletonContainer showGradient={false} className="!backdrop-blur-none">
+              <CardSkeletonContainer>
                 <SkeletonOne />
               </CardSkeletonContainer>
             </Card>
