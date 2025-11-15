@@ -4,7 +4,6 @@ import "./globals.css";
 import { ViewTransitions } from "next-view-transitions";
 import { AppNavbar } from "@/components/layout/navbar";
 import { cn } from "@/lib/utils";
-import { data, TimelineData } from "@/constants/timelinedata";
 import { LenisProvider } from "@/providers/lenis-provider";
 import { Footer } from "@/components/layout/footer";
 
@@ -24,7 +23,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const timelinedata: TimelineData[] = data;
   return (
     <html lang="en">
       <body suppressHydrationWarning>

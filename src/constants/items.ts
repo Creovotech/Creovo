@@ -39,7 +39,7 @@ export const TECHSTACK_ITEMS = {
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
 };
 
-export const MILESTONES_DATA = {
+export const TIMELINE_DATA = {
   heading: "Our Agency's Journey",
   sub_heading: "From our first line of code to industry-leading solutions.",
   launches: [

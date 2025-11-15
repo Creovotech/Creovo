@@ -5,16 +5,15 @@ import { Milestone } from 'lucide-react';
 import { motion, useMotionValueEvent } from 'framer-motion';
 import { useScroll } from 'framer-motion';
 import React, { useRef, useState } from 'react';
-
 import { StickyScroll } from '@/components/ui/sticky-scroll';
 import { Heading } from '@/components/elements/heading';
 import { Subheading } from '@/components/elements/subheading';
-import { MILESTONES_DATA } from '@/constants/items';
-import { FeatureIconContainer } from './features/feature-icon-container';
+import { TIMELINE_DATA } from '@/constants/items';
+import { FeatureIconContainer } from '@/sections/features/feature-icon-container';
 
-export const MileStones = () => {
-  const { heading, sub_heading, launches } = MILESTONES_DATA;
-  const launchesWithDecoration = launches.map((entry) => ({
+export const TimeLine = () => {
+  const { heading, sub_heading, launches } = TIMELINE_DATA;
+  const launchesWithDecoration = launches.map((entry: { mission_number: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; }) => ({
     ...entry,
     icon: <IconRocket className="h-8 w-8 text-secondary" />,
     content: (
@@ -35,10 +34,10 @@ export const MileStones = () => {
 
   useMotionValueEvent(scrollYProgress, 'change', (latest) => {
     const cardsBreakpoints = launches.map(
-      (_, index) => index / launches.length
+      (_: any, index: number) => index / launches.length
     );
     const closestBreakpointIndex = cardsBreakpoints.reduce(
-      (acc, breakpoint, index) => {
+      (acc: string | number, breakpoint: number, index: any) => {
         const distance = Math.abs(latest - breakpoint);
         if (distance < Math.abs(latest - cardsBreakpoints[acc])) {
           return index;
@@ -58,15 +57,14 @@ export const MileStones = () => {
         duration: 0.5,
       }}
       ref={ref}
-      id='milestones'
+      id='TimeLine'
       className="w-full relative h-full pt-20 md:pt-40"
     >
       <div className="px-6">
         <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
-          {/* We wrap the container in motion.div to apply the hover effect */}
           <motion.div
-            whileHover={{ scale: 1.2, y: -5 }} // Lifts up and scales on hover
-            transition={{ type: 'spring', stiffness: 300, damping: 10 }} // A nice springy effect
+            whileHover={{ scale: 1.2, y: -5 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 10 }}
           >
             <Milestone className="h-6 w-6 text-white" />
           </motion.div>
