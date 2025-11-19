@@ -16,7 +16,7 @@ export const FeatureIconContainer = ({
     <div className=" perspective-[400px] transform-3d">
       <div
         className={cn(
-          'h-16 w-14 p-[4px] bg-linear-to-b from-neutral-800  to-neutral-950 mx-auto relative' // Removed 'rounded-md'
+          'h-16 w-14 p-[4px] bg-linear-to-b from-neutral-800  to-neutral-950 mx-auto relative scale-110'
         )}
         style={{
           transform: 'rotateX(25deg)',

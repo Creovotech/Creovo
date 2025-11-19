@@ -18,67 +18,93 @@ type Props = {
   onOpenChange: (open: boolean) => void;
 };
 
-const START_HOUR = 10;
-const END_HOUR = 19;
+const IST_OFFSET_MINUTES = 5 * 60 + 30;
+const START_HOUR_IST = 9;
+const END_HOUR_IST = 23;
 
-function toCalendarUTC(d: Date) {
-  const pad = (n: number) => `${n}`.padStart(2, '0');
-  const y = d.getUTCFullYear();
-  const m = pad(d.getUTCMonth() + 1);
-  const day = pad(d.getUTCDate());
-  const hh = pad(d.getUTCHours());
-  const mm = pad(d.getUTCMinutes());
-  const ss = pad(d.getUTCSeconds());
-  return `${y}${m}${day}T${hh}${mm}${ss}Z`;
+const CALENDLY_URL = 'https://calendly.com/sayandeysarkar2003/client-meet';
+
+function istToUtcDate(y: number, m: number, d: number, h: number, minute = 0) {
+  const millis = Date.UTC(y, m, d, h, minute) - IST_OFFSET_MINUTES * 60 * 1000;
+  return new Date(millis);
 }
+
+type Slot = {
+  id: string;
+  label: string;
+  start: Date;
+  end: Date;
+};
 
 export const BookCallModal = ({ open, onOpenChange }: Props) => {
   const [date, setDate] = useState<Date | undefined>(undefined);
-  const [selectedHour, setSelectedHour] = useState<number | null>(null);
+  const [selectedSlotId, setSelectedSlotId] = useState<string | null>(null);
 
-  const slots = useMemo(() => {
+  const userTimeZone = useMemo(() => {
+    try {
+      return Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+    } catch {
+      return 'UTC';
+    }
+  }, []);
+
+  const slots: Slot[] = useMemo(() => {
     if (!date) return [];
-    const day = new Date(date);
-    const out: { label: string; start: Date; end: Date }[] = [];
-    for (let h = START_HOUR; h <= END_HOUR - 1; h++) {
-      const start = new Date(
-        new Date(day).toLocaleString('en-US', { timeZone: 'Asia/Kolkata' })
-      );
-      start.setHours(h, 0, 0, 0);
-      const startIST = new Date(
-        Date.UTC(
-          start.getFullYear(),
-          start.getMonth(),
-          start.getDate(),
-          start.getHours() - (start.getTimezoneOffset() / 60),
-          0,
-          0,
-          0
-        )
-      );
-      const endIST = new Date(startIST.getTime() + 60 * 60 * 1000);
-      const label = `${String(h).padStart(2, '0')}:00 – ${String(h + 1).padStart(2, '0')}:00`;
-      out.push({ label, start: startIST, end: endIST });
+    const y = date.getFullYear();
+    const m = date.getMonth();
+    const d = date.getDate();
+
+    const out: Slot[] = [];
+    const timeOpts: Intl.DateTimeFormatOptions = {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+      timeZone: userTimeZone,
+    };
+
+    for (let h = START_HOUR_IST; h <= END_HOUR_IST - 1; h++) {
+      const startUtc = istToUtcDate(y, m, d, h);
+      const endUtc = new Date(startUtc.getTime() + 60 * 60 * 1000);
+
+      const startLabel = startUtc.toLocaleTimeString([], timeOpts);
+      const endLabel = endUtc.toLocaleTimeString([], timeOpts);
+
+      out.push({
+        id: startUtc.toISOString(),
+        label: `${startLabel} – ${endLabel}`,
+        start: startUtc,
+        end: endUtc,
+      });
     }
     return out;
-  }, [date]);
+  }, [date, userTimeZone]);
 
-  const selectedSlot = useMemo(() => {
-    if (selectedHour == null || !date) return null;
-    return slots.find((s) => s.label.startsWith(String(selectedHour).padStart(2, '0')));
-  }, [selectedHour, date, slots]);
+  const selectedSlot = useMemo(
+    () => slots.find((s) => s.id === selectedSlotId) || null,
+    [slots, selectedSlotId]
+  );
 
-  const gcalLink = useMemo(() => {
-    if (!selectedSlot) return '';
-    const params = new URLSearchParams({
-      action: 'TEMPLATE',
-      text: 'Discovery Call — Your Agency',
-      details: '60-minute discovery call to discuss your website requirements.',
-      ctz: 'Asia/Kolkata',
-      dates: `${toCalendarUTC(selectedSlot.start)}/${toCalendarUTC(selectedSlot.end)}`,
-    });
-    return `https://calendar.google.com/calendar/render?${params.toString()}`;
-  }, [selectedSlot]);
+  const businessHoursLocalLabel = useMemo(() => {
+    const today = new Date();
+    const y = today.getFullYear();
+    const m = today.getMonth();
+    const d = today.getDate();
+
+    const startUtc = istToUtcDate(y, m, d, START_HOUR_IST);
+    const endUtc = istToUtcDate(y, m, d, END_HOUR_IST);
+
+    const opts: Intl.DateTimeFormatOptions = {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+      timeZone: userTimeZone,
+    };
+
+    const start = startUtc.toLocaleTimeString([], opts);
+    const end = endUtc.toLocaleTimeString([], opts);
+
+    return `${start} – ${end}`;
+  }, [userTimeZone]);
 
   const disabled = (d: Date) => {
     const today = new Date();
@@ -89,16 +115,18 @@ export const BookCallModal = ({ open, onOpenChange }: Props) => {
   };
 
   const handleConfirm = () => {
-    if (gcalLink) {
-      window.open(gcalLink, '_blank', 'noreferrer');
-    }
+    if (!selectedSlot) return;
+
+    // If you *really* want to, you could log selectedSlot to your own backend
+    // before sending them to Calendly, but Calendly will still be the source of truth.
+    window.open(CALENDLY_URL, '_blank', 'noreferrer');
   };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-4xl p-0 gap-0 bg-zinc-950 border-zinc-800">
         <div className="grid lg:grid-cols-[380px_1fr] min-h-[600px]">
-          {/* Left Panel - Calendar */}
+          {/* Left Panel */}
           <div className="bg-zinc-900/50 border-r border-zinc-800 p-6 flex flex-col">
             <DialogHeader className="space-y-3 mb-6">
               <div className="flex items-center gap-2">
@@ -123,7 +151,7 @@ export const BookCallModal = ({ open, onOpenChange }: Props) => {
                   selected={date}
                   onSelect={(d) => {
                     setDate(d);
-                    setSelectedHour(null);
+                    setSelectedSlotId(null);
                   }}
                   disabled={disabled}
                   className="rounded-lg border border-zinc-800 bg-zinc-900/30 p-3"
@@ -135,31 +163,37 @@ export const BookCallModal = ({ open, onOpenChange }: Props) => {
               <div className="flex items-start gap-3 text-sm text-zinc-400">
                 <Clock className="h-4 w-4 mt-0.5 flex-shrink-0" />
                 <div className="space-y-1">
-                  <p className="font-medium text-zinc-300">Business Hours (IST)</p>
-                  <p>10:00 AM - 7:00 PM</p>
+                  <p className="font-medium text-zinc-300">
+                    Business Hours (IST → your time)
+                  </p>
+                  <p className="text-xs text-zinc-500">
+                    9:00 AM – 11:00 PM IST
+                  </p>
+                  <p className="text-xs text-zinc-500">
+                    Shown as {businessHoursLocalLabel} in your timezone ({userTimeZone})
+                  </p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Panel - Time Slots */}
+          {/* Right Panel */}
           <div className="p-6 flex flex-col">
             <div className="mb-6">
               <h3 className="text-lg font-semibold text-zinc-100 mb-1">
                 {date ? 'Select a time slot' : 'Choose a date first'}
               </h3>
               <p className="text-sm text-zinc-400">
-                {date 
-                  ? `Available times for ${date.toLocaleDateString('en-IN', { 
-                      weekday: 'long', 
-                      month: 'long', 
-                      day: 'numeric' 
-                    })}`
+                {date
+                  ? `Available times for ${date.toLocaleDateString('en-IN', {
+                      weekday: 'long',
+                      month: 'long',
+                      day: 'numeric',
+                    })} (shown in your timezone)`
                   : 'Pick a date from the calendar to see available times'}
               </p>
             </div>
 
-            {/* Time Slots Grid */}
             <div className="flex-1 overflow-y-auto">
               {slots.length === 0 ? (
                 <div className="h-full flex items-center justify-center">
@@ -173,12 +207,11 @@ export const BookCallModal = ({ open, onOpenChange }: Props) => {
               ) : (
                 <div className="grid grid-cols-2 gap-3 pb-4">
                   {slots.map((s) => {
-                    const hour = parseInt(s.label.slice(0, 2), 10);
-                    const active = selectedHour === hour;
+                    const active = selectedSlotId === s.id;
                     return (
                       <button
-                        key={s.label}
-                        onClick={() => setSelectedHour(hour)}
+                        key={s.id}
+                        onClick={() => setSelectedSlotId(s.id)}
                         className={cn(
                           'relative rounded-lg border px-4 py-3 text-sm font-medium transition-all duration-200',
                           'hover:scale-[1.02] active:scale-[0.98]',
@@ -200,7 +233,6 @@ export const BookCallModal = ({ open, onOpenChange }: Props) => {
               )}
             </div>
 
-            {/* Selected Summary & Actions */}
             <div className="mt-6 pt-6 border-t border-zinc-800 space-y-4">
               {selectedSlot && (
                 <div className="rounded-lg bg-zinc-900/50 border border-zinc-800 p-4">
@@ -213,10 +245,10 @@ export const BookCallModal = ({ open, onOpenChange }: Props) => {
                         Selected Time
                       </p>
                       <p className="text-sm text-zinc-400 truncate">
-                        {selectedSlot.start.toLocaleString('en-IN', { 
-                          timeZone: 'Asia/Kolkata',
+                        {selectedSlot.start.toLocaleString(undefined, {
+                          timeZone: userTimeZone,
                           dateStyle: 'full',
-                          timeStyle: 'short'
+                          timeStyle: 'short',
                         })}
                       </p>
                     </div>
@@ -225,19 +257,19 @@ export const BookCallModal = ({ open, onOpenChange }: Props) => {
               )}
 
               <div className="flex gap-3">
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   onClick={() => onOpenChange(false)}
                   className="flex-1 bg-transparent border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-zinc-100"
                 >
                   Cancel
                 </Button>
-                <Button 
+                <Button
                   onClick={handleConfirm}
                   disabled={!selectedSlot}
                   className="flex-1 bg-zinc-100 text-zinc-900 hover:bg-zinc-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Add to Google Calendar
+                  Schedule Meeting
                 </Button>
               </div>
             </div>

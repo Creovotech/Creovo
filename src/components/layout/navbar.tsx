@@ -19,16 +19,16 @@ import { useRouter } from "next/navigation";
 export function AppNavbar() {
   const navItems = [
     {
-      name: "Features",
+      name: "Deliverables",
       link: "#features",
     },
     {
-      name: "Milestones",
-      link: "#milestones",
+      name: "TechStacks",
+      link: "#TechStacks",
     },
     {
       name: "Timeline",
-      link: "#timeline",
+      link: "#TimeLine",
     },
     {
       name: "Contact",
@@ -69,8 +69,14 @@ export function AppNavbar() {
           <NavbarLogo />
           <NavItems items={navItems} onItemClick={handleDesktopScroll} />
           <div className="flex items-center gap-4">
-
-            <NavbarButton variant="primary">Book a call</NavbarButton>
+            <NavbarButton
+              variant="primary"
+              onClick={() =>
+                router.push("https://calendly.com/creovotech/30min")
+              }
+            >
+              Book a call
+            </NavbarButton>
           </div>
         </NavBody>
 
@@ -88,7 +94,6 @@ export function AppNavbar() {
             isOpen={isMobileMenuOpen}
             onClose={() => setIsMobileMenuOpen(false)}
           >
-            {/* Updated mobile links to use handleScroll */}
             {navItems.map((item, idx) => (
               <a
                 key={`mobile-link-${idx}`}
@@ -101,7 +106,9 @@ export function AppNavbar() {
             ))}
             <div className="flex w-full flex-col gap-4">
               <NavbarButton
-                onClick={() => router.push("https://calendly.com/creovotech/30min")}
+                onClick={() =>
+                  router.push("https://calendly.com/creovotech/30min")
+                }
                 variant="primary"
                 className="w-full"
               >

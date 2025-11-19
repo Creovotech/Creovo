@@ -1,44 +1,42 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { Subheading } from '@/components/elements/subheading';
+import { Subheading } from './subheading';
+import { motion } from 'framer-motion';
 
-type Props = {
-  text: string;
-  className?: string;
-  speed?: number; // ms per character
-};
-
-export const TypingSubheading = ({ text, className, speed = 50 }: Props) => {
-  const [displayed, setDisplayed] = useState('');
+export const TypingSubheading = ({ text }: { text: string }) => {
+  const [displayedText, setDisplayedText] = useState('');
 
   useEffect(() => {
-    let i = 0;
-    const interval = setInterval(() => {
-      setDisplayed((prev) => prev + text[i]);
-      i++;
-      if (i >= text.length) clearInterval(interval);
-    }, speed);
-    return () => clearInterval(interval);
-  }, [text, speed]);
+    // 1. When the 'text' prop changes, reset immediately
+    setDisplayedText(''); 
+  }, [text]);
+
+  useEffect(() => {
+    // 2. If we haven't finished typing...
+    if (displayedText.length < text.length) {
+      // Wait a bit, then show the next slice
+      const timeoutId = setTimeout(() => {
+        setDisplayedText(text.slice(0, displayedText.length + 1));
+      }, 30); // Typing speed
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [displayedText, text]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 0.4, duration: 0.6 }}
-    >
-      <Subheading
-        className={`text-center mt-2 md:mt-6 text-base md:text-xl text-muted max-w-3xl mx-auto relative z-10 font-normal ${className}`}
-      >
-        {displayed}
-        <motion.span
-          animate={{ opacity: [1, 0] }}
-          transition={{ duration: 0.7, repeat: Infinity }}
-          className="inline-block w-[0.6ch] bg-muted-foreground/70 ml-[1px] align-middle"
-        />
-      </Subheading>
-    </motion.div>
+    <Subheading className="max-w-3xl mx-auto min-h-[3rem]">
+      {displayedText}
+      <motion.span
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          duration: 0.8,
+          repeat: Infinity,
+          repeatType: 'reverse',
+        }}
+        className="inline-block w-1 h-5 ml-1 align-middle bg-purple-500"
+      />
+    </Subheading>
   );
 };
