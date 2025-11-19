@@ -1,26 +1,17 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
+import React, { useRef, useState } from 'react';
+import { Layers } from 'lucide-react';
+import { FeatureIconContainer } from '@/sections/features/feature-icon-container';
+import { Heading } from '@/components/elements/heading';
+import { Subheading } from '@/components/elements/subheading';
 
-// Simulating the external constants and components to ensure the file is self-contained
-const TECHSTACK_ITEMS = {
+const DATA = {
   heading: "Our Tech Stack",
-  sub_heading: "We use the latest and most robust technologies to build scalable applications."
+  sub_heading: "We utilize a robust ecosystem of modern technologies to build scalable, high-performance applications tailored to your needs."
 };
 
-const Heading = ({ children, className = "" }) => (
-  <h2 className={`text-3xl md:text-5xl font-bold text-center text-white ${className}`}>
-    {children}
-  </h2>
-);
-
-const Subheading = ({ children, className = "" }) => (
-  <p className={`text-lg text-center text-neutral-400 mt-4 ${className}`}>
-    {children}
-  </p>
-);
-
-// High-quality SVG Icons for the Tech Stack
 const ICONS = {
   NextJS: (props) => (
     <svg viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
@@ -82,13 +73,12 @@ const ICONS = {
   ),
   PostgreSQL: (props) => (
     <svg viewBox="0 0 24 24" fill="#336791" xmlns="http://www.w3.org/2000/svg" {...props}>
-      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S16.627 0 12 0zm0 22c-5.523 0-10-4.477-10-10S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" fillOpacity="0.2"/>
-      <path d="M12.85 9.35l-1.5-1.5-1.5 1.5 1.5 1.5 1.5-1.5zm-1.5 3l-1.5 1.5 1.5 1.5 1.5-1.5-1.5-1.5z" fill="white"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S16.627 0 12 0zm0 22c-5.523 0-10-4.477-10-10S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" fillOpacity="0.2" />
+      <path d="M12.85 9.35l-1.5-1.5-1.5 1.5 1.5 1.5 1.5-1.5zm-1.5 3l-1.5 1.5 1.5 1.5 1.5-1.5-1.5-1.5z" fill="white" />
     </svg>
   )
 };
 
-// List of items to display in the marquee
 const SCROLL_ITEMS = [
   { name: 'Next.js', icon: ICONS.NextJS },
   { name: 'React', icon: ICONS.React },
@@ -97,7 +87,7 @@ const SCROLL_ITEMS = [
   { name: 'Node.js', icon: ICONS.NodeJS },
   { name: 'AWS', icon: ICONS.AWS },
   { name: 'Docker', icon: ICONS.Docker },
-  // Duplicates to ensure smooth infinite loop if list is short
+  { name: 'PostgreSQL', icon: ICONS.PostgreSQL },
   { name: 'Next.js', icon: ICONS.NextJS },
   { name: 'React', icon: ICONS.React },
   { name: 'TypeScript', icon: ICONS.TypeScript },
@@ -105,39 +95,55 @@ const SCROLL_ITEMS = [
 ];
 
 export const TechStacks = () => {
-  return (
-    <div className="relative z-20 py-12 md:py-32 overflow-hidden">
-      <div className="container mx-auto px-4 relative z-10">
-        <Heading className="pt-4">{TECHSTACK_ITEMS.heading}</Heading>
-        <Subheading className="max-w-3xl mx-auto mt-4">
-          {TECHSTACK_ITEMS.sub_heading}
-        </Subheading>
-      </div>
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  });
 
-      {/* Marquee Container */}
-      <div className="mt-16 md:mt-24 relative w-full">
-        {/* Gradient Masks for Fade Effect */}
-        <div className="absolute left-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-r from-black/80 to-transparent z-20 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-l from-black/80 to-transparent z-20 pointer-events-none" />
+  const backgrounds = ['var(--charcoal)', 'var(--zinc-900)'];
+  const [gradient, setGradient] = useState(backgrounds[0]);
+
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+    const steps = 10;
+    const cardsBreakpoints = Array.from({ length: steps }, (_, i) => i / steps);
+
+    const closestBreakpointIndex = cardsBreakpoints.reduce(
+      (acc, breakpoint, index) => {
+        const distance = Math.abs(latest - breakpoint);
+        if (distance < Math.abs(latest - cardsBreakpoints[acc])) {
+          return index;
+        }
+        return acc;
+      },
+      0
+    );
+    setGradient(backgrounds[closestBreakpointIndex % backgrounds.length]);
+  });
+
+  return (
+    <motion.div
+      animate={{
+        background: gradient,
+      }}
+      transition={{
+        duration: 0.5,
+      }}
+      ref={ref}
+      id='TechStacks'
+      className="w-full relative h-full pt-20 md:pt-40 overflow-hidden"
+    >
+
+
+      {/* Content Area (Replacing StickyScroll with Tech Marquee) */}
+      <div className="mt-16 md:mt-24 relative w-full pb-20 md:pb-40">
+
+        {/* Gradient Masks */}
+        <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[var(--charcoal,black)] to-transparent z-20 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[var(--charcoal,black)] to-transparent z-20 pointer-events-none" />
 
         <div className="flex overflow-hidden group">
           {/* First Loop */}
-          <motion.div
-            initial={{ x: 0 }}
-            animate={{ x: "-100%" }}
-            transition={{
-              duration: 30, // Speed of scroll
-              ease: "linear",
-              repeat: Infinity,
-            }}
-            className="flex gap-8 md:gap-20 pr-8 md:pr-20 shrink-0 group-hover:[animation-play-state:paused]"
-          >
-            {SCROLL_ITEMS.map((item, idx) => (
-              <TechItem key={`1-${idx}`} item={item} />
-            ))}
-          </motion.div>
-
-          {/* Second Loop (Immediate Follow-up) */}
           <motion.div
             initial={{ x: 0 }}
             animate={{ x: "-100%" }}
@@ -146,30 +152,40 @@ export const TechStacks = () => {
               ease: "linear",
               repeat: Infinity,
             }}
-            className="flex gap-8 md:gap-20 pr-8 md:pr-20 shrink-0 group-hover:[animation-play-state:paused]"
+            className="flex gap-6 md:gap-10 pr-6 md:pr-10 shrink-0 group-hover:[animation-play-state:paused]"
           >
             {SCROLL_ITEMS.map((item, idx) => (
-              <TechItem key={`2-${idx}`} item={item} />
+              <TechCard key={`1-${idx}`} item={item} />
+            ))}
+          </motion.div>
+
+          {/* Second Loop */}
+          <motion.div
+            initial={{ x: 0 }}
+            animate={{ x: "-100%" }}
+            transition={{
+              duration: 30,
+              ease: "linear",
+              repeat: Infinity,
+            }}
+            className="flex gap-6 md:gap-10 pr-6 md:pr-10 shrink-0 group-hover:[animation-play-state:paused]"
+          >
+            {SCROLL_ITEMS.map((item, idx) => (
+              <TechCard key={`2-${idx}`} item={item} />
             ))}
           </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
-const TechItem = ({ item }) => {
+const TechCard = ({ item }) => {
   const Icon = item.icon;
   return (
-    <div className="relative group flex flex-col items-center justify-center gap-4">
-      {/* Glow Effect */}
-      <div className="absolute inset-0 bg-white/5 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      
-      <div className="relative w-16 h-16 md:w-24 md:h-24 flex items-center justify-center bg-neutral-900/50 border border-white/10 rounded-2xl backdrop-blur-sm hover:border-white/30 hover:bg-neutral-800/50 transition-all duration-300 cursor-default">
-        <Icon className="w-8 h-8 md:w-12 md:h-12 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" />
-      </div>
-      
-      <span className="text-sm font-medium text-neutral-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute -bottom-8">
+    <div className="group relative flex flex-col items-center justify-center gap-4 w-32 h-32 md:w-40 md:h-40 bg-neutral-900/30 border border-neutral-800 rounded-2xl hover:bg-neutral-800/50 hover:border-neutral-700 transition-all duration-300 cursor-default backdrop-blur-sm">
+      <Icon className="w-10 h-10 md:w-14 md:h-14 text-neutral-400 group-hover:text-white group-hover:scale-110 transition-all duration-300" />
+      <span className="text-xs md:text-sm font-medium text-neutral-500 group-hover:text-neutral-200 transition-colors duration-300">
         {item.name}
       </span>
     </div>

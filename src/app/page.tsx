@@ -17,7 +17,7 @@ export default function LandingPage() {
       <AmbientColor />
       <Hero/>
       <Features heading={'Features to get your website running within minutes'} sub_heading={''} globe_card={globe_card} ray_card={ray_card} graph_card={graph_card} social_media_card={social_media_card} />
-      <TechStacks logos={[]} />
+      <TechStacks />
       <TimeLine />
       <Testimonials />
       <CTA />
