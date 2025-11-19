@@ -14,6 +14,7 @@ import {
 
 import { useContext, useState } from "react";
 import { ScrollContext } from "@/providers/lenis-provider";
+import { useRouter } from "next/navigation";
 
 export function AppNavbar() {
   const navItems = [
@@ -30,10 +31,6 @@ export function AppNavbar() {
       link: "#timeline",
     },
     {
-      name: "Pricing",
-      link: "#pricing",
-    },
-    {
       name: "Contact",
       link: "#contact",
     },
@@ -41,6 +38,7 @@ export function AppNavbar() {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { lenis } = useContext(ScrollContext);
+  const router = useRouter();
 
   const handleDesktopScroll = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
@@ -103,14 +101,7 @@ export function AppNavbar() {
             ))}
             <div className="flex w-full flex-col gap-4">
               <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
-                variant="primary"
-                className="w-full"
-              >
-                Login
-              </NavbarButton>
-              <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => router.push("https://calendly.com/creovotech/30min")}
                 variant="primary"
                 className="w-full"
               >
