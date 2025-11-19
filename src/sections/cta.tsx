@@ -4,13 +4,13 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import React from 'react';
 
-import { CTA_DATA } from '@/constants/items';
+import { CTA_ITEMS } from '@/constants/items';
 import { AmbientColor } from '@/components/decorations/ambient-color';
 import { Container } from '@/components/container';
 import { Button } from '@/components/elements/button';
 
 export const CTA = () => {
-  const { heading, sub_heading, CTAs } = CTA_DATA;
+  const { heading, sub_heading, CTAs } = CTA_ITEMS;
   return (
     <div id='contact' className="relative py-40">
       <AmbientColor />

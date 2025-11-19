@@ -35,7 +35,7 @@ export const Features = ({
   return (
     <div id='features'>
     <GradientContainer className="md:my-20">
-      <Container className="max-w-7xl mx-auto  relative z-40">
+      <Container className="max-w-7xl mx-auto relative z-40 my-8">
         <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
           <IconRocket className="h-6 w-6 text-white" />
         </FeatureIconContainer>

@@ -114,11 +114,11 @@ export function ArchitectureFlowCanvas() {
             fitView
             fitViewOptions={{ padding: 0.3 }}
             panOnScroll={false}
-            panOnDrag={true} // Allow panning
+            panOnDrag={false}
             zoomOnScroll={false}
             zoomOnPinch={false}
             zoomOnDoubleClick={false}
-            nodesDraggable={true} // Allow dragging nodes
+            nodesDraggable={false} // Allow dragging nodes
             nodesConnectable={false}
             elementsSelectable={false}
             proOptions={{ hideAttribution: true }}

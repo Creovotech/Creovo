@@ -1,7 +1,7 @@
 import { Link } from 'next-view-transitions';
 import React from 'react';
-import footerData from '@/constants/data';
 import { TextHoverEffect } from '@/components/ui/text-hover-effect';
+import { FOOTER_ITEMS } from '@/constants/items';
 
 interface FooterLink {
   text: string;
@@ -10,11 +10,11 @@ interface FooterLink {
 
 export const Footer = () => {
   const data = {
-    description: footerData.description,
-    copyright: footerData.copyright,
-    internal_links: footerData.internal_links,
-    policy_links: footerData.policy_links,
-    social_media_links: footerData.social_media_links,
+    description: FOOTER_ITEMS.description,
+    copyright: FOOTER_ITEMS.copyright,
+    internal_links: FOOTER_ITEMS.internal_links,
+    policy_links: FOOTER_ITEMS.policy_links,
+    social_media_links: FOOTER_ITEMS.social_media_links,
   };
 
   return (

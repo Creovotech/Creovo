@@ -246,7 +246,7 @@ export const NavbarLogo = () => {
         width={30}
         height={30}
       />
-      <span className="font-medium text-black dark:text-white">Creavo</span>
+      <span className="font-medium text-black dark:text-white">Creovo</span>
     </a>
   );
 };

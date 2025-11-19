@@ -1,20 +1,18 @@
 'use client';
 
 import React from 'react';
-import { TbLocationBolt } from 'react-icons/tb';
-import { motion } from 'framer-motion'; // NEW: Import motion
+import { motion } from 'framer-motion';
 import { MessageSquareQuote } from 'lucide-react';
-
 import { FeatureIconContainer } from '@/sections/features/feature-icon-container';
 import { TestimonialsSlider } from './slider';
 import { TestimonialsMarquee } from './testimonials-marquee';
 import { Subheading } from '@/components/elements/subheading';
 import { AmbientColor } from '@/components/decorations/ambient-color';
 import { Heading } from '@/components/elements/heading';
-import { TESTIMONIALS_DATA } from '@/constants/items';
+import { TESTIMONIALS_ITEMS } from '@/constants/items';
 
 export const Testimonials = () => {
-  const { heading, sub_heading, testimonials } = TESTIMONIALS_DATA;
+  const { heading, sub_heading, testimonials } = TESTIMONIALS_ITEMS;
   return (
     <div className="relative">
       <AmbientColor />
@@ -30,7 +28,6 @@ export const Testimonials = () => {
               repeat: Infinity,
               repeatType: 'reverse',
             }}
-            // Hover effect
             whileHover={{ scale: 1.2, rotate: 10 }}
           >
             <MessageSquareQuote className="h-6 w-6 text-white" />

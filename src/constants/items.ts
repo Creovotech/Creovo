@@ -64,25 +64,24 @@ export const TIMELINE_DATA = {
   ],
 };
 
-export const CTA_DATA = {
+export const CTA_ITEMS = {
   heading: "Ready to Get Started?",
   sub_heading:
     "Join us today and take the first step towards a brighter future.",
   CTAs: [
     {
-      URL: "/contact",
+      url: "https://calendly.com/creovotech/30min",
       text: "Contact Us",
       variant: "primary",
     },
     {
-      URL: "/pricing",
-      text: "View Pricing",
+      text: "Estimate Cost",
       variant: "muted",
     },
   ],
 };
 
-export const TESTIMONIALS_DATA = {
+export const TESTIMONIALS_ITEMS = {
   heading: "What Our Clients Say",
   sub_heading: "Hear from those who have experienced our service first-hand.",
   testimonials: [
@@ -128,5 +127,34 @@ export const TESTIMONIALS_DATA = {
       title: "Head of Growth, Nexus pharma Inc",
       description: 'We needed a partner who could keep pace with our vision, and they delivered beyond our expectations. The custom AI support agent they built has dramatically reduced our customer response times and improved user satisfaction.'
     },
+  ],
+};
+
+export const FOOTER_ITEMS = {
+  logo: {
+    image: '/logo.svg',
+  },
+
+  description:
+    'Creovo helps teams design, build, and ship delightful digital experiences.',
+
+  copyright: '© 2025 Creovo. All rights reserved.',
+
+  internal_links: [
+    { text: 'Home', URL: '/' },
+    { text: 'About', URL: '/about' },
+    { text: 'Products', URL: '/products' },
+  ],
+
+  policy_links: [
+    { text: 'Privacy Policy', URL: '/privacy' },
+    { text: 'Terms of Service', URL: '/terms' },
+    { text: 'Cookies', URL: '/cookies' },
+  ],
+
+  social_media_links: [
+    { text: 'Twitter', URL: 'https://twitter.com/creovo' },
+    { text: 'LinkedIn', URL: 'https://linkedin.com/company/creovo' },
+    { text: 'GitHub', URL: 'https://github.com/Creovotech' },
   ],
 };

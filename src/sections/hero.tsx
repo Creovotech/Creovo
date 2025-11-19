@@ -4,7 +4,6 @@ import { Cover } from '@/components/decorations/cover';
 import ShootingStars from '@/components/decorations/shooting-star';
 import StarBackground from '@/components/decorations/star-background';
 import { Heading } from '@/components/elements/heading';
-import { Subheading } from '@/components/elements/subheading';
 import { HERO_ITEMS } from '@/constants/items';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
@@ -13,10 +12,12 @@ import { BookCallModal } from '@/components/modals/BookCallModal';
 import { CostEstimatorModal } from '@/components/modals/CostEstimatorModal';
 import { TypingSubheading } from '@/components/elements/TypingSubheading';
 import { ArchitectureFlowCanvas } from '@/components/ui/ArchitectureCanvasFlow';
+import { useRouter } from 'next/navigation';
 
 export const Hero = () => {
   const [bookCallOpen, setBookCallOpen] = useState(false);
   const [costModalOpen, setCostModalOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <div className="h-screen overflow-hidden relative">
@@ -49,7 +50,7 @@ export const Hero = () => {
             </div>
 
             <div className="mt-8 flex gap-4">
-              <Button size="lg" onClick={() => setBookCallOpen(true)}>
+              <Button size="lg" onClick={() => router.push('https://calendly.com/creovotech/30min')}>
                 Book a call
               </Button>
               <Button
