@@ -1,6 +1,5 @@
 'use client';
 
-import { Cover } from '@/components/decorations/cover';
 import ShootingStars from '@/components/decorations/shooting-star';
 import StarBackground from '@/components/decorations/star-background';
 import { Heading } from '@/components/elements/heading';
@@ -20,7 +19,7 @@ export const Hero = () => {
   const router = useRouter();
 
   return (
-    <div className="h-screen overflow-hidden relative">
+    <div className="min-h-screen w-full overflow-hidden relative flex items-center justify-center pt-12 pb-16 md:py-0">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -31,65 +30,59 @@ export const Hero = () => {
         <ShootingStars />
       </motion.div>
 
-      <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center justify-center px-4 md:px-8">
-        <div className="grid w-full grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-12">
-          {/* Left side - Content */}
-          <div className="flex flex-col justify-center items-center text-center md:items-start md:text-left">
-            <Heading
-              as="h1"
-              className="text-4xl font-semibold md:text-5xl lg:text-7xl
-                         bg-gradient-to-r from-purple-500 via-pink-500 to-red-500
-                         bg-[size:200%_auto] bg-clip-text text-transparent
-                         animate-gradient"
-            >
-              {HERO_ITEMS.heading}
-            </Heading>
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-16 px-4 md:px-8 lg:grid lg:grid-cols-2 lg:gap-12">
+        
+        {/* Left side (Content) */}
+        <div className="flex flex-col w-full justify-center items-center text-center lg:items-start lg:text-left">
+          <Heading
+            as="h1"
+            className="text-4xl font-semibold md:text-5xl lg:text-7xl
+                       bg-gradient-to-r from-purple-500 via-pink-500 to-red-500
+                       bg-[size:200%_auto] bg-clip-text text-transparent
+                       animate-gradient leading-tight"
+          >
+            {HERO_ITEMS.heading}
+          </Heading>
 
-            <div className="mt-4 w-full">
-              <TypingSubheading text={HERO_ITEMS.sub_heading} />
-            </div>
-
-            <div className="mt-8 flex gap-4">
-              <Button size="lg" onClick={() => router.push('https://calendly.com/creovotech/30min')}>
-                Book a call
-              </Button>
-              <Button
-                style={{ color: 'black' }}
-                size="lg"
-                variant="secondary"
-                onClick={() => setCostModalOpen(true)}
-              >
-                Estimate cost
-              </Button>
-            </div>
+          <div className="mt-6 w-full max-w-2xl lg:max-w-none">
+            <TypingSubheading text={HERO_ITEMS.sub_heading} />
           </div>
 
-          {/* Right side - Architecture Flow with Fade */}
-          <div className="relative h-[600px] w-full md:h-[700px]">
-            <div className="absolute inset-0 [mask-image:linear-gradient(to_right,transparent_0%,black_20%,black_80%,transparent_100%)]">
+          <div className="mt-8 flex min-w-full flex-col justify-center items-center gap-4 sm:flex-row">
+            <Button
+              size="lg"
+              onClick={() => router.push('https://calendly.com/creovotech/30min')}
+              className="w-full sm:w-auto cursor-pointer"
+            >
+              Book a call
+            </Button>
+            <Button
+              style={{ color: 'black' }}
+              size="lg"
+              variant="secondary"
+              onClick={() => setCostModalOpen(true)}
+              className="w-full sm:w-auto cursor-pointer"
+            >
+              Estimate cost
+            </Button>
+          </div>
+        </div>
+
+        {/* Right side (Canvas) */}
+        <div className="relative w-full flex justify-center items-center">
+          <div className="relative h-[400px] w-full sm:h-[500px] md:h-[600px] lg:h-[700px]">
+            <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_100%)] md:[mask-image:linear-gradient(to_right,transparent_0%,black_20%,black_80%,transparent_100%)]">
               <ArchitectureFlowCanvas />
             </div>
           </div>
         </div>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 h-40 w-full bg-linear-to-t from-charcoal to-transparent pointer-events-none" />
+      {/* Page bottom fade */}
+      <div className="absolute inset-x-0 bottom-0 h-20 w-full bg-linear-to-t from-charcoal to-transparent pointer-events-none" />
 
       <BookCallModal open={bookCallOpen} onOpenChange={setBookCallOpen} />
       <CostEstimatorModal open={costModalOpen} onOpenChange={setCostModalOpen} />
     </div>
   );
 };
-<div className='flex justify-around '>
-  <div className='flex-col justify-center items-center gap-2'>
-    <div className='flex justify-center'>Creovo</div>
-    <div className='flex justify-center'>Subheading</div>
-    <div className='flex gap-4 mt-4 justify-center items-center'>
-      <Button>Button 1</Button>
-      <Button>Button 2</Button>
-    </div>
-  </div>
-  <div>
-    <ArchitectureFlowCanvas />
-  </div>
-</div>
