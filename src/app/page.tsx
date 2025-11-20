@@ -16,7 +16,7 @@ export default function LandingPage() {
     <div className="relative overflow-hidden w-full">
       <AmbientColor />
       <Hero/>
-      <Features heading={'Features to get your website running within minutes'} sub_heading={''} globe_card={globe_card} ray_card={ray_card} graph_card={graph_card} social_media_card={social_media_card} />
+      <Features heading={'Engineering for Global Scale'} sub_heading={'From local startups to global ecosystems, we architect solutions designed to handle millions of interactions without breaking a sweat'} globe_card={globe_card} ray_card={ray_card} graph_card={graph_card} social_media_card={social_media_card} />
       <TechStacks />
       <TimeLine />
       <Testimonials />

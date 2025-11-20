@@ -58,7 +58,7 @@ export const Features = ({
         <Heading className="pt-4">{heading}</Heading>
         <Subheading className="max-w-3xl mx-auto">{sub_heading}</Subheading>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 my-2">
           {globe_card && (
             <Card className="lg:col-span-2">
               <CardTitle>{globe_card.title}</CardTitle>

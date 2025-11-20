@@ -18,7 +18,7 @@ export const GradientContainer = ({
   className?: string;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress, scrollY } = useScroll({
+  const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end end'],
   });
@@ -30,6 +30,7 @@ export const GradientContainer = ({
   );
 
   const [percentage, setPercentage] = useState(0);
+
   useMotionValueEvent(limitedScrollYProgress, 'change', (latest) => {
     const newPercentage = Math.min(
       100,
@@ -37,6 +38,7 @@ export const GradientContainer = ({
     );
     setPercentage(newPercentage);
   });
+
   return (
     <div
       ref={ref}
@@ -47,27 +49,30 @@ export const GradientContainer = ({
           '--conic-size': '600px',
         } as CSSProperties
       }
-      className={cn('relative z-20', className)}
+      className={cn('relative overflow-hidden', className)}
     >
+      {/* Main gradient background */}
       <motion.div
-        className={`w-full h-(--conic-size) mb-[calc(-1*var(--conic-size))] 
-        pointer-events-none select-none relative z-0
-        after:content-['']
-        after:absolute
-        after:inset-0
-        after:bg-linear-to-b
-        after:from-transparent
-        after:to-(--charcoal)
-        after:opacity-100
-        `}
+        className="absolute inset-0 z-0 pointer-events-none"
         style={{
           background: `conic-gradient(from 90deg at ${
             100 - percentage
-          }% 0%, var(--top), var(--bottom) 180deg) 0% 0% / 50% 100% no-repeat, conic-gradient(from 270deg at ${percentage}% 0%, var(--bottom) 180deg, var(--top)) 100% 0% / 50% 100% no-repeat`,
-          opacity: 0.901567,
+          }% 0%, var(--top), var(--bottom) 180deg) 0% 0% / 50% 100% no-repeat,
+                      conic-gradient(from 270deg at ${percentage}% 0%, var(--bottom) 180deg, var(--top)) 100% 0% / 50% 100% no-repeat`,
+          opacity: 0.9,
         }}
       />
-      {children}
+
+      {/* Bottom fade to black */}
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-40 z-[1] 
+                   bg-gradient-to-b from-transparent to-black"
+      />
+
+      {/* Content */}
+      <div className="relative z-10">
+        {children}
+      </div>
     </div>
   );
 };

@@ -1,6 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { Code } from 'lucide-react';
+import { FeatureIconContainer } from './features/feature-icon-container';
+import { GradientContainer } from '@/components/gradient-container';
 
 // Simulating the external constants and components to ensure the file is self-contained
 const TECHSTACK_ITEMS = {
@@ -370,6 +373,14 @@ export const TechStacks = () => {
   return (
     <div className="relative z-20 py-12 md:py-32 overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
+        <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
+                  <motion.div
+                    whileHover={{ scale: 1.2, y: -5 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 10 }}
+                  >
+                    <Code className="h-6 w-6 text-white" />
+                  </motion.div>
+                </FeatureIconContainer>
         <Heading className="pt-4">{TECHSTACK_ITEMS.heading}</Heading>
         <Subheading className="max-w-3xl mx-auto mt-4">
           {TECHSTACK_ITEMS.sub_heading}

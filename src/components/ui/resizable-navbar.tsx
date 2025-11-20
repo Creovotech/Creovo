@@ -237,16 +237,18 @@ export const MobileNavToggle = ({
 export const NavbarLogo = () => {
   return (
     <a
-      href="#"
+      href="/"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
     >
       <img
-        src="https://assets.aceternity.com/logo-dark.png"
+        src="/creovologo-removebg.png"
         alt="logo"
-        width={30}
-        height={30}
+        width={77}
+        height={77}
       />
-      <span className="font-medium text-black dark:text-white">Creovo</span>
+      <span className="font-semibold md:text-1xl bg-gradient-to-r from-purple-500 via-pink-500 to-red-500
+                       bg-[size:200%_auto] bg-clip-text text-transparent
+                       animate-gradient leading-tight">Creovo</span>
     </a>
   );
 };

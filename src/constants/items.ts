@@ -1,3 +1,5 @@
+import { url } from "inspector";
+
 export const LEFT_NAVBAR_ITEMS = [
   {
     link: "/about",
@@ -46,7 +48,7 @@ export const TIMELINE_DATA = {
     {
       title: "Understanding the Core Logic",
       description:
-        "t starts with a deep-dive consultation. We don't just ask what features you want; we analyze the business problem you are solving. Whether it’s a web platform or an autonomous agent, we define the technical feasibility, scope, and success metrics before writing a single line of code.",
+        "It starts with a deep-dive consultation. We don't just ask what features you want; we analyze the business problem you are solving. Whether it’s a web platform or an autonomous agent, we define the technical feasibility, scope, and success metrics before writing a single line of code",
       mission_number: "Discovery & Strategy",
     },
     {
@@ -89,6 +91,7 @@ export const CTA_ITEMS = {
     {
       text: "Estimate Cost",
       variant: "muted",
+      url: "/",
     },
   ],
 };

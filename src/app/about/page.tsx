@@ -218,6 +218,7 @@ export default function AboutPage() {
           <Button 
             size="lg" 
             className="bg-white text-neutral-900 hover:bg-neutral-200 font-semibold text-lg h-12 px-8"
+            onClick={() => window.location.href = 'https://calendly.com/creovotech/30min'}
           >
             Start a Project
           </Button>

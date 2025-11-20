@@ -42,6 +42,7 @@ export const Hero = () => {
                        animate-gradient leading-tight"
           >
             {HERO_ITEMS.heading}
+            {/* <img src="/creovologofull-removebg.png" alt="" /> */}
           </Heading>
 
           <div className="mt-6 w-full max-w-2xl lg:max-w-none">
@@ -69,7 +70,7 @@ export const Hero = () => {
         </div>
 
         {/* Right side (Canvas) */}
-        <div className="relative w-full flex justify-center items-center">
+        <div className="relative w-full flex justify-center items-center sm:hidden md:block" style={{"scale" : "1.2"}}>
           <div className="relative h-[400px] w-full sm:h-[500px] md:h-[600px] lg:h-[700px]">
             <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_100%)] md:[mask-image:linear-gradient(to_right,transparent_0%,black_20%,black_80%,transparent_100%)]">
               <ArchitectureFlowCanvas />

@@ -15,7 +15,7 @@ export const Testimonials = () => {
   const { heading, sub_heading, testimonials } = TESTIMONIALS_ITEMS;
   return (
     <div className="relative">
-      <AmbientColor />
+      {/* <AmbientColor /> */}
       <div className="pb-20">
         <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
           <motion.div

@@ -10,6 +10,7 @@ import { Heading } from '@/components/elements/heading';
 import { Subheading } from '@/components/elements/subheading';
 import { TIMELINE_DATA } from '@/constants/items';
 import { FeatureIconContainer } from '@/sections/features/feature-icon-container';
+import { GradientContainer } from '@/components/gradient-container';
 
 export const TimeLine = () => {
   const { heading, sub_heading, launches } = TIMELINE_DATA;
@@ -49,6 +50,7 @@ export const TimeLine = () => {
     setGradient(backgrounds[closestBreakpointIndex % backgrounds.length]);
   });
   return (
+    <GradientContainer>
     <motion.div
       animate={{
         background: gradient,
@@ -74,5 +76,6 @@ export const TimeLine = () => {
       </div>
       <StickyScroll content={launchesWithDecoration} />
     </motion.div>
+    </GradientContainer>
   );
 };
