@@ -4,6 +4,7 @@ import { useScroll, useTransform } from 'framer-motion';
 import { motion } from 'framer-motion';
 import React, { useRef } from 'react';
 
+// --- Fix 1: Added 'content?: React.ReactNode' to the main component props ---
 export const StickyScroll = ({
   content,
 }: {
@@ -11,6 +12,7 @@ export const StickyScroll = ({
     title: string;
     description: string;
     icon?: React.ReactNode;
+    content?: React.ReactNode; // This was missing and causing the error
   }[];
 }) => {
   return (
@@ -45,7 +47,7 @@ export const ScrollContent = ({
   };
   index: number;
 }) => {
-  const ref = useRef<any>(null);
+  const ref = useRef<HTMLDivElement>(null); // Changed 'any' to 'HTMLDivElement' for better strict mode compliance
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end start'],
@@ -92,7 +94,7 @@ export const ScrollContent = ({
           className=""
         >
           <div>{item.icon}</div>
-          <motion.h2 className="max-w-md mt-2 font-bold text-2xl lg:text-4xl inline-block bg-clip-text text-left text-transparent bg-linear-to-b from-white  to-white">
+          <motion.h2 className="max-w-md mt-2 font-bold text-2xl lg:text-4xl inline-block bg-clip-text text-left text-transparent bg-gradient-to-b from-white  to-white">
             {item.title}
           </motion.h2>
 
@@ -134,7 +136,7 @@ export const ScrollContentMobile = ({
       <div className="w-full">
         <motion.div className=" mb-6">
           <div>{item.icon}</div>
-          <motion.h2 className="mt-2 font-bold text-2xl lg:text-4xl inline-block bg-clip-text text-left text-transparent bg-linear-to-b from-white  to-white">
+          <motion.h2 className="mt-2 font-bold text-2xl lg:text-4xl inline-block bg-clip-text text-left text-transparent bg-gradient-to-b from-white  to-white">
             {item.title}
           </motion.h2>
 

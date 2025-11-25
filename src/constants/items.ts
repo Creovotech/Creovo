@@ -158,18 +158,15 @@ export const FOOTER_ITEMS = {
   internal_links: [
     { text: 'Home', URL: '/' },
     { text: 'About', URL: '/about' },
-    { text: 'Products', URL: '/products' },
   ],
 
   policy_links: [
     { text: 'Privacy Policy', URL: '/privacy' },
     { text: 'Terms of Service', URL: '/terms' },
-    { text: 'Cookies', URL: '/cookies' },
   ],
 
   social_media_links: [
     { text: 'Twitter', URL: 'https://twitter.com/creovo' },
     { text: 'LinkedIn', URL: 'https://linkedin.com/company/creovo' },
-    { text: 'GitHub', URL: 'https://github.com/Creovotech' },
   ],
 };

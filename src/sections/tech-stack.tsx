@@ -1,18 +1,36 @@
 'use client';
 
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Code } from 'lucide-react';
 import { FeatureIconContainer } from './features/feature-icon-container';
 import { GradientContainer } from '@/components/gradient-container';
 
-// Simulating the external constants and components to ensure the file is self-contained
+// --- Type Definitions ---
+type IconProps = React.SVGProps<SVGSVGElement>;
+
+interface HeadingProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+interface TechItemData {
+  name: string;
+  icon: (props: IconProps) => React.JSX.Element;
+}
+
+interface TechItemProps {
+  item: TechItemData;
+}
+
+// --- Constants ---
 const TECHSTACK_ITEMS = {
   heading: 'Our Engineering Arsenal',
   sub_heading:
     'We leverage a curated stack of battle-tested frameworks and cutting-edge AI infrastructure to build scalable, secure solutions.',
 };
 
-const Heading = ({ children, className = '' }) => (
+const Heading = ({ children, className = '' }: HeadingProps) => (
   <h2
     className={`text-3xl md:text-5xl font-bold text-center text-white ${className}`}
   >
@@ -20,7 +38,7 @@ const Heading = ({ children, className = '' }) => (
   </h2>
 );
 
-const Subheading = ({ children, className = '' }) => (
+const Subheading = ({ children, className = '' }: HeadingProps) => (
   <p className={`text-lg text-center text-neutral-400 mt-4 ${className}`}>
     {children}
   </p>
@@ -28,7 +46,7 @@ const Subheading = ({ children, className = '' }) => (
 
 // High-quality SVG Icons for the Tech Stack
 const ICONS = {
-  NextJS: (props) => (
+  NextJS: (props: IconProps) => (
     <svg
       viewBox="0 0 180 180"
       fill="none"
@@ -86,7 +104,7 @@ const ICONS = {
       </defs>
     </svg>
   ),
-  React: (props) => (
+  React: (props: IconProps) => (
     <svg
       viewBox="-11.5 -10.23174 23 20.46348"
       xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +118,7 @@ const ICONS = {
       </g>
     </svg>
   ),
-  TypeScript: (props) => (
+  TypeScript: (props: IconProps) => (
     <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" {...props}>
       <rect width="128" height="128" rx="15" fill="#3178C6" />
       <path
@@ -109,7 +127,7 @@ const ICONS = {
       />
     </svg>
   ),
-  Tailwind: (props) => (
+  Tailwind: (props: IconProps) => (
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
       <path
         d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"
@@ -117,7 +135,7 @@ const ICONS = {
       />
     </svg>
   ),
-  NodeJS: (props) => (
+  NodeJS: (props: IconProps) => (
     <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" {...props}>
       <path
         d="M16 0l-14 8v16l14 8 14-8v-16l-14-8zM24.915 17.978l-0.023 6.176-8.863 5.147-8.93-5.125 0.013-11.153 9.66-5.615v5.393l-4.795 2.765v2.908l4.803-2.763 4.845 2.773-0.020 2.87-4.823-2.742v5.65l4.283 2.468 4.25-2.475v-6.278z"
@@ -125,7 +143,7 @@ const ICONS = {
       />
     </svg>
   ),
-  PostgreSQL: (props) => (
+  PostgreSQL: (props: IconProps) => (
     <svg
       viewBox="0 0 24 24"
       fill="#336791"
@@ -143,9 +161,9 @@ const ICONS = {
     </svg>
   ),
 
-  // --- Cloud / DevOps icons you requested only ---
+  // --- Cloud / DevOps icons ---
 
-  AWS: (props) => (
+  AWS: (props: IconProps) => (
     <svg
       viewBox="0 0 24 24"
       fill="white"
@@ -166,7 +184,7 @@ const ICONS = {
     </svg>
   ),
 
-  Docker: (props) => (
+  Docker: (props: IconProps) => (
     <svg
       viewBox="0 0 24 24"
       fill="#2496ED"
@@ -185,7 +203,7 @@ const ICONS = {
     </svg>
   ),
 
-  Vercel: (props) => (
+  Vercel: (props: IconProps) => (
     <svg
       viewBox="0 0 32 32"
       xmlns="http://www.w3.org/2000/svg"
@@ -196,7 +214,7 @@ const ICONS = {
     </svg>
   ),
 
-  Hostinger: (props) => (
+  Hostinger: (props: IconProps) => (
     <svg
       viewBox="0 0 32 32"
       xmlns="http://www.w3.org/2000/svg"
@@ -210,7 +228,7 @@ const ICONS = {
     </svg>
   ),
 
-  GCP: (props) => (
+  GCP: (props: IconProps) => (
     <svg
       viewBox="0 0 32 32"
       xmlns="http://www.w3.org/2000/svg"
@@ -225,7 +243,7 @@ const ICONS = {
     </svg>
   ),
 
-  Azure: (props) => (
+  Azure: (props: IconProps) => (
     <svg
       viewBox="0 0 32 32"
       xmlns="http://www.w3.org/2000/svg"
@@ -237,7 +255,7 @@ const ICONS = {
     </svg>
   ),
 
-  DigitalOcean: (props) => (
+  DigitalOcean: (props: IconProps) => (
     <svg
       viewBox="0 0 32 32"
       xmlns="http://www.w3.org/2000/svg"
@@ -251,7 +269,7 @@ const ICONS = {
     </svg>
   ),
 
-  Jenkins: (props) => (
+  Jenkins: (props: IconProps) => (
     <svg
       viewBox="0 0 32 32"
       xmlns="http://www.w3.org/2000/svg"
@@ -272,7 +290,7 @@ const ICONS = {
     </svg>
   ),
 
-  RabbitMQ: (props) => (
+  RabbitMQ: (props: IconProps) => (
     <svg
       viewBox="0 0 32 32"
       xmlns="http://www.w3.org/2000/svg"
@@ -285,7 +303,7 @@ const ICONS = {
     </svg>
   ),
 
-  Kafka: (props) => (
+  Kafka: (props: IconProps) => (
     <svg
       viewBox="0 0 32 32"
       xmlns="http://www.w3.org/2000/svg"
@@ -305,7 +323,7 @@ const ICONS = {
     </svg>
   ),
 
-  Kubernetes: (props) => (
+  Kubernetes: (props: IconProps) => (
     <svg
       viewBox="0 0 32 32"
       xmlns="http://www.w3.org/2000/svg"
@@ -321,7 +339,7 @@ const ICONS = {
     </svg>
   ),
 
-  Redis: (props) => (
+  Redis: (props: IconProps) => (
     <svg
       viewBox="0 0 32 32"
       xmlns="http://www.w3.org/2000/svg"
@@ -336,7 +354,7 @@ const ICONS = {
 };
 
 // Top row: core/product stack (NO cloud/devops here)
-const PRIMARY_SCROLL_ITEMS = [
+const PRIMARY_SCROLL_ITEMS: TechItemData[] = [
   { name: 'Next.js', icon: ICONS.NextJS },
   { name: 'React', icon: ICONS.React },
   { name: 'TypeScript', icon: ICONS.TypeScript },
@@ -351,7 +369,7 @@ const PRIMARY_SCROLL_ITEMS = [
 ];
 
 // Bottom row: ONLY the requested cloud/devops stack
-const CLOUD_SCROLL_ITEMS = [
+const CLOUD_SCROLL_ITEMS: TechItemData[] = [
   { name: 'Docker', icon: ICONS.Docker },
   { name: 'AWS', icon: ICONS.AWS },
   { name: 'Vercel', icon: ICONS.Vercel },
@@ -374,13 +392,13 @@ export const TechStacks = () => {
     <div className="relative z-20 py-12 md:py-32 overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
-                  <motion.div
-                    whileHover={{ scale: 1.2, y: -5 }}
-                    transition={{ type: 'spring', stiffness: 300, damping: 10 }}
-                  >
-                    <Code className="h-6 w-6 text-white" />
-                  </motion.div>
-                </FeatureIconContainer>
+          <motion.div
+            whileHover={{ scale: 1.2, y: -5 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 10 }}
+          >
+            <Code className="h-6 w-6 text-white" />
+          </motion.div>
+        </FeatureIconContainer>
         <Heading className="pt-4">{TECHSTACK_ITEMS.heading}</Heading>
         <Subheading className="max-w-3xl mx-auto mt-4">
           {TECHSTACK_ITEMS.sub_heading}
@@ -474,7 +492,7 @@ export const TechStacks = () => {
   );
 };
 
-const TechItem = ({ item }) => {
+const TechItem = ({ item }: TechItemProps) => {
   const Icon = item.icon;
   return (
     <div className="relative group flex flex-col items-center justify-center gap-4">

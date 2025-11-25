@@ -19,7 +19,7 @@ export default function LandingPage() {
       <Features heading={'Engineering for Global Scale'} sub_heading={'From local startups to global ecosystems, we architect solutions designed to handle millions of interactions without breaking a sweat'} globe_card={globe_card} ray_card={ray_card} graph_card={graph_card} social_media_card={social_media_card} />
       <TechStacks />
       <TimeLine />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <CTA />
       <ScrollToTop />
     </div>

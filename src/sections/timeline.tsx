@@ -1,10 +1,10 @@
 'use client';
 
+import React, { useRef, useState } from 'react';
 import { IconRocket } from '@tabler/icons-react';
 import { Milestone } from 'lucide-react';
-import { motion, useMotionValueEvent } from 'framer-motion';
-import { useScroll } from 'framer-motion';
-import React, { useRef, useState } from 'react';
+import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
+
 import { StickyScroll } from '@/components/ui/sticky-scroll';
 import { Heading } from '@/components/elements/heading';
 import { Subheading } from '@/components/elements/subheading';
@@ -12,10 +12,22 @@ import { TIMELINE_DATA } from '@/constants/items';
 import { FeatureIconContainer } from '@/sections/features/feature-icon-container';
 import { GradientContainer } from '@/components/gradient-container';
 
+// Define the shape of a single launch item
+interface LaunchItem {
+  mission_number: string | number;
+  date?: string; // Assuming your data might have a date
+  description?: string; // Assuming your data might have a description
+  [key: string]: unknown; 
+}
+
 export const TimeLine = () => {
   const { heading, sub_heading, launches } = TIMELINE_DATA;
-  const launchesWithDecoration = launches.map((entry: { mission_number: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; }) => ({
-    ...entry,
+
+  // --- THE FIX IS HERE ---
+  // We explicitly map 'mission_number' to 'title' and ensure 'description' exists
+  const launchesWithDecoration = launches.map((entry: LaunchItem) => ({
+    title: String(entry.mission_number), // StickyScroll requires 'title'
+    description: String(entry.date || entry.description || "Mission Details"), // StickyScroll requires 'description'
     icon: <IconRocket className="h-8 w-8 text-secondary" />,
     content: (
       <p className="text-4xl md:text-7xl font-bold text-neutral-800">
@@ -29,16 +41,17 @@ export const TimeLine = () => {
     target: ref,
     offset: ['start end', 'end start'],
   });
+  
   const backgrounds = ['var(--charcoal)', 'var(--zinc-900)'];
-
   const [gradient, setGradient] = useState(backgrounds[0]);
 
   useMotionValueEvent(scrollYProgress, 'change', (latest) => {
     const cardsBreakpoints = launches.map(
-      (_: any, index: number) => index / launches.length
+      (_: unknown, index: number) => index / launches.length
     );
+
     const closestBreakpointIndex = cardsBreakpoints.reduce(
-      (acc: string | number, breakpoint: number, index: any) => {
+      (acc: number, breakpoint: number, index: number) => {
         const distance = Math.abs(latest - breakpoint);
         if (distance < Math.abs(latest - cardsBreakpoints[acc])) {
           return index;
@@ -47,35 +60,37 @@ export const TimeLine = () => {
       },
       0
     );
+    
     setGradient(backgrounds[closestBreakpointIndex % backgrounds.length]);
   });
+
   return (
     <GradientContainer>
-    <motion.div
-      animate={{
-        background: gradient,
-      }}
-      transition={{
-        duration: 0.5,
-      }}
-      ref={ref}
-      id='TimeLine'
-      className="w-full relative h-full pt-20 md:pt-40"
-    >
-      <div className="px-6">
-        <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
-          <motion.div
-            whileHover={{ scale: 1.2, y: -5 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 10 }}
-          >
-            <Milestone className="h-6 w-6 text-white" />
-          </motion.div>
-        </FeatureIconContainer>
-        <Heading className="mt-4">{heading}</Heading>
-        <Subheading>{sub_heading}</Subheading>
-      </div>
-      <StickyScroll content={launchesWithDecoration} />
-    </motion.div>
+      <motion.div
+        animate={{
+          background: gradient,
+        }}
+        transition={{
+          duration: 0.5,
+        }}
+        ref={ref}
+        id="TimeLine"
+        className="w-full relative h-full pt-20 md:pt-40"
+      >
+        <div className="px-6">
+          <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
+            <motion.div
+              whileHover={{ scale: 1.2, y: -5 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 10 }}
+            >
+              <Milestone className="h-6 w-6 text-white" />
+            </motion.div>
+          </FeatureIconContainer>
+          <Heading className="mt-4">{heading}</Heading>
+          <Subheading>{sub_heading}</Subheading>
+        </div>
+        <StickyScroll content={launchesWithDecoration} />
+      </motion.div>
     </GradientContainer>
   );
 };
