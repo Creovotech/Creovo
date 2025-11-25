@@ -29,7 +29,7 @@ export const CTA = () => {
               <Button
                 as={Link}
                 key={index}
-                href={`/`}
+                href={`${cta.url}`}
                 // @ts-ignore
                 variant={cta.variant}
                 className="py-3"
