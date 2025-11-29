@@ -31,9 +31,8 @@ export const Hero = () => {
       </motion.div>
 
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-16 px-4 md:px-8 lg:grid lg:grid-cols-2 lg:gap-12">
-        
-        {/* Left side (Content) */}
-        <div className="flex flex-col w-full justify-center items-center text-center lg:items-start lg:text-left">
+
+        <div id="hero-left" className="flex flex-col w-full justify-center items-center text-center lg:items-start lg:text-left">
           <Heading
             as="h1"
             className="text-4xl font-semibold md:text-5xl lg:text-7xl
@@ -42,7 +41,6 @@ export const Hero = () => {
                        animate-gradient leading-tight"
           >
             {HERO_ITEMS.heading}
-            {/* <img src="/creovologofull-removebg.png" alt="" /> */}
           </Heading>
 
           <div className="mt-6 w-full max-w-2xl lg:max-w-none">
@@ -69,8 +67,7 @@ export const Hero = () => {
           </div>
         </div>
 
-        {/* Right side (Canvas) */}
-        <div className="relative w-full flex justify-center items-center sm:hidden md:block" style={{"scale" : "1.2"}}>
+        <div id="hero-right" className="relative w-full flex justify-center items-center sm:hidden md:block" style={{ "scale": "1.2" }}>
           <div className="relative h-[400px] w-full sm:h-[500px] md:h-[600px] lg:h-[700px]">
             <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_100%)] md:[mask-image:linear-gradient(to_right,transparent_0%,black_20%,black_80%,transparent_100%)]">
               <ArchitectureFlowCanvas />
@@ -79,8 +76,7 @@ export const Hero = () => {
         </div>
       </div>
 
-      {/* Page bottom fade */}
-      <div className="absolute inset-x-0 bottom-0 h-20 w-full bg-linear-to-t from-charcoal to-transparent pointer-events-none" />
+      <div id="hero-bottom" className="absolute inset-x-0 bottom-0 h-20 w-full bg-linear-to-t from-charcoal to-transparent pointer-events-none" />
 
       <BookCallModal open={bookCallOpen} onOpenChange={setBookCallOpen} />
       <CostEstimatorModal open={costModalOpen} onOpenChange={setCostModalOpen} />

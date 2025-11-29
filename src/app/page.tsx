@@ -4,7 +4,6 @@ import { Features } from '@/sections/features';
 import { Hero } from '@/sections/hero';
 import { TimeLine } from '@/sections/timeline';
 import { TechStacks } from '@/sections/tech-stack';
-import { Testimonials } from '@/sections/testimonials';
 import globe_card from '@/components/cards/globe_card.json';
 import ray_card from '@/components/cards/ray_card.json';
 import graph_card from '@/components/cards/graph_card.json';

@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 "use client";
+
 import { cn } from "@/lib/utils";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import {
@@ -8,9 +8,9 @@ import {
   useScroll,
   useMotionValueEvent,
 } from "motion/react";
-
+import Image from "next/image";
+import Link from "next/link";
 import React, { useRef, useState } from "react";
-
 
 interface NavbarProps {
   children: React.ReactNode;
@@ -72,7 +72,6 @@ export const Navbar = ({ children, className }: NavbarProps) => {
   return (
     <motion.div
       ref={ref}
-      // IMPORTANT: Change this to class of `fixed` if you want the navbar to be fixed
       className={cn("fixed inset-x-0 top-0 z-400 w-full", className)}
     >
       {React.Children.map(children, (child) =>
@@ -236,20 +235,20 @@ export const MobileNavToggle = ({
 
 export const NavbarLogo = () => {
   return (
-    <a
+    <Link
       href="/"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
     >
-      <img
-        src="/creovologo-removebg.png"
+      <Image
+        src="/logo.png"
         alt="logo"
-        width={77}
-        height={77}
+        width={50}
+        height={50}
       />
       <span className="font-semibold md:text-1xl bg-gradient-to-r from-purple-500 via-pink-500 to-red-500
                        bg-[size:200%_auto] bg-clip-text text-transparent
                        animate-gradient leading-tight">Creovo</span>
-    </a>
+    </Link>
   );
 };
 

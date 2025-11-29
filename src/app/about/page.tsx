@@ -2,22 +2,21 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Code2, 
-  Terminal, 
-  Smartphone, 
-  Bot, 
-  Search, 
-  Layers, 
-  Rocket, 
+import {
+  Code2,
+  Terminal,
+  Smartphone,
+  Bot,
+  Search,
+  Layers,
+  Rocket,
   Cpu,
-  Zap
 } from 'lucide-react';
 
 import { Container } from '@/components/container';
 import { Heading } from '@/components/elements/heading';
 import { Subheading } from '@/components/elements/subheading';
-import { FeatureIconContainer } from '@/sections/features/feature-icon-container'; // Your Hexagon Container
+import { FeatureIconContainer } from '@/sections/features/feature-icon-container';
 import { Button } from '@/components/ui/button';
 import { AmbientColor } from '@/components/decorations/ambient-color';
 
@@ -25,9 +24,8 @@ export default function AboutPage() {
   return (
     <div className="relative overflow-hidden bg-neutral-950 min-h-screen">
       <AmbientColor />
-      
-      {/* 1. HERO SECTION */}
-      <section className="relative pt-32 pb-20 md:pt-48 md:pb-32">
+
+      <section id="hero" className="relative pt-32 pb-20 md:pt-48 md:pb-32">
         <Container className="flex flex-col items-center text-center z-20 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -38,7 +36,7 @@ export default function AboutPage() {
               We Are <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">Creovo.</span>
             </Heading>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -49,22 +47,21 @@ export default function AboutPage() {
             </Subheading>
           </motion.div>
 
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             className="mt-8 max-w-3xl text-neutral-400 text-lg leading-relaxed"
           >
-            At Creovo, we believe that great software is born from expert engineering. 
-            We are a collective of senior developers and technical strategists dedicated to building 
-            high-performance websites, scalable mobile applications, and the next generation of 
-            Agentic AI solutions. We don’t just write code; we build digital ecosystems that drive business evolution.
+            At Creovo, we believe that great software is born from expert engineering.
+            We are a collective of senior developers and technical strategists dedicated to building
+            high-performance websites, scalable mobile applications, and the next generation of
+            Agentic AI solutions. We don&apos;t just write code; we build digital ecosystems that drive business evolution.
           </motion.p>
         </Container>
       </section>
 
-      {/* 2. THE MISSION */}
-      <section className="py-20 bg-neutral-900/30 border-y border-neutral-800">
+      <section id="mission" className="py-20 bg-neutral-900/30 border-y border-neutral-800">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -80,7 +77,7 @@ export default function AboutPage() {
                 Bridging the Gap Between Vision and Execution.
               </h2>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -89,13 +86,13 @@ export default function AboutPage() {
               className="space-y-6 text-neutral-400 text-lg"
             >
               <p className="italic text-neutral-300 border-l-2 border-purple-500 pl-4">
-                "In a world where technology moves faster than ever, you need more than a vendor. 
-                You need a partner who speaks the language of the future."
+                &quot;In a world where technology moves faster than ever, you need more than a vendor.
+                You need a partner who speaks the language of the future.&quot;
               </p>
               <p>
-                We founded Creovo with a singular goal: to bring top-tier engineering expertise directly 
-                to clients who refuse to compromise on quality. Whether it’s a complex web platform or 
-                an autonomous AI workforce, we approach every project with the precision of an architect 
+                We founded Creovo with a singular goal: to bring top-tier engineering expertise directly
+                to clients who refuse to compromise on quality. Whether it&apos;s a complex web platform or
+                an autonomous AI workforce, we approach every project with the precision of an architect
                 and the creativity of an artist.
               </p>
             </motion.div>
@@ -103,29 +100,28 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* 3. WHO WE ARE (Expert Differentiator) */}
-      <section className="py-24">
+      <section id="who-we-are" className="py-24">
         <Container>
           <div className="text-center mb-16">
             <Heading>Led by Engineers, Not Salespeople.</Heading>
             <Subheading className="max-w-2xl mx-auto mt-4">
-              Many agencies are run by account managers. Creovo is different. 
+              Many agencies are run by account managers. Creovo is different.
               When you talk to us, you are talking to the people who actually build the systems.
             </Subheading>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <DifferentiatorCard 
+            <DifferentiatorCard
               icon={<Terminal className="w-6 h-6 text-white" />}
               title="No Fluff"
               description="We give you realistic timelines and honest technical feasibility assessments. No over-promising, just delivery."
             />
-            <DifferentiatorCard 
+            <DifferentiatorCard
               icon={<Code2 className="w-6 h-6 text-white" />}
               title="Code Quality"
               description="We prioritize clean, maintainable, and scalable code over quick fixes. We build for the long term."
             />
-            <DifferentiatorCard 
+            <DifferentiatorCard
               icon={<Cpu className="w-6 h-6 text-white" />}
               title="Problem Solving"
               description="We don't just implement features; we solve the underlying business logic challenges to make your product viable."
@@ -134,36 +130,32 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* 4. OUR EXPERTISE */}
-      <section className="py-24 bg-neutral-900/50">
+      <section id="expertise" className="py-24 bg-neutral-900/50">
         <Container>
           <Heading className="mb-16 text-center">The Triumvirate of Modern Tech</Heading>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* 01 Web */}
-            <ExpertiseCard 
+            <ExpertiseCard
               number="01"
               title="Web Development"
               icon={<Layers className="w-6 h-6 text-white" />}
               description="We craft responsive, high-speed websites using modern frameworks (React, Next.js, Tailwind). From corporate landing pages to complex SaaS platforms, we ensure your web presence is robust and SEO-ready."
             />
 
-            {/* 02 Mobile */}
-            <ExpertiseCard 
+            <ExpertiseCard
               number="02"
               title="Mobile Applications"
               icon={<Smartphone className="w-6 h-6 text-white" />}
               description="Native and cross-platform solutions that provide seamless user experiences. We build apps that people actually enjoy using, ensuring high retention and performance on iOS and Android."
             />
 
-            {/* 03 Agentic AI - Highlighted */}
-            <div className="relative group lg:mt-[-20px]">
-               <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-200" />
-               <ExpertiseCard 
+            <div id="agentic" className="relative group lg:mt-[-20px]">
+              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-200" />
+              <ExpertiseCard
                 number="03"
                 title="Agentic AI Solutions"
                 icon={<Bot className="w-6 h-6 text-white" />}
-                description="Artificial Intelligence is more than just chatbots. We build Agentic Systems—AI that does things. Agents that browse the web, interact with APIs, and automate workflows. It’s not just automation; it’s autonomy."
+                description="Artificial Intelligence is more than just chatbots. We build Agentic Systems—AI that does things. Agents that browse the web, interact with APIs, and automate workflows. It&apos;s not just automation; it&apos;s autonomy."
                 isSpecial
               />
             </div>
@@ -171,32 +163,31 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* 5. HOW WE WORK */}
-      <section className="py-24">
+      <section id="how-we-work" className="py-24">
         <Container className="max-w-4xl">
           <Heading className="text-center mb-16">How We Work</Heading>
-          
+
           <div className="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-neutral-700 before:to-transparent">
-            
-            <ProcessStep 
+
+            <ProcessStep
               step="01"
               title="Discovery"
               icon={<Search className="w-5 h-5 text-white" />}
               content="We dig deep to understand your business logic, not just your design preferences."
             />
-            <ProcessStep 
+            <ProcessStep
               step="02"
               title="Architecture"
               icon={<Layers className="w-5 h-5 text-white" />}
               content="Our senior engineers map out the system structure to prevent technical debt later."
             />
-            <ProcessStep 
+            <ProcessStep
               step="03"
               title="Development"
               icon={<Code2 className="w-5 h-5 text-white" />}
               content="Agile sprints with regular updates. You see the progress as it happens."
             />
-            <ProcessStep 
+            <ProcessStep
               step="04"
               title="Deployment & Evolution"
               icon={<Rocket className="w-5 h-5 text-white" />}
@@ -207,16 +198,15 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* 6. CALL TO ACTION */}
-      <section className="py-24 relative">
+      <section id="call-to-action" className="py-24 relative">
         <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent pointer-events-none" />
         <Container className="text-center relative z-10">
           <Heading className="mb-6">Ready to build the future?</Heading>
           <Subheading className="mb-10 max-w-xl mx-auto">
-            Let’s discuss how our expert team can engineer your vision.
+            Let&apos;s discuss how our expert team can engineer your vision.
           </Subheading>
-          <Button 
-            size="lg" 
+          <Button
+            size="lg"
             className="bg-white text-neutral-900 hover:bg-neutral-200 font-semibold text-lg h-12 px-8"
             onClick={() => window.location.href = 'https://calendly.com/creovotech/30min'}
           >
@@ -228,10 +218,8 @@ export default function AboutPage() {
   );
 }
 
-// --- SUB-COMPONENTS ---
-
 const DifferentiatorCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => (
-  <motion.div 
+  <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
@@ -246,7 +234,7 @@ const DifferentiatorCard = ({ icon, title, description }: { icon: React.ReactNod
 );
 
 const ExpertiseCard = ({ number, title, description, icon, isSpecial }: { number: string, title: string, description: string, icon: React.ReactNode, isSpecial?: boolean }) => (
-  <motion.div 
+  <motion.div
     whileHover={{ y: -5 }}
     className={`relative h-full p-8 rounded-2xl border flex flex-col ${isSpecial ? 'bg-neutral-900 border-neutral-700' : 'bg-neutral-950 border-neutral-800 hover:border-neutral-700'}`}
   >
@@ -266,18 +254,16 @@ const ExpertiseCard = ({ number, title, description, icon, isSpecial }: { number
 );
 
 const ProcessStep = ({ step, title, content, icon }: { step: string, title: string, content: string, icon: React.ReactNode }) => (
-  <motion.div 
+  <motion.div
     initial={{ opacity: 0, x: -20 }}
     whileInView={{ opacity: 1, x: 0 }}
     viewport={{ once: true }}
     className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
   >
-    {/* Icon / Marker */}
     <div className="flex items-center justify-center w-10 h-10 rounded-full border border-neutral-700 bg-neutral-900 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 shadow-[0_0_0_4px_#0a0a0a]">
       {icon}
     </div>
-    
-    {/* Content */}
+
     <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-neutral-900 p-6 rounded-xl border border-neutral-800 hover:border-purple-500/50 transition-colors">
       <div className="flex items-center gap-3 mb-2">
         <span className="text-xs font-mono text-purple-500">{step}</span>
