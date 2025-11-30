@@ -22,14 +22,14 @@ import { motion } from 'motion/react';
 export const Features = ({
   heading,
   sub_heading,
-  world_map,
+  globe_card,
   ray_card,
   graph_card,
   social_media_card,
 }: {
   heading: string;
   sub_heading: string;
-  world_map: any;
+  globe_card: any;
   ray_card: any;
   graph_card: any;
   social_media_card: any;
@@ -59,10 +59,10 @@ export const Features = ({
           <Subheading className="max-w-3xl mx-auto">{sub_heading}</Subheading>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 my-2">
-            {world_map && (
+            {globe_card && (
               <Card className="lg:col-span-2">
-                <CardTitle>{world_map.title}</CardTitle>
-                <CardDescription>{world_map.description}</CardDescription>
+                <CardTitle>{globe_card.title}</CardTitle>
+                <CardDescription>{globe_card.description}</CardDescription>
                 <CardSkeletonContainer>
                   <SkeletonOne />
                 </CardSkeletonContainer>
