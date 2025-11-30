@@ -65,23 +65,16 @@ export function AppNavbar() {
   return (
     <div className="relative w-full">
       <Navbar>
-        {/* Desktop Navigation */}
         <NavBody>
           <NavbarLogo />
           <NavItems items={navItems} onItemClick={handleDesktopScroll} />
           <div className="flex items-center gap-4">
-            <NavbarButton
-              variant="primary"
-              onClick={() =>
-                router.push("https://calendly.com/creovotech/30min")
-              }
-            >
+            <NavbarButton href="https://calendly.com/creovotech/30min" variant="primary">
               Book a call
             </NavbarButton>
           </div>
         </NavBody>
 
-        {/* Mobile Navigation */}
         <MobileNav>
           <MobileNavHeader>
             <NavbarLogo />
@@ -106,13 +99,7 @@ export function AppNavbar() {
               </Link>
             ))}
             <div className="flex w-full flex-col gap-4">
-              <NavbarButton
-                onClick={() =>
-                  router.push("https://calendly.com/creovotech/30min")
-                }
-                variant="primary"
-                className="w-full"
-              >
+              <NavbarButton href="https://calendly.com/creovotech/30min" variant="primary" className="w-full">
                 Book a call
               </NavbarButton>
             </div>

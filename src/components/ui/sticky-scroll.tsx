@@ -11,7 +11,7 @@ export const StickyScroll = ({
     title: string;
     description: string;
     icon?: React.ReactNode;
-    content?: React.ReactNode; // This was missing and causing the error
+    content?: React.ReactNode; 
   }[];
 }) => {
   return (
@@ -46,7 +46,7 @@ export const ScrollContent = ({
   };
   index: number;
 }) => {
-  const ref = useRef<HTMLDivElement>(null); // Changed 'any' to 'HTMLDivElement' for better strict mode compliance
+  const ref = useRef<HTMLDivElement>(null); 
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end start'],
