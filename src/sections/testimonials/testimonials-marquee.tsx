@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import React from 'react';
-import Marquee from 'react-fast-marquee';
+// import Marquee from 'react-fast-marquee';
 
 import { cn } from '@/lib/utils';
 
@@ -15,7 +15,7 @@ export const TestimonialsMarquee = ({
   const levelTwo = testimonials.slice(8, 16);
   return (
     <div className="max-w-7xl mx-auto">
-      <div className="flex h-full relative">
+      {/* <div className="flex h-full relative">
         <div className="h-full absolute w-20 left-0 inset-y-0 z-30 bg-gradient-to-r from-charcoal to-transparent" />
         <div className="h-full absolute w-20 right-0 inset-y-0 z-30 bg-gradient-to-l from-charcoal to-transparent" />
         <Marquee>
@@ -76,7 +76,7 @@ export const TestimonialsMarquee = ({
             </Card>
           ))}
         </Marquee>
-      </div>
+      </div> */}
     </div>
   );
 };

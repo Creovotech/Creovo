@@ -43,9 +43,9 @@ export const Footer = () => {
             <div>
               Designed by{' '}
               <div className='flex justify-end'>
-                <a href="https://aceternity.com" className="hover:text-white underline transition-colors">Aceternity</a>
+                <Link href="https://aceternity.com" className="hover:text-white underline transition-colors">Aceternity</Link>
                 {' & '}
-                <div className="hover:text-white underline transition-colors">Creovo Team</div>
+                <Link href="https://creovo.dev" className="hover:text-white underline transition-colors">Creovo Team</Link>
               </div>
             </div>
             <p className="text-xs mt-1">

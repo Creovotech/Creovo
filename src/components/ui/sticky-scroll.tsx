@@ -4,7 +4,6 @@ import { useScroll, useTransform } from 'framer-motion';
 import { motion } from 'framer-motion';
 import React, { useRef } from 'react';
 
-// --- Fix 1: Added 'content?: React.ReactNode' to the main component props ---
 export const StickyScroll = ({
   content,
 }: {

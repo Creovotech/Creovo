@@ -10,23 +10,6 @@ interface TechStackProps {
   items: TechItem[];
 }
 
-/* Back-End
-const backEndTech = [
-  { name: "PHP", slug: "php" },
-  { name: "Node.js", slug: "nodedotjs" },
-  { name: "MySQL", slug: "mysql" },
-  { name: "MongoDB", slug: "mongodb" },
-  { name: "C++", slug: "c++" },
-  { name: "Laravel", slug: "laravel" },
-  { name: "Express", slug: "express" },
-  { name: "Postgresql", slug: "postgresql" },
-  { name: "GraphQL", slug: "graphql" },
-  { name: "Wordpress", slug: "wordpress" },
-  { name: "Socket.io", slug: "socketdotio" },
-];
-*/
-
-// Front-End Tech
 const frontEndTech = [
   { name: "HTML", slug: "html5" },
   { name: "CSS", slug: "css3" },
@@ -38,31 +21,24 @@ const frontEndTech = [
   { name: "Bootstrap", slug: "bootstrap" },
 ];
 
-// Dev Tools
 const devTools = [
-  // Version Control & Collaboration
   { name: "Git", slug: "git" },
   { name: "Github", slug: "github" },
 
-  // API & Backend Services
   { name: "Postman", slug: "postman" },
   { name: "Supabase", slug: "supabase" },
   { name: "Appwrite", slug: "appwrite" },
 
-  // UI & Design
   { name: "Figma", slug: "figma" },
   { name: "Shadcn UI", slug: "shadcnui" },
 
-  // Development & Tooling
   { name: "Vite", slug: "vite" },
   { name: "Docker", slug: "docker" },
   { name: "Sentry", slug: "sentry" },
 
-  // Databases & ORM
   { name: "Prisma", slug: "prisma" },
   { name: "Drizzle ORM", slug: "drizzle" },
 
-  // Payment Gateways
   { name: "Stripe", slug: "stripe" },
   { name: "Lemon Squeezy", slug: "lemonsqueezy" },
 ];

@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 import { Send, Bot, User, Sparkles } from "lucide-react";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import Link from "next/link";
 
 function Markdown({ text }: { text: string }) {
   return (
@@ -27,14 +28,14 @@ function Markdown({ text }: { text: string }) {
         ol: ({ children }) => <ol className="list-decimal pl-5 space-y-1">{children}</ol>,
         li: ({ children }) => <li className="marker:text-zinc-400">{children}</li>,
         a: ({ href, children }) => (
-          <a
+          <Link
             href={href as string}
             target="_blank"
             rel="noreferrer"
             className="underline text-violet-300 hover:text-violet-200"
           >
             {children}
-          </a>
+          </Link>
         ),
       }}
     >
@@ -132,8 +133,8 @@ export const CostEstimatorModal = ({ open, onOpenChange }: Props) => {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-2xl p-0 gap-0 bg-zinc-950 border-zinc-800">
         <div className="flex flex-col h-[600px]">
-          {/* Header */}
-          <div className="border-b border-zinc-800 bg-zinc-900/50 backdrop-blur-xl">
+          
+          <div id="header" className="border-b border-zinc-800 bg-zinc-900/50 backdrop-blur-xl">
             <DialogHeader className="px-6 py-4">
               <div className="flex items-center gap-3">
                 <div className="h-10 w-10 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center">
@@ -151,8 +152,7 @@ export const CostEstimatorModal = ({ open, onOpenChange }: Props) => {
             </DialogHeader>
           </div>
 
-          {/* Messages */}
-          <div
+          <div id="messages"
             ref={scrollRef}
             className="flex-1 overflow-y-auto p-6 space-y-4 bg-zinc-950"
           >
@@ -164,8 +164,7 @@ export const CostEstimatorModal = ({ open, onOpenChange }: Props) => {
                   m.role === "user" ? "flex-row-reverse" : "flex-row"
                 )}
               >
-                {/* Avatar */}
-                <div
+                <div id="avatar"
                   className={cn(
                     "h-8 w-8 rounded-full flex items-center justify-center flex-shrink-0",
                     m.role === "user"
@@ -180,13 +179,12 @@ export const CostEstimatorModal = ({ open, onOpenChange }: Props) => {
                   )}
                 </div>
 
-                {/* Message Bubble */}
-                <div
+                <div id="message-bubble"
                   className={cn(
                     "max-w-[75%] rounded-2xl px-4 py-3 text-sm leading-relaxed",
                     "shadow-sm transition-all duration-200",
                     m.role === "user"
-                      ? "bg-zinc-100 text-zinc-900 rounded-tr-sm"
+                      ? "bg-zinc-800 text-zinc-100 rounded-tr-sm"
                       : "bg-zinc-900 text-zinc-100 border border-zinc-800 rounded-tl-sm"
                   )}
                 >
@@ -232,7 +230,7 @@ export const CostEstimatorModal = ({ open, onOpenChange }: Props) => {
                 disabled={isTyping}
                 className={cn(
                   "h-12 bg-zinc-900 border-zinc-800 text-zinc-100",
-                  "placeholder:text-zinc-500 focus-visible:ring-zinc-700",
+                  "placeholder:text-zinc-500 focus-visible:ring-violet-500/50",
                   "disabled:opacity-50 disabled:cursor-not-allowed"
                 )}
               />
@@ -240,9 +238,9 @@ export const CostEstimatorModal = ({ open, onOpenChange }: Props) => {
                 onClick={send}
                 disabled={!draft.trim() || isTyping}
                 className={cn(
-                  "h-12 px-5 bg-zinc-100 text-zinc-900 hover:bg-zinc-200",
+                  "h-12 px-5 bg-gradient-to-br from-violet-500 to-purple-600 text-white",
                   "disabled:opacity-50 disabled:cursor-not-allowed",
-                  "transition-all duration-200"
+                  "transition-all duration-200 hover:opacity-90"
                 )}
                 aria-label="Send message"
               >

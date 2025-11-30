@@ -3,8 +3,8 @@ import { IconSparkles } from '@tabler/icons-react';
 import React from 'react';
 
 import { Container } from '@/components/container';
-import { Heading } from '../../components/elements/heading';
-import { Subheading } from '../../components/elements/subheading';
+import { Heading } from '@/components/elements/heading';
+import { Subheading } from '@/components/elements/subheading';
 import { GradientContainer } from '@/components/gradient-container';
 import {
   Card,
@@ -56,7 +56,7 @@ export const Features = ({
             </motion.div>
           </FeatureIconContainer>
           <Heading className="pt-4">{heading}</Heading>
-          <Subheading className="max-w-3xl mx-auto">{sub_heading}</Subheading>
+          <Subheading className="max-w-3xl mx-auto mb-20">{sub_heading}</Subheading>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 my-2">
             {globe_card && (
@@ -92,7 +92,6 @@ export const Features = ({
               </Card>
             )}
 
-            {/* Social media card spans 2 columns */}
             {social_media_card && (
               <Card className="lg:col-span-2">
                 <CardSkeletonContainer showGradient={false}>

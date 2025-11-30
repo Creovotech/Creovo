@@ -8,17 +8,14 @@ export const TypingSubheading = ({ text }: { text: string }) => {
   const [displayedText, setDisplayedText] = useState('');
 
   useEffect(() => {
-    // 1. When the 'text' prop changes, reset immediately
     setDisplayedText(''); 
   }, [text]);
 
   useEffect(() => {
-    // 2. If we haven't finished typing...
     if (displayedText.length < text.length) {
-      // Wait a bit, then show the next slice
       const timeoutId = setTimeout(() => {
         setDisplayedText(text.slice(0, displayedText.length + 1));
-      }, 30); // Typing speed
+      }, 30);
 
       return () => clearTimeout(timeoutId);
     }

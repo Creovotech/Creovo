@@ -35,7 +35,6 @@ export const FeatureIconContainer = ({
         >
           {children}
         </div>
-        {/* The shadow/glare elements below are kept as is */}
         <div className="absolute bottom-0 inset-x-0 bg-neutral-600 opacity-50 rounded-full blur-lg h-6 w-full mx-auto z-30"></div>
         <div className="absolute bottom-0 inset-x-0 bg-linear-to-r from-transparent via-neutral-500 to-transparent h-px w-[60%] mx-auto"></div>
         <div className="absolute bottom-0 inset-x-0 bg-linear-to-r from-transparent via-neutral-600 blur-xs to-transparent h-[8px] w-[60%] mx-auto"></div>

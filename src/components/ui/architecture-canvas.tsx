@@ -21,7 +21,6 @@ function ArchitectureNode({ data, selected }: any) {
         (selected ? 'scale-[1.04] drop-shadow-[0_0_30px_rgba(56,189,248,0.7)]' : '')
       }
     >
-      {/* squarish stacked layers */}
       <div className="pointer-events-none absolute inset-0 translate-x-[8px] translate-y-[8px] rounded-xl border border-white/5 bg-zinc-950/70" />
       <div className="pointer-events-none absolute inset-0 translate-x-[16px] translate-y-[16px] rounded-xl border border-white/10 bg-zinc-900/60" />
 
@@ -38,7 +37,6 @@ function ArchitectureNode({ data, selected }: any) {
         <div className="mt-2 h-[2px] w-12 rounded-full bg-gradient-to-r from-sky-500 to-indigo-400" />
       </div>
 
-      {/* invisible handles */}
       <Handle
         type="target"
         position={Position.Left}
@@ -97,11 +95,10 @@ export function ArchitectureFlowCanvas() {
         <div
           className="relative h-full w-full"
           style={{
-            transform: 'rotateX(50deg) rotateZ(-25deg)', // Reduced slant
+            transform: 'rotateX(50deg) rotateZ(-25deg)', 
             transformOrigin: '50% 50%',
           }}
         >
-          {/* the isometric "board" with a fading gradient */}
           <div className="pointer-events-none absolute inset-[6%] rounded-2xl bg-[radial-gradient(ellipse_at_center,rgba(39,39,42,0.5)_0%,rgba(39,39,42,0)_70%)]" />
 
           <ReactFlow
@@ -118,7 +115,7 @@ export function ArchitectureFlowCanvas() {
             zoomOnScroll={false}
             zoomOnPinch={false}
             zoomOnDoubleClick={false}
-            nodesDraggable={false} // Allow dragging nodes
+            nodesDraggable={false} 
             nodesConnectable={false}
             elementsSelectable={false}
             proOptions={{ hideAttribution: true }}

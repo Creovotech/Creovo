@@ -6,7 +6,6 @@ import { Code } from 'lucide-react';
 import { FeatureIconContainer } from './features/feature-icon-container';
 import { GradientContainer } from '@/components/gradient-container';
 
-// --- Type Definitions ---
 type IconProps = React.SVGProps<SVGSVGElement>;
 
 interface HeadingProps {
@@ -23,7 +22,6 @@ interface TechItemProps {
   item: TechItemData;
 }
 
-// --- Constants ---
 const TECHSTACK_ITEMS = {
   heading: 'Our Engineering Arsenal',
   sub_heading:
@@ -44,7 +42,6 @@ const Subheading = ({ children, className = '' }: HeadingProps) => (
   </p>
 );
 
-// High-quality SVG Icons for the Tech Stack
 const ICONS = {
   NextJS: (props: IconProps) => (
     <svg
@@ -389,7 +386,7 @@ const CLOUD_SCROLL_ITEMS: TechItemData[] = [
 
 export const TechStacks = () => {
   return (
-    <div className="relative z-20 py-12 md:py-32 overflow-hidden">
+    <div id="TechStacks" className="relative z-20 py-12 md:py-32 overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
           <motion.div
@@ -496,10 +493,8 @@ const TechItem = ({ item }: TechItemProps) => {
   const Icon = item.icon;
   return (
     <div className="relative group flex flex-col items-center justify-center gap-4">
-      {/* Glow Effect */}
       <div className="absolute inset-0 bg-white/5 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-      {/* Smaller container & icon size */}
       <div className="relative w-14 h-14 md:w-20 md:h-20 flex items-center justify-center bg-neutral-900/50 border border-white/10 rounded-2xl backdrop-blur-sm hover:border-white/30 hover:bg-neutral-800/50 transition-all duration-300 cursor-default">
         <Icon className="w-7 h-7 md:w-10 md:h-10 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" />
       </div>

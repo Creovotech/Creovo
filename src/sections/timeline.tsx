@@ -12,22 +12,19 @@ import { TIMELINE_DATA } from '@/constants/items';
 import { FeatureIconContainer } from '@/sections/features/feature-icon-container';
 import { GradientContainer } from '@/components/gradient-container';
 
-// Define the shape of a single launch item
 interface LaunchItem {
   mission_number: string | number;
-  date?: string; // Assuming your data might have a date
-  description?: string; // Assuming your data might have a description
+  date?: string; 
+  description?: string; 
   [key: string]: unknown; 
 }
 
 export const TimeLine = () => {
   const { heading, sub_heading, launches } = TIMELINE_DATA;
 
-  // --- THE FIX IS HERE ---
-  // We explicitly map 'mission_number' to 'title' and ensure 'description' exists
   const launchesWithDecoration = launches.map((entry: LaunchItem) => ({
-    title: String(entry.mission_number), // StickyScroll requires 'title'
-    description: String(entry.date || entry.description || "Mission Details"), // StickyScroll requires 'description'
+    title: String(entry.mission_number), 
+    description: String(entry.date || entry.description || "Mission Details"), 
     icon: <IconRocket className="h-8 w-8 text-secondary" />,
     content: (
       <p className="text-4xl md:text-7xl font-bold text-neutral-800">

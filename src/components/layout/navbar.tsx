@@ -15,11 +15,12 @@ import {
 import { useContext, useState } from "react";
 import { ScrollContext } from "@/providers/lenis-provider";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export function AppNavbar() {
   const navItems = [
     {
-      name: "Deliverables",
+      name: "Features",
       link: "#features",
     },
     {
@@ -95,14 +96,14 @@ export function AppNavbar() {
             onClose={() => setIsMobileMenuOpen(false)}
           >
             {navItems.map((item, idx) => (
-              <a
+              <Link
                 key={`mobile-link-${idx}`}
                 href={item.link}
                 onClick={(e) => handleScroll(e, item.link)}
                 className="relative text-neutral-600 dark:text-neutral-300"
               >
                 <span className="block">{item.name}</span>
-              </a>
+              </Link>
             ))}
             <div className="flex w-full flex-col gap-4">
               <NavbarButton

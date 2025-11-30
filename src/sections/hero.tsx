@@ -8,8 +8,8 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { CostEstimatorModal } from '@/components/modals/CostEstimatorModal';
-import { TypingSubheading } from '@/components/elements/TypingSubheading';
-import { ArchitectureFlowCanvas } from '@/components/ui/ArchitectureCanvasFlow';
+import { TypingSubheading } from '@/components/elements/typing-subheading';
+import { ArchitectureFlowCanvas } from '@/components/ui/architecture-canvas';
 import { useRouter } from 'next/navigation';
 
 export const Hero = () => {
