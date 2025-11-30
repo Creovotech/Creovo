@@ -7,14 +7,12 @@ import { HERO_ITEMS } from '@/constants/items';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { BookCallModal } from '@/components/modals/BookCallModal';
 import { CostEstimatorModal } from '@/components/modals/CostEstimatorModal';
 import { TypingSubheading } from '@/components/elements/TypingSubheading';
 import { ArchitectureFlowCanvas } from '@/components/ui/ArchitectureCanvasFlow';
 import { useRouter } from 'next/navigation';
 
 export const Hero = () => {
-  const [bookCallOpen, setBookCallOpen] = useState(false);
   const [costModalOpen, setCostModalOpen] = useState(false);
   const router = useRouter();
 
@@ -78,7 +76,6 @@ export const Hero = () => {
 
       <div id="hero-bottom" className="absolute inset-x-0 bottom-0 h-20 w-full bg-linear-to-t from-charcoal to-transparent pointer-events-none" />
 
-      <BookCallModal open={bookCallOpen} onOpenChange={setBookCallOpen} />
       <CostEstimatorModal open={costModalOpen} onOpenChange={setCostModalOpen} />
     </div>
   );

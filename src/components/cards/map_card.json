@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_cards_globe_cards",
+  "collectionName": "components_cards_map_cards",
   "info": {
-    "displayName": "Globe_Card",
+    "displayName": "Map_Card",
     "icon": "dashboard",
     "description": ""
   },
