@@ -193,3 +193,31 @@ export const TERMS_ITEMS = [
         content: "These Terms shall be governed and construed in accordance with the laws of the jurisdiction in which our company is registered, without regard to its conflict of law provisions."
     }
 ];
+
+
+export const PRIVACY_ITEMS = [
+    {
+        title: "1. Information We Collect",
+        content: "We collect information that you provide directly to us, such as when you create an account, subscribe to our newsletter, or contact us for support. This may include your name, email address, and payment information. We also automatically collect usage data when you access our services."
+    },
+    {
+        title: "2. How We Use Your Information",
+        content: "We use the information we collect to provide, maintain, and improve our services, to process transactions, to send you technical notices and support messages, and to communicate with you about products, services, offers, and events."
+    },
+    {
+        title: "3. Data Sharing and Disclosure",
+        content: "We do not share your personal information with third parties except as described in this policy. We may share your information with third-party vendors who need access to such information to perform services on our behalf, or to comply with legal obligations."
+    },
+    {
+        title: "4. Data Security",
+        content: "We take reasonable measures to help protect information about you from loss, theft, misuse, and unauthorized access, disclosure, alteration, and destruction. However, no internet transmission or electronic storage is ever completely secure."
+    },
+    {
+        title: "5. Cookies and Tracking",
+        content: "We use cookies and similar tracking technologies to track the activity on our service and hold certain information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent."
+    },
+    {
+        title: "6. Your Rights",
+        content: "Depending on your location, you may have rights regarding your personal data, including the right to access, correct, or delete the data we hold about you. Contact us to exercise these rights."
+    }
+];
