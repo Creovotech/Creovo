@@ -196,7 +196,7 @@ export const CostEstimatorModal = ({ open, onOpenChange }: Props) => {
             {/* Typing Indicator */}
             {isTyping && (
               <div className="flex gap-3 items-start">
-                <div className="h-8 w-8 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center flex-shrink-0">
+                <div className="h-8 w-8 rounded-full bg-linear-to-br from-violet-500 to-purple-600 flex items-center justify-center flex-shrink-0">
                   <Bot className="h-4 w-4 text-white" />
                 </div>
                 <div className="bg-zinc-900 border border-zinc-800 rounded-2xl rounded-tl-sm px-4 py-3">
@@ -238,7 +238,7 @@ export const CostEstimatorModal = ({ open, onOpenChange }: Props) => {
                 onClick={send}
                 disabled={!draft.trim() || isTyping}
                 className={cn(
-                  "h-12 px-5 bg-gradient-to-br from-violet-500 to-purple-600 text-white",
+                  "h-12 px-5 bg-linear-to-br from-violet-500 to-purple-600 text-white",
                   "disabled:opacity-50 disabled:cursor-not-allowed",
                   "transition-all duration-200 hover:opacity-90"
                 )}
