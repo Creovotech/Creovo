@@ -166,8 +166,8 @@ export const FOOTER_ITEMS = {
   ],
 
   social_media_links: [
-    { text: 'Twitter', URL: 'https://twitter.com/creovo' },
-    { text: 'LinkedIn', URL: 'https://linkedin.com/company/creovo' },
+    { text: 'Twitter', URL: 'https://x.com/CreovoTech' },
+    { text: 'LinkedIn', URL: 'https://www.linkedin.com/company/creovo-tech' },
   ],
 };
 

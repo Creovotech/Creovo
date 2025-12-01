@@ -73,6 +73,7 @@ const LinkSection = ({
         <Link
           key={link.text}
           href={link.URL}
+          target={['Twitter', 'Linkedin'].includes(link.text) ? '_blank' : '_self'}
           className="transition-colors hover:text-white hover:underline"
         >
           {link.text}
