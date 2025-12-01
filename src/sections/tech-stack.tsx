@@ -4,7 +4,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Code } from 'lucide-react';
 import { FeatureIconContainer } from './features/feature-icon-container';
-import { GradientContainer } from '@/components/gradient-container';
 
 type IconProps = React.SVGProps<SVGSVGElement>;
 
@@ -157,8 +156,6 @@ const ICONS = {
       />
     </svg>
   ),
-
-  // --- Cloud / DevOps icons ---
 
   AWS: (props: IconProps) => (
     <svg
@@ -350,7 +347,6 @@ const ICONS = {
   ),
 };
 
-// Top row: core/product stack (NO cloud/devops here)
 const PRIMARY_SCROLL_ITEMS: TechItemData[] = [
   { name: 'Next.js', icon: ICONS.NextJS },
   { name: 'React', icon: ICONS.React },
@@ -358,14 +354,12 @@ const PRIMARY_SCROLL_ITEMS: TechItemData[] = [
   { name: 'Tailwind', icon: ICONS.Tailwind },
   { name: 'Node.js', icon: ICONS.NodeJS },
   { name: 'PostgreSQL', icon: ICONS.PostgreSQL },
-  // Duplicates for smoother loop
   { name: 'Next.js', icon: ICONS.NextJS },
   { name: 'React', icon: ICONS.React },
   { name: 'TypeScript', icon: ICONS.TypeScript },
   { name: 'Tailwind', icon: ICONS.Tailwind },
 ];
 
-// Bottom row: ONLY the requested cloud/devops stack
 const CLOUD_SCROLL_ITEMS: TechItemData[] = [
   { name: 'Docker', icon: ICONS.Docker },
   { name: 'AWS', icon: ICONS.AWS },
@@ -379,7 +373,6 @@ const CLOUD_SCROLL_ITEMS: TechItemData[] = [
   { name: 'Kafka', icon: ICONS.Kafka },
   { name: 'Kubernetes', icon: ICONS.Kubernetes },
   { name: 'Redis', icon: ICONS.Redis },
-  // Duplicates for smooth loop
   { name: 'Docker', icon: ICONS.Docker },
   { name: 'AWS', icon: ICONS.AWS },
 ];
@@ -409,8 +402,8 @@ export const TechStacks = () => {
         <div className="absolute right-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-l from-black/80 to-transparent z-20 pointer-events-none" />
 
         <div className="flex overflow-hidden group">
-          {/* First Loop */}
           <motion.div
+            id="tech-scroll-top-1"
             initial={{ x: 0 }}
             animate={{ x: '-100%' }}
             transition={{
@@ -425,8 +418,8 @@ export const TechStacks = () => {
             ))}
           </motion.div>
 
-          {/* Second Loop */}
           <motion.div
+            id="tech-scroll-top-2"
             initial={{ x: 0 }}
             animate={{ x: '-100%' }}
             transition={{
@@ -443,13 +436,11 @@ export const TechStacks = () => {
         </div>
       </div>
 
-      {/* Bottom row: cloud / DevOps stack (visually left → right) */}
       <div className="mt-10 relative w-full">
-        <div className="absolute left-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-r from-black/80 to-transparent z-20 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-l from-black/80 to-transparent z-20 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-12 md:w-32 bg-linear-to-r from-black/80 to-transparent z-20 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-12 md:w-32 bg-linear-to-l from-black/80 to-transparent z-20 pointer-events-none" />
 
-        {/* Flip the row horizontally so motion scroll is -x but looks left → right */}
-        <div className="flex overflow-hidden group [transform:scaleX(-1)]">
+        <div className="flex overflow-hidden group transform-[scaleX(-1)]">
           <motion.div
             initial={{ x: 0 }}
             animate={{ x: '-100%' }}
