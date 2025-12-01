@@ -9,7 +9,7 @@ import { TestimonialsMarquee } from './testimonials-marquee';
 import { Subheading } from '@/components/elements/subheading';
 import { AmbientColor } from '@/components/decorations/ambient-color';
 import { Heading } from '@/components/elements/heading';
-import { TESTIMONIALS_ITEMS } from '@/constants/items';
+import { TESTIMONIALS_ITEMS } from '@/constants';
 
 export const Testimonials = () => {
   const { heading, sub_heading, testimonials } = TESTIMONIALS_ITEMS;

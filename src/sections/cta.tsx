@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import React from 'react';
 
-import { CTA_ITEMS } from '@/constants/items';
+import { CTA_ITEMS } from '@/constants';
 import { AmbientColor } from '@/components/decorations/ambient-color';
 import { Container } from '@/components/container';
 import { Button } from '@/components/elements/button';

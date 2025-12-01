@@ -6,29 +6,7 @@ import { Container } from '@/components/container';
 import { Heading } from '@/components/elements/heading';
 import { AmbientColor } from '@/components/decorations/ambient-color';
 import { Subheading } from '@/components/elements/subheading';
-
-const termsData = [
-    {
-        title: "1. Introduction",
-        content: "Welcome to Creovo. These Terms of Service (\"Terms\") govern your use of our website and the services we offer. By accessing our website or using our services, you agree to be bound by these Terms."
-    },
-    {
-        title: "2. Services",
-        content: "Creovo provides software development services, including but not limited to web development, mobile application development, and AI solutions. All services are subject to a separate agreement that will be provided before the commencement of any work."
-    },
-    {
-        title: "3. User Conduct",
-        content: "You agree not to use our website or services for any unlawful purpose or in any way that could harm our business or reputation. This includes, but is not limited to, transmitting any material that is defamatory, obscene, or otherwise objectionable."
-    },
-    {
-        title: "4. Limitation of Liability",
-        content: "In no event shall Creovo, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the service."
-    },
-    {
-        title: "5. Governing Law",
-        content: "These Terms shall be governed and construed in accordance with the laws of the jurisdiction in which our company is registered, without regard to its conflict of law provisions."
-    }
-];
+import { TERMS_ITEMS } from '@/constants';
 
 const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
     <section className="border-b border-zinc-800 pb-8 mb-8 last:border-0 last:pb-0 flex justify-items-start items-start flex-col w-full">
@@ -76,7 +54,7 @@ export default function TermsOfServicePage() {
                     </div>
 
                     <div className="space-y-2">
-                        {termsData.map((section, index) => (
+                        {TERMS_ITEMS.map((section, index) => (
                             <Section key={index} title={section.title}>
                                 {section.content}
                             </Section>

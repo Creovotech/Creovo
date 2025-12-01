@@ -8,23 +8,23 @@ import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import { StickyScroll } from '@/components/ui/sticky-scroll';
 import { Heading } from '@/components/elements/heading';
 import { Subheading } from '@/components/elements/subheading';
-import { TIMELINE_DATA } from '@/constants/items';
+import { TIMELINE_DATA } from '@/constants';
 import { FeatureIconContainer } from '@/sections/features/feature-icon-container';
 import { GradientContainer } from '@/components/gradient-container';
 
 interface LaunchItem {
   mission_number: string | number;
-  date?: string; 
-  description?: string; 
-  [key: string]: unknown; 
+  date?: string;
+  description?: string;
+  [key: string]: unknown;
 }
 
 export const TimeLine = () => {
   const { heading, sub_heading, launches } = TIMELINE_DATA;
 
   const launchesWithDecoration = launches.map((entry: LaunchItem) => ({
-    title: String(entry.mission_number), 
-    description: String(entry.date || entry.description || "Mission Details"), 
+    title: String(entry.mission_number),
+    description: String(entry.date || entry.description || "Mission Details"),
     icon: <IconRocket className="h-8 w-8 text-secondary" />,
     content: (
       <p className="text-4xl md:text-7xl font-bold text-neutral-800">
@@ -38,7 +38,7 @@ export const TimeLine = () => {
     target: ref,
     offset: ['start end', 'end start'],
   });
-  
+
   const backgrounds = ['var(--charcoal)', 'var(--zinc-900)'];
   const [gradient, setGradient] = useState(backgrounds[0]);
 
@@ -57,7 +57,7 @@ export const TimeLine = () => {
       },
       0
     );
-    
+
     setGradient(backgrounds[closestBreakpointIndex % backgrounds.length]);
   });
 

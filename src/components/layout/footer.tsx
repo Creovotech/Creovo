@@ -1,7 +1,7 @@
 import { Link } from 'next-view-transitions';
 import React from 'react';
 import { TextHoverEffect } from '@/components/ui/text-hover-effect';
-import { FOOTER_ITEMS } from '@/constants/items';
+import { FOOTER_ITEMS } from '@/constants';
 
 interface FooterLink {
   text: string;
@@ -36,7 +36,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        
+
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 text-sm text-neutral-500">
           <p>{data.copyright}</p>
           <div className="text-center sm:text-right">

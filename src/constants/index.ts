@@ -48,7 +48,7 @@ export const TIMELINE_DATA = {
     {
       title: "Understanding the Core Logic",
       description:
-        "It starts with a deep-dive consultation. We don't just ask what features you want; we analyze the business problem you are solving. Whether it’s a web platform or an autonomous agent, we define the technical feasibility, scope, and success metrics before writing a single line of code",
+        "It starts with a deep-dive consultation. We don't just ask what features you want; we analyze the business problem you are solving. Whether it&apso;s a web platform or an autonomous agent, we define the technical feasibility, scope, and success metrics before writing a single line of code",
       mission_number: "Discovery & Strategy",
     },
     {
@@ -170,3 +170,26 @@ export const FOOTER_ITEMS = {
     { text: 'LinkedIn', URL: 'https://linkedin.com/company/creovo' },
   ],
 };
+
+export const TERMS_ITEMS = [
+    {
+        title: "1. Introduction",
+        content: "Welcome to Creovo. These Terms of Service (\"Terms\") govern your use of our website and the services we offer. By accessing our website or using our services, you agree to be bound by these Terms."
+    },
+    {
+        title: "2. Services",
+        content: "Creovo provides software development services, including but not limited to web development, mobile application development, and AI solutions. All services are subject to a separate agreement that will be provided before the commencement of any work."
+    },
+    {
+        title: "3. User Conduct",
+        content: "You agree not to use our website or services for any unlawful purpose or in any way that could harm our business or reputation. This includes, but is not limited to, transmitting any material that is defamatory, obscene, or otherwise objectionable."
+    },
+    {
+        title: "4. Limitation of Liability",
+        content: "In no event shall Creovo, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the service."
+    },
+    {
+        title: "5. Governing Law",
+        content: "These Terms shall be governed and construed in accordance with the laws of the jurisdiction in which our company is registered, without regard to its conflict of law provisions."
+    }
+];
