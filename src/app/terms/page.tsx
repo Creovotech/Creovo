@@ -10,7 +10,7 @@ import { Section } from '@/components/common/section';
 
 export default function TermsOfServicePage() {
     return (
-        <div className="relative overflow-hidden bg-zinc-950 min-h-screen pt-32 pb-20 md:pt-48 md:pb-32">
+        <div className="relative overflow-hidden bg-zinc-950 min-h-screen pt-16 pb-20 md:pt-20 md:pb-32">
             <AmbientColor />
             <Container className="z-20 relative">
                 <motion.div
