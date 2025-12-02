@@ -3,6 +3,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { knowledgeContent } from "@/utils/knowledge";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+
 const model = genAI.getGenerativeModel({
   model: "gemini-2.5-flash",
 });
@@ -25,6 +26,7 @@ Goals:
   - Agentic / AI solutions start from $2,500 based on $50/hour payrate.
   - All starting prices already include a 35% early-bird discount.
   - The whole development typically takes 2-4 weeks depending on complexity.
+- CRITICAL: Format your response as PLAIN TEXT only. Do NOT use markdown (no asterisks, no hashes, no bolding, no lists). Use simple spacing and natural language.
 `;
 
 const buildChatHistory = (

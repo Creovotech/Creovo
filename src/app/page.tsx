@@ -1,15 +1,17 @@
+import dynamic from 'next/dynamic';
 import { AmbientColor } from '@/components/decorations/ambient-color';
-import { CTA } from '@/sections/cta';
-import { Features } from '@/sections/features';
 import { Hero } from '@/sections/hero';
-import { TimeLine } from '@/sections/timeline';
-import { TechStacks } from '@/sections/tech-stack';
 import ray_card from '@/components/cards/ray_card.json';
 import graph_card from '@/components/cards/graph_card.json';
 import globe_card from '@/components/cards/globe_card.json';
 import social_media_card from '@/components/cards/social_media_card.json';
-import ScrollToTop from '@/components/scroll-to-top';
-import { AppNavbar } from '@/components/layout/navbar';
+
+const AppNavbar = dynamic(() => import('@/components/layout/navbar').then((mod) => mod.AppNavbar));
+const Features = dynamic(() => import('@/sections/features').then((mod) => mod.Features));
+const TechStacks = dynamic(() => import('@/sections/tech-stack').then((mod) => mod.TechStacks));
+const TimeLine = dynamic(() => import('@/sections/timeline').then((mod) => mod.TimeLine));
+const CTA = dynamic(() => import('@/sections/cta').then((mod) => mod.CTA));
+const ScrollToTop = dynamic(() => import('@/components/scroll-to-top'));
 
 export default function LandingPage() {
   return (

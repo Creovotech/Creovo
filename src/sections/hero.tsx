@@ -1,5 +1,6 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import ShootingStars from '@/components/decorations/shooting-star';
 import StarBackground from '@/components/decorations/star-background';
 import { Heading } from '@/components/elements/heading';
@@ -7,10 +8,17 @@ import { HERO_ITEMS } from '@/constants';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { CostEstimatorModal } from '@/components/modals/CostEstimatorModal';
 import { TypingSubheading } from '@/components/elements/typing-subheading';
-import { ArchitectureFlowCanvas } from '@/components/ui/architecture-canvas';
 import { useRouter } from 'next/navigation';
+
+const CostEstimatorModal = dynamic(() => import('@/components/modals/CostEstimatorModal').then(mod => mod.CostEstimatorModal), {
+  ssr: false
+});
+
+const ArchitectureFlowCanvas = dynamic(() => import('@/components/ui/architecture-canvas').then(mod => mod.ArchitectureFlowCanvas), {
+  ssr: false,
+  loading: () => <div className="w-full h-full min-h-[400px]" />
+});
 
 export const Hero = () => {
   const [costModalOpen, setCostModalOpen] = useState(false);

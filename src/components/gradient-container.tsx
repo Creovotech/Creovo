@@ -7,7 +7,6 @@ import {
   useTransform,
 } from 'framer-motion';
 import React, { CSSProperties, useRef, useState } from 'react';
-
 import { cn } from '@/lib/utils';
 
 export const GradientContainer = ({
@@ -51,26 +50,23 @@ export const GradientContainer = ({
       }
       className={cn('relative overflow-hidden', className)}
     >
-      {/* Main gradient background */}
       <motion.div
+        id="gradient-overlay"
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
-          background: `conic-gradient(from 90deg at ${
-            100 - percentage
-          }% 0%, var(--top), var(--bottom) 180deg) 0% 0% / 50% 100% no-repeat,
+          background: `conic-gradient(from 90deg at ${100 - percentage
+            }% 0%, var(--top), var(--bottom) 180deg) 0% 0% / 50% 100% no-repeat,
                       conic-gradient(from 270deg at ${percentage}% 0%, var(--bottom) 180deg, var(--top)) 100% 0% / 50% 100% no-repeat`,
           opacity: 0.9,
         }}
       />
 
-      {/* Bottom fade to black */}
-      <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-40 z-[1] 
-                   bg-gradient-to-b from-transparent to-black"
+      <div id="bottom-fade"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-40 z-1 
+                   bg-linear-to-b from-transparent to-black"
       />
 
-      {/* Content */}
-      <div className="relative z-10">
+      <div id="content" className="relative z-10">
         {children}
       </div>
     </div>

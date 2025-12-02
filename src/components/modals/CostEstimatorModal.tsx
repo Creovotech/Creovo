@@ -1,260 +1,94 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { Send, Bot, User, Sparkles } from "lucide-react";
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import Link from "next/link";
-
-function Markdown({ text }: { text: string }) {
-  return (
-    <ReactMarkdown
-      remarkPlugins={[remarkGfm]}
-      components={{
-        p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
-        strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
-        em: ({ children }) => <em className="italic">{children}</em>,
-        ul: ({ children }) => <ul className="list-disc pl-5 space-y-1">{children}</ul>,
-        ol: ({ children }) => <ol className="list-decimal pl-5 space-y-1">{children}</ol>,
-        li: ({ children }) => <li className="marker:text-zinc-400">{children}</li>,
-        a: ({ href, children }) => (
-          <Link
-            href={href as string}
-            target="_blank"
-            rel="noreferrer"
-            className="underline text-violet-300 hover:text-violet-200"
-          >
-            {children}
-          </Link>
-        ),
-      }}
-    >
-      {text}
-    </ReactMarkdown>
-  );
-}
-
-type Props = {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-};
+import { Send, Bot, User } from "lucide-react";
 
 type Message = { id: string; role: "user" | "assistant"; content: string };
 
-export const CostEstimatorModal = ({ open, onOpenChange }: Props) => {
+export const CostEstimatorModal = ({ open, onOpenChange }: { open: boolean; onOpenChange: (o: boolean) => void }) => {
   const [messages, setMessages] = useState<Message[]>([
-    {
-      id: crypto.randomUUID(),
-      role: "assistant",
-      content:
-        "Hey! Tell me what you need (pages, features, timeline, examples). I'll give a quick ballpark estimate.",
-    },
+    { id: 'init', role: "assistant", content: "Hey! Let me know what you're looking to build (app, website, AI agent?), and I'll give you a rough estimate." },
   ]);
-  const [draft, setDraft] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
-  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const endRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTo({
-        top: scrollRef.current.scrollHeight,
-        behavior: "smooth",
-      });
-    }
-  }, [messages, isTyping, open]);
+  useEffect(() => { endRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages, loading]);
 
-  const send = async () => {
-    const text = draft.trim();
-    if (!text) return;
-
-    const userMsg: Message = {
-      id: crypto.randomUUID(),
-      role: "user",
-      content: text,
-    };
-
-    setMessages((m) => [...m, userMsg]);
-    setDraft("");
-    setIsTyping(true);
+  const handleSend = async () => {
+    if (!input.trim() || loading) return;
+    const userMsg: Message = { id: crypto.randomUUID(), role: "user", content: input };
+    setMessages(p => [...p, userMsg]);
+    setInput("");
+    setLoading(true);
 
     try {
       const res = await fetch("/api/cost-estimator", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          messages: [...messages, userMsg],
-        }),
+        body: JSON.stringify({ messages: [...messages, userMsg] }),
       });
-
-      if (!res.ok) {
-        throw new Error("Request failed");
-      }
-
-      const data: { reply: string } = await res.json();
-
-      const assistantMsg: Message = {
-        id: crypto.randomUUID(),
-        role: "assistant",
-        content: data.reply,
-      };
-
-      setMessages((m) => [...m, assistantMsg]);
-    } catch (err) {
-      const fallback: Message = {
-        id: crypto.randomUUID(),
-        role: "assistant",
-        content:
-          "Oops, something went wrong while talking to the AI. Please try again in a moment.",
-      };
-      setMessages((m) => [...m, fallback]);
+      const data = await res.json();
+      setMessages(p => [...p, { id: crypto.randomUUID(), role: "assistant", content: data.reply || "Error getting estimate." }]);
+    } catch {
+      setMessages(p => [...p, { id: crypto.randomUUID(), role: "assistant", content: "Something went wrong. Please try again." }]);
     } finally {
-      setIsTyping(false);
-    }
-  };
-
-  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      send();
+      setLoading(false);
     }
   };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-2xl p-0 gap-0 bg-zinc-950 border-zinc-800">
-        <div className="flex flex-col h-[600px]">
-          
-          <div id="header" className="border-b border-zinc-800 bg-zinc-900/50 backdrop-blur-xl">
-            <DialogHeader className="px-6 py-4">
-              <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center">
-                  <Sparkles className="h-5 w-5 text-white" />
-                </div>
-                <div>
-                  <DialogTitle className="text-lg font-semibold text-zinc-100">
-                    AI Cost Estimator
-                  </DialogTitle>
-                  <DialogDescription className="text-sm text-zinc-400 mt-0.5">
-                    Describe your project and get an instant estimate
-                  </DialogDescription>
-                </div>
-              </div>
-            </DialogHeader>
+      <DialogContent className="sm:max-w-[500px] w-[95%] h-[600px] max-h-[90vh] p-0 gap-0 bg-zinc-950 border-zinc-800 text-zinc-100 overflow-hidden shadow-2xl shadow-black/40 flex flex-col">
+        <DialogHeader className="p-4 border-b border-zinc-800 flex flex-row items-center justify-between bg-zinc-900/50 backdrop-blur-xl shrink-0">
+          <div className="flex items-center gap-3">
+            <DialogTitle className="text-sm font-medium text-zinc-200">Cost Estimator</DialogTitle>
           </div>
+        </DialogHeader>
 
-          <div id="messages"
-            ref={scrollRef}
-            className="flex-1 overflow-y-auto p-6 space-y-4 bg-zinc-950"
-          >
-            {messages.map((m) => (
-              <div
-                key={m.id}
-                className={cn(
-                  "flex gap-3 items-start",
-                  m.role === "user" ? "flex-row-reverse" : "flex-row"
-                )}
-              >
-                <div id="avatar"
-                  className={cn(
-                    "h-8 w-8 rounded-full flex items-center justify-center flex-shrink-0",
-                    m.role === "user"
-                      ? "bg-zinc-800"
-                      : "bg-gradient-to-br from-violet-500 to-purple-600"
-                  )}
-                >
-                  {m.role === "user" ? (
-                    <User className="h-4 w-4 text-zinc-300" />
-                  ) : (
-                    <Bot className="h-4 w-4 text-white" />
-                  )}
-                </div>
-
-                <div id="message-bubble"
-                  className={cn(
-                    "max-w-[75%] rounded-2xl px-4 py-3 text-sm leading-relaxed",
-                    "shadow-sm transition-all duration-200",
-                    m.role === "user"
-                      ? "bg-zinc-800 text-zinc-100 rounded-tr-sm"
-                      : "bg-zinc-900 text-zinc-100 border border-zinc-800 rounded-tl-sm"
-                  )}
-                >
-                  <Markdown text={m.content} />
-                </div>
+        <div 
+          className="flex-1 overflow-y-auto p-4 space-y-4 min-h-0 overscroll-contain"
+          data-lenis-prevent
+        >
+          {messages.map((m) => (
+            <div key={m.id} className={cn("flex gap-3 max-w-[85%]", m.role === "user" ? "ml-auto flex-row-reverse" : "")}>
+              <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border", m.role === "user" ? "bg-zinc-800 border-zinc-700" : "bg-violet-950/30 border-violet-500/20")}>
+                {m.role === "user" ? <User className="w-4 h-4 text-zinc-400" /> : <Bot className="w-4 h-4 text-violet-400" />}
               </div>
-            ))}
-
-            {/* Typing Indicator */}
-            {isTyping && (
-              <div className="flex gap-3 items-start">
-                <div className="h-8 w-8 rounded-full bg-linear-to-br from-violet-500 to-purple-600 flex items-center justify-center flex-shrink-0">
-                  <Bot className="h-4 w-4 text-white" />
-                </div>
-                <div className="bg-zinc-900 border border-zinc-800 rounded-2xl rounded-tl-sm px-4 py-3">
-                  <div className="flex gap-1">
-                    <div
-                      className="h-2 w-2 bg-zinc-600 rounded-full animate-bounce"
-                      style={{ animationDelay: "0ms" }}
-                    />
-                    <div
-                      className="h-2 w-2 bg-zinc-600 rounded-full animate-bounce"
-                      style={{ animationDelay: "150ms" }}
-                    />
-                    <div
-                      className="h-2 w-2 bg-zinc-600 rounded-full animate-bounce"
-                      style={{ animationDelay: "300ms" }}
-                    />
-                  </div>
-                </div>
+              <div className={cn("p-3 rounded-2xl text-sm leading-relaxed border whitespace-pre-wrap", m.role === "user" ? "bg-zinc-800 border-zinc-700 text-zinc-200 rounded-tr-none" : "bg-zinc-900/50 border-zinc-800 text-zinc-300 rounded-tl-none")}>
+                {m.content}
               </div>
-            )}
-          </div>
-
-          {/* Input Area */}
-          <div className="border-t border-zinc-800 bg-zinc-900/30 backdrop-blur-xl p-4">
-            <div className="flex gap-2">
-              <Input
-                value={draft}
-                onChange={(e) => setDraft(e.target.value)}
-                onKeyDown={onKeyDown}
-                placeholder="Describe your project requirements..."
-                disabled={isTyping}
-                className={cn(
-                  "h-12 bg-zinc-900 border-zinc-800 text-zinc-100",
-                  "placeholder:text-zinc-500 focus-visible:ring-violet-500/50",
-                  "disabled:opacity-50 disabled:cursor-not-allowed"
-                )}
-              />
-              <Button
-                onClick={send}
-                disabled={!draft.trim() || isTyping}
-                className={cn(
-                  "h-12 px-5 bg-linear-to-br from-violet-500 to-purple-600 text-white",
-                  "disabled:opacity-50 disabled:cursor-not-allowed",
-                  "transition-all duration-200 hover:opacity-90"
-                )}
-                aria-label="Send message"
-              >
-                <Send className="h-4 w-4" />
-              </Button>
             </div>
-            <div className="mt-2 flex items-center justify-between text-xs text-zinc-500">
-              <span>Press Enter to send</span>
-              <span className="flex items-center gap-1">
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                AI Ready
-              </span>
+          ))}
+          {loading && (
+            <div className="flex gap-3 max-w-[85%]">
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border bg-violet-950/30 border-violet-500/20">
+                <Bot className="w-4 h-4 text-violet-400" />
+              </div>
+              <div className="flex gap-1 items-center p-3 rounded-2xl rounded-tl-none bg-zinc-900/50 border border-zinc-800">
+                <span className="w-1.5 h-1.5 rounded-full bg-zinc-500 animate-bounce" />
+                <span className="w-1.5 h-1.5 rounded-full bg-zinc-500 animate-bounce delay-75" />
+                <span className="w-1.5 h-1.5 rounded-full bg-zinc-500 animate-bounce delay-150" />
+              </div>
             </div>
-          </div>
+          )}
+          <div ref={endRef} />
+        </div>
+
+        <div className="p-4 bg-zinc-900/30 border-t border-zinc-800 flex gap-2 shrink-0">
+          <Input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleSend()}
+            placeholder="Describe your project..."
+            className="bg-zinc-950 border-zinc-800 focus-visible:ring-violet-500/20 text-zinc-300 placeholder:text-zinc-600"
+          />
+          <Button onClick={handleSend} disabled={loading || !input.trim()} size="icon" className="bg-violet-600 hover:bg-violet-700 text-white shadow-[0_0_20px_-5px_rgba(124,58,237,0.5)]">
+            <Send className="w-4 h-4" />
+          </Button>
         </div>
       </DialogContent>
     </Dialog>
