@@ -5,7 +5,7 @@ import {
   useMotionValueEvent,
   useScroll,
   useTransform,
-} from 'framer-motion';
+} from 'motion/react';
 import React, { CSSProperties, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 

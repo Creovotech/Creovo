@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Code } from 'lucide-react';
 import { Container } from '@/components/container';
 import { Heading } from '@/components/elements/heading';

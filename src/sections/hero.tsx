@@ -5,7 +5,7 @@ import ShootingStars from '@/components/decorations/shooting-star';
 import StarBackground from '@/components/decorations/star-background';
 import { Heading } from '@/components/elements/heading';
 import { HERO_ITEMS } from '@/constants';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { TypingSubheading } from '@/components/elements/typing-subheading';

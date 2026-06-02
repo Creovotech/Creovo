@@ -1,11 +1,13 @@
 "use client";
 import { IconSparkles } from '@tabler/icons-react';
+import { motion } from 'motion/react';
 import React from 'react';
 
 import { Container } from '@/components/container';
 import { Heading } from '@/components/elements/heading';
 import { Subheading } from '@/components/elements/subheading';
 import { GradientContainer } from '@/components/gradient-container';
+import { FEATURES_ITEMS } from '@/constants';
 import {
   Card,
   CardDescription,
@@ -17,23 +19,9 @@ import { SkeletonOne } from './skeletons/first';
 import { SkeletonFour } from './skeletons/fourth';
 import { SkeletonTwo } from './skeletons/second';
 import { SkeletonThree } from './skeletons/third';
-import { motion } from 'motion/react';
 
-export const Features = ({
-  heading,
-  sub_heading,
-  globe_card,
-  ray_card,
-  graph_card,
-  social_media_card,
-}: {
-  heading: string;
-  sub_heading: string;
-  globe_card: any;
-  ray_card: any;
-  graph_card: any;
-  social_media_card: any;
-}) => {
+export const Features = () => {
+  const { heading, sub_heading, cards } = FEATURES_ITEMS;
   return (
     <div id='features'>
       <GradientContainer className="md:my-20">
@@ -59,50 +47,37 @@ export const Features = ({
           <Subheading className="max-w-3xl mx-auto mb-20">{sub_heading}</Subheading>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 my-2">
-            {globe_card && (
-              <Card className="lg:col-span-2">
-                <CardTitle>{globe_card.title}</CardTitle>
-                <CardDescription>{globe_card.description}</CardDescription>
-                <CardSkeletonContainer>
-                  <SkeletonOne />
-                </CardSkeletonContainer>
-              </Card>
-            )}
+            <Card className="lg:col-span-2">
+              <CardTitle>{cards.globe.title}</CardTitle>
+              <CardDescription>{cards.globe.description}</CardDescription>
+              <CardSkeletonContainer>
+                <SkeletonOne />
+              </CardSkeletonContainer>
+            </Card>
 
-            {ray_card && (
-              <Card>
-                <CardSkeletonContainer showGradient={false} className="max-w-[16rem] mx-auto">
-                  <SkeletonTwo />
-                </CardSkeletonContainer>
-                <CardTitle>{ray_card.title}</CardTitle>
-                <CardDescription>{ray_card.description}</CardDescription>
-              </Card>
-            )}
+            <Card>
+              <CardSkeletonContainer showGradient={false} className="max-w-64 mx-auto">
+                <SkeletonTwo />
+              </CardSkeletonContainer>
+              <CardTitle>{cards.ray.title}</CardTitle>
+              <CardDescription>{cards.ray.description}</CardDescription>
+            </Card>
 
-            {graph_card && (
-              <Card>
-                <CardSkeletonContainer
-                  showGradient={false}
-                  className="max-w-[16rem] mx-auto"
-                >
-                  <SkeletonThree />
-                </CardSkeletonContainer>
-                <CardTitle>{graph_card.title}</CardTitle>
-                <CardDescription>{graph_card.description}</CardDescription>
-              </Card>
-            )}
+            <Card>
+              <CardSkeletonContainer showGradient={false} className="max-w-64 mx-auto">
+                <SkeletonThree />
+              </CardSkeletonContainer>
+              <CardTitle>{cards.graph.title}</CardTitle>
+              <CardDescription>{cards.graph.description}</CardDescription>
+            </Card>
 
-            {social_media_card && (
-              <Card className="lg:col-span-2">
-                <CardSkeletonContainer showGradient={false}>
-                  <SkeletonFour />
-                </CardSkeletonContainer>
-                <CardTitle>{social_media_card.title}</CardTitle>
-                <CardDescription>
-                  {social_media_card.description}
-                </CardDescription>
-              </Card>
-            )}
+            <Card className="lg:col-span-2">
+              <CardSkeletonContainer showGradient={false}>
+                <SkeletonFour />
+              </CardSkeletonContainer>
+              <CardTitle>{cards.social.title}</CardTitle>
+              <CardDescription>{cards.social.description}</CardDescription>
+            </Card>
           </div>
         </Container>
       </GradientContainer>

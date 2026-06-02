@@ -1,4 +1,3 @@
-@import './prism.css' layer(base);
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
@@ -7,6 +6,19 @@
   --color-lightblack: #1c1c1c;
   --color-secondary: #e6e6e6;
   --color-muted: var(--neutral-200);
+
+  /* shadcn semantic tokens, tuned for this always-dark theme */
+  --color-background: #08090a;
+  --color-foreground: #fafafa;
+  --color-primary: #fafafa;
+  --color-primary-foreground: #0a0a0a;
+  --color-secondary-foreground: #0a0a0a;
+  --color-muted-foreground: #a1a1aa;
+  --color-accent: #1c1c1c;
+  --color-accent-foreground: #fafafa;
+  --color-destructive: #ef4444;
+  --color-input: #2e2e2e;
+  --color-ring: #525252;
 
   --shadow-derek:
     0px 0px 0px 1px rgb(0 0 0 / 0.06), 0px 1px 1px -0.5px rgb(0 0 0 / 0.06),
@@ -24,7 +36,17 @@
 
   --animate-move: move 5s linear infinite;
   --animate-spin-circle: spin-circle 3s linear infinite;
+  --animate-gradient: gradient 6s ease infinite;
 
+  @keyframes gradient {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
   @keyframes move {
     0% {
       transform: translateX(-200px);

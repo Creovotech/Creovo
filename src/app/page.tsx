@@ -1,10 +1,6 @@
 import dynamic from 'next/dynamic';
 import { AmbientColor } from '@/components/decorations/ambient-color';
 import { Hero } from '@/sections/hero';
-import ray_card from '@/components/cards/ray_card.json';
-import graph_card from '@/components/cards/graph_card.json';
-import globe_card from '@/components/cards/globe_card.json';
-import social_media_card from '@/components/cards/social_media_card.json';
 
 const AppNavbar = dynamic(() => import('@/components/layout/navbar').then((mod) => mod.AppNavbar));
 const Features = dynamic(() => import('@/sections/features').then((mod) => mod.Features));
@@ -19,10 +15,9 @@ export default function LandingPage() {
       <AppNavbar />
       <AmbientColor />
       <Hero />
-      <Features heading={'Engineering for Global Scale'} sub_heading={'From local startups to global ecosystems, we architect solutions designed to handle millions of interactions without breaking a sweat'} globe_card={globe_card} ray_card={ray_card} graph_card={graph_card} social_media_card={social_media_card} />
+      <Features />
       <TechStacks />
       <TimeLine />
-      {/* <Testimonials /> */}
       <CTA />
       <ScrollToTop />
     </div>

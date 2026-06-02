@@ -1,4 +1,4 @@
-import { MotionProps } from 'framer-motion';
+import { MotionProps } from 'motion/react';
 import React from 'react';
 import Balancer from 'react-wrap-balancer';
 

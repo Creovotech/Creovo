@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Subheading } from './subheading';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 export const TypingSubheading = ({ text }: { text: string }) => {
   const [displayedText, setDisplayedText] = useState('');

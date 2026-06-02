@@ -18,7 +18,7 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="bg-primary text-neutral-400 border-t border-neutral-800">
+    <footer className="bg-charcoal text-neutral-400 border-t border-neutral-800">
       <div className="max-w-7xl mx-auto px-8 py-16">
         <div className="flex flex-col md:flex-row justify-between gap-12 border-b border-neutral-800 pb-10">
           <div className="max-w-sm">

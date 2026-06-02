@@ -3,7 +3,7 @@
 import React, { useRef, useState } from 'react';
 import { IconRocket } from '@tabler/icons-react';
 import { Milestone } from 'lucide-react';
-import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
+import { motion, useMotionValueEvent, useScroll } from 'motion/react';
 
 import { StickyScroll } from '@/components/ui/sticky-scroll';
 import { Heading } from '@/components/elements/heading';
