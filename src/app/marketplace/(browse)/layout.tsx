@@ -4,13 +4,12 @@ import { ArrowUpRight, Store } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Creovo Marketplace',
-  description: 'Discover and buy production-ready templates, components, and tools — or sell your own.',
+  description: 'Discover production-ready templates, components, and free tools.',
 };
 
 const NAV_LINKS = [
-  { label: 'Browse', href: '/browse' },
-  { label: 'Categories', href: '/categories' },
-  { label: 'Sell', href: '/sell' },
+  { label: 'Browse', href: '#listings' },
+  { label: 'Categories', href: '#categories' },
 ];
 
 const MarketplaceNav = () => (
@@ -30,23 +29,11 @@ const MarketplaceNav = () => (
           </Link>
         ))}
       </div>
-
-      <div className="flex items-center gap-3 text-sm">
-        <Link href="/sign-in" className="hidden sm:inline text-zinc-300 hover:text-white transition-colors">
-          Sign in
-        </Link>
-        <Link
-          href="/sell"
-          className="rounded-md bg-white px-4 py-2 font-bold text-black transition duration-200 hover:-translate-y-0.5 hover:bg-neutral-200"
-        >
-          Become a seller
-        </Link>
-      </div>
     </nav>
   </header>
 );
 
-export default function MarketplaceLayout({ children }: { children: React.ReactNode }) {
+export default function MarketplaceBrowseLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative min-h-screen w-full">
       <MarketplaceNav />
