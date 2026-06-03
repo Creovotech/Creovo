@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { Container } from '@/components/container';
 import { CATEGORIES, categoryBySlug, listingsByCategory } from '../../_data/listings';
+import { BLUR } from '../../_data/blur';
 import { ListingCard } from '../../_components/listing-card';
 
 export function generateStaticParams() {
@@ -23,7 +24,17 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
     <main className="relative">
       {/* Per-category banner image */}
       <div className="relative h-56 overflow-hidden border-b border-zinc-800 md:h-72">
-        <Image src={banner} alt="" aria-hidden fill priority sizes="100vw" className="object-cover" />
+        <Image
+          src={banner}
+          alt=""
+          aria-hidden
+          fill
+          priority
+          sizes="100vw"
+          placeholder={BLUR[banner] ? 'blur' : 'empty'}
+          blurDataURL={BLUR[banner]}
+          className="object-cover"
+        />
         <div className="absolute inset-0 bg-charcoal/30" />
         <div className="absolute inset-0 bg-linear-to-t from-charcoal via-charcoal/60 to-transparent" />
         <Container className="relative flex h-full flex-col justify-end pb-8">

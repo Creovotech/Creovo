@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ArrowLeft, Check, Download } from 'lucide-react';
 import { Container } from '@/components/container';
 import { LISTINGS, categoryBySlug } from '../../../_data/listings';
+import { BLUR } from '../../../_data/blur';
 
 export function generateStaticParams() {
   return LISTINGS.filter((l) => l.type === 'product').map((l) => ({ slug: l.slug }));
@@ -31,7 +32,15 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
         <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-2">
           <div className="relative flex h-72 items-center justify-center overflow-hidden rounded-2xl border border-zinc-800 bg-linear-to-br from-zinc-900 to-neutral-950 md:h-96">
             {listing.image ? (
-              <Image src={listing.image} alt={listing.title} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
+              <Image
+                src={listing.image}
+                alt={listing.title}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                placeholder={BLUR[listing.image] ? 'blur' : 'empty'}
+                blurDataURL={BLUR[listing.image]}
+                className="object-cover"
+              />
             ) : Icon ? (
               <Icon className="size-16 text-zinc-700" />
             ) : null}
