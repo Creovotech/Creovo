@@ -10,7 +10,8 @@ export function SignOffCanvas({ active }: { active: boolean }) {
   return (
     <Canvas
       frameloop={active ? "always" : "never"}
-      dpr={[1, 1.5]}
+      // Dense additive points are fillrate-bound; cap DPR lower than the hero.
+      dpr={[1, 1.25]}
       gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
       style={{ position: "absolute", inset: 0 }}
     >

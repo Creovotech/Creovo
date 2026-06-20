@@ -7,7 +7,12 @@ import { signal } from "../signal/signalStore";
 import { signoffVertex, signoffFragment } from "./signoffShaders";
 import { sampleText, scatterCloud } from "../particles/glyph-points";
 
-const COUNT = 24000;
+const COUNT = 16000;
+
+const sstep = (a: number, b: number, x: number) => {
+  const k = Math.min(1, Math.max(0, (x - a) / (b - a)));
+  return k * k * (3 - 2 * k);
+};
 
 export function SignOff({ active }: { active: boolean }) {
   const matRef = useRef<THREE.ShaderMaterial>(null);
@@ -54,7 +59,7 @@ export function SignOff({ active }: { active: boolean }) {
       uTime: { value: 0 },
       uFit: { value: 0.62 },
       uCanvasAspect: { value: 1 },
-      uSize: { value: 2.2 * dpr },
+      uSize: { value: 1.9 * dpr },
     }),
     [dpr],
   );
@@ -77,11 +82,6 @@ export function SignOff({ active }: { active: boolean }) {
     const dt = Math.min(delta, 0.05);
     if (active) clock.current += dt;
     const t = clock.current;
-
-    const sstep = (a: number, b: number, x: number) => {
-      const k = Math.min(1, Math.max(0, (x - a) / (b - a)));
-      return k * k * (3 - 2 * k);
-    };
 
     // timeline: scatter→CREOVO snap, hold, →email stutter, hold
     mat.uniforms.uReveal.value = sstep(0.1, 1.3, t);
