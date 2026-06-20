@@ -51,7 +51,9 @@ export function Contact() {
 
         <Reveal className="mt-4">
           <a
-            href="mailto:hello@creovo.studio"
+            href="https://calendly.com/creovotech/30min"
+            target="_blank"
+            rel="noopener noreferrer"
             data-cursor
             className="group inline-flex items-center gap-4 rounded-full bg-bone px-8 py-4 text-base font-medium text-ink transition-transform duration-300 hover:scale-[1.03]"
           >
