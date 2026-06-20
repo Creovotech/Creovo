@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
-import { SmoothScroll } from "./components/smooth-scroll";
-import { Cursor } from "./components/cursor";
-import { Nav } from "./components/nav";
+import { Nav } from "./_components/nav";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -15,9 +13,18 @@ const instrument = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Creovo — Websites that don't blend in",
+  metadataBase: new URL("https://creovo.dev"),
+  title: "Creovo — Premium websites, hand-built in weeks",
   description:
-    "Creovo is a design studio building award-worthy, conversion-obsessed websites for businesses that refuse to look like everyone else.",
+    "Creovo is a small, senior web studio. We hand-build fast, custom, conversion-focused websites in about four weeks — for businesses that refuse to look average.",
+  openGraph: {
+    title: "Creovo — Premium websites, hand-built in weeks",
+    description:
+      "A small, senior studio. You brief the people who design and code it — and about four weeks later you ship a site that makes your business look like the leader in its market.",
+    url: "https://creovo.dev",
+    siteName: "Creovo",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -28,10 +35,9 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${instrument.variable} antialiased`}
     >
-      <body className="grain">
-        <Cursor />
+      <body>
         <Nav />
-        <SmoothScroll>{children}</SmoothScroll>
+        {children}
       </body>
     </html>
   );
