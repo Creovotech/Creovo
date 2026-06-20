@@ -3,7 +3,8 @@ import { CAL_URL, EMAIL } from "./constants";
 
 export function ClosingCta() {
   return (
-    <section className="border-t border-line px-6 py-28 md:py-36">
+    <section className="relative overflow-hidden border-t border-line px-6 py-28 md:py-36">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[70%] bg-[radial-gradient(60%_110%_at_50%_120%,rgba(255,77,46,0.14),transparent_70%)]" />
       <Reveal className="mx-auto max-w-[820px] text-center">
         <h2 className="mx-auto max-w-[18ch] text-[clamp(2rem,5vw,3.5rem)] font-semibold leading-[1.05] tracking-[-0.025em]">
           Want a site that finally matches how good your business is?

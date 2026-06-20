@@ -1,4 +1,5 @@
 import { Hero } from "./_components/hero";
+import { HeroShowcase } from "./_components/hero-showcase";
 import { CapabilityBar } from "./_components/capability-bar";
 import { Positioning } from "./_components/positioning";
 import { Work } from "./_components/work";
@@ -14,6 +15,7 @@ export default function Home() {
   return (
     <main>
       <Hero />
+      <HeroShowcase />
       <CapabilityBar />
       <Positioning />
       <Work />

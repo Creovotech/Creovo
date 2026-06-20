@@ -3,7 +3,7 @@ import { CAL_URL } from "./constants";
 
 export function Hero() {
   return (
-    <section id="top" className="px-6 pb-20 pt-36 md:pb-28 md:pt-44">
+    <section id="top" className="px-6 pb-8 pt-36 md:pb-10 md:pt-44">
       <div className="mx-auto max-w-[1100px]">
         <Reveal
           as="p"
