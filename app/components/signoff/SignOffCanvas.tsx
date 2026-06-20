@@ -15,7 +15,7 @@ export function SignOffCanvas({ active }: { active: boolean }) {
       gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
       style={{ position: "absolute", inset: 0 }}
     >
-      <SignOff active={active} />
+      <SignOff />
     </Canvas>
   );
 }
