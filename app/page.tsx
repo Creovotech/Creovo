@@ -1,15 +1,10 @@
+import Link from "next/link";
 import { Hero } from "./_components/hero";
 import { HeroShowcase } from "./_components/hero-showcase";
 import { CapabilityBar } from "./_components/capability-bar";
+import { FeaturedWork } from "./_components/featured-work";
 import { Positioning } from "./_components/positioning";
-import { Work } from "./_components/work";
-import { ReviewsProof } from "./_components/reviews-proof";
 import { WhatWeDo } from "./_components/what-we-do";
-import { HowWeWork } from "./_components/how-we-work";
-import { Process } from "./_components/process";
-import { ClosingCta } from "./_components/closing-cta";
-import { Footer } from "./_components/footer";
-import { CAL_URL } from "./_components/constants";
 
 export default function Home() {
   return (
@@ -17,24 +12,23 @@ export default function Home() {
       <Hero />
       <HeroShowcase />
       <CapabilityBar />
+      <FeaturedWork />
       <Positioning />
-      <Work />
-      <ReviewsProof />
       <WhatWeDo />
-      <HowWeWork />
-      <Process />
-      <ClosingCta />
-      <Footer />
 
-      {/* mobile sticky CTA */}
-      <a
-        href={CAL_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed inset-x-4 bottom-4 z-40 flex items-center justify-center rounded-full bg-ember px-6 py-3.5 text-sm font-medium text-white shadow-[0_14px_34px_-10px_rgba(255,77,46,0.6)] md:hidden"
-      >
-        Book a discovery call
-      </a>
+      <section className="px-6 pb-24">
+        <div className="mx-auto max-w-[1180px]">
+          <Link
+            href="/services"
+            className="group inline-flex items-center gap-2 text-lg font-medium"
+          >
+            See exactly how we work
+            <span className="text-ember transition-transform duration-200 group-hover:translate-x-1">
+              →
+            </span>
+          </Link>
+        </div>
+      </section>
     </main>
   );
 }

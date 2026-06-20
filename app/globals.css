@@ -56,6 +56,17 @@ body {
   animation: draw-underline 0.7s var(--ease-out-expo) 0.35s forwards;
 }
 
+/* page transition — fade-up on every navigation */
+@keyframes page-fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+.page-enter {
+  animation: page-fade 0.5s var(--ease-out-expo) both;
+}
+
 /* work-card signal line (the one nod to the showpiece) */
 .signal-line {
   transform: scaleX(0);
@@ -80,5 +91,8 @@ body {
   .signal-line {
     transform: scaleX(1);
     transition: none;
+  }
+  .page-enter {
+    animation: none;
   }
 }
